@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+
+.WidgetBox{
+	border:#F00 1px dashed;
+	position:absolute;
+	background:url('../images/red_10.png');
+	display:block;
+	z-index:0;
+	overflow:hidden;
+}
+td img {
+	display: block;
+}
+.Whtml{
+	width:100%;
+	height:100%;
+}
+#PapaDIV input{
+	background:url('../images/spacer.gif');
+	border: 0px;
+	box-shadow: 0 0 0 0;
+	width: 100%;
+	height:100%;
+	margin:0;
+	padding:0px;
+	line-height:125%;
+	color: #000;
+	font-family: Tahoma, 'Times New Roman', Arial;
+}
