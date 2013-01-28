@@ -1,6 +1,6 @@
 <?php
 class Admin{
-	public function Menu($c){
+	public static function Menu($c){
 		return AdminMenu::Render($c);
 	}
 }

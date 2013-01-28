@@ -3,10 +3,7 @@ class LoginAction extends GAdminAction{
 	public function run(){
 		if (array_key_exists('LoginModel',$_POST)){
 			$this->login();
-		}else $this->controller->render("login",array('script'=>'',
-												'ImgURL'=>$ImgURL
-											  )
-								  );
+		}else $this->controller->render("login",array());
 	}
 	public function login(){
 		$data=$_POST['LoginModel'];
