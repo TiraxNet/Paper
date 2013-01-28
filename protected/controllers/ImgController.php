@@ -21,6 +21,7 @@ class ImgController extends CController
 		}else{
 			$GC=new GClass($tmp);
 		}
+		if (!array_key_exists($id, $GC->blocks)) throw  new CHttpException('10003','Block not found'); 
 		$hndl=$GC->blocks[$id]->GetImage($type);
 		header('Content-Type: image/jpeg');
 		imagejpeg($hndl,NULL,100);

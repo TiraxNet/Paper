@@ -119,6 +119,7 @@ class GBlock{
 	public static function FindById($id){
 		$block=new GBlock();
 		$db=blocks::model()->findByPk($id);
+		if ($db==null) throw new CHttpException('10003','Block not found');
 		$block->SetFromDB($db);
 		return $block;
 	}

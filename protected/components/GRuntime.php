@@ -14,8 +14,6 @@ class GRuntime{
 	 * Get template id from request, create and save it in $this->GC 
 	 */
 	function init(){
-		$tmp='1';
-		//@FIXME
 		$tmp=yii::app()->getRequest()->getQuery("tmp","1");
 		$this->GC=new GClass($tmp);
 	}

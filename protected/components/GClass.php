@@ -63,8 +63,6 @@ class GClass{
 		$tmp_db=templates::model()->findByPk($tmp);
 		if ($tmp_db==null) throw new CHttpException('10001','Template not found');
 		
-		//echo 'Salam';
-		//echo 'application.templates.'.$tmp.DS.'index.jpg';
 		if (!file_exists(Yii::getPathOfAlias('application.templates.'.$tmp).DS.'index.jpg')) throw new CHttpException('10002','Template Index image not found');
 		$this->Pic->Address=Yii::getPathOfAlias('application.templates.'.$tmp);
 		
