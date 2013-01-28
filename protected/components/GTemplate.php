@@ -74,7 +74,7 @@ class GTemplate{
 	 * Search and fill parameters from database.
 	 * @param string $id Block id 
 	 */
-	public function FindById($id){
+	public static function FindById($id){
 		$template=new GTemplate();
 		$db=templates::model()->findByPk($id);
 		$template->SetFromDB($db);

@@ -18,17 +18,21 @@ class ListAction extends GAdminAction{
 	 */
 	public function run(){
 		$this->init();
+		$this->Create_list();
 		$this->controller->render("List",array(
 											   'Tlist'=>$this->Tlist
 								  			   )
 								  );
-		$this->Create_list();
 	}
 	/**
 	 * Creates a list of Templates and save it in $this->Tlist
 	 */
 	public function Create_list(){
-		$this->Tlist=blocks::model()->findAllByAttributes(array('parent'=>'0'));
+		$this->Tlist=new CActiveDataProvider('templates', array(
+				'criteria'=>array(
+						'condition'=>'parent=0',
+				),
+		));
 	}
 	
 }

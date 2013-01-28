@@ -12,8 +12,8 @@ class TmpController extends GAdminController
                 'class'=>'application.admin.actions.Tmp.NewAction',
             ),
             /* Edit an exiting template */
-			'edit'=>array(
-				'class'=>'application.admin.actions.Tmp.EditAction',
+			'update'=>array(
+				'class'=>'application.admin.actions.Tmp.UpdateAction',
 			),
 			/* Delete an exiting template */
 			'delete'=>array(

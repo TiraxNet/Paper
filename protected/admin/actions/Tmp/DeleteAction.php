@@ -1,8 +1,9 @@
 <?php 
 class DeleteAction extends GAdminAction{
-	public function run($tmp){
-		$template=GTemplate::FindById($tmp);
+	public function run($id){
+		$template=GTemplate::FindById($id);
 		$template->delete();
-		$this->controller->redirect('index.php');
+		echo 'Deleted Successfullt';
+		//$this->controller->redirect('index.php');
 	}
 }

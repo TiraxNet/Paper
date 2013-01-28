@@ -11,8 +11,7 @@ class AdminMenu{
 				'class'=>'bootstrap.widgets.BootMenu',
 				'items'=>array(
 					array('label'=>'Home', 'url'=>'index.php', 'active'=>true),
-					array('label'=>'Edit', 'url'=>'index.php?r=admin/Tmp/list'),
-					array('label'=>'New Template', 'url'=>'index.php?r=admin/Tmp/new'),
+					array('label'=>'Templates', 'url'=>'index.php?r=admin/Tmp/list'),
 					array('label'=>'Logout', 'url'=>'index.php?r=admin/login/logout'),
 				),
 			),

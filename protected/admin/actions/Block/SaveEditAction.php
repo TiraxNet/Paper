@@ -38,7 +38,7 @@ class SaveEditAction extends GAdminAction{
 		if ($data['x1']==0 && $data['y1']==0 && $data['x2']==0 && $data['y2']==0){
 			$tmp=$db->tmp;
 			$db->delete();
-			$this->controller->redirect($this->controller->createUrl("tmp/edit",array('tmp'=>$tmp)));
+			$this->controller->redirect($this->controller->createUrl("Tmp/update",array('tmp'=>$tmp)));
 			exit();
 			return true;
 		}

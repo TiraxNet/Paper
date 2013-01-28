@@ -3,19 +3,19 @@
 /**
  * SiteController is the default controller to handle user requests.
  */
-class EditAction extends GAdminAction{
+class UpdateAction extends GAdminAction{
 	
 	public $tmp;
 	public $GC;
 	public $script;
 	
-	public function run($tmp){
+	public function run($id){
 		$this->init();
-		$this->tmp=$tmp;
-		$this->GC=new GClass($tmp);
-		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$tmp));
+		$this->tmp=$id;
+		$this->GC=new GClass($id);
+		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$id));
 		$this->RenderScript();
-		$this->controller->render("edit",array('script'=>$this->script,
+		$this->controller->render("update",array('script'=>$this->script,
 												'ImgURL'=>$ImgURL
 											  )
 								  );

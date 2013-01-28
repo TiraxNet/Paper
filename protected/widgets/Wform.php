@@ -46,7 +46,7 @@ class Wform extends GWidget{
 		echo $form->textFieldRow($model, 'tmp');
 		echo $form->textFieldRow($model, 'action');
 		echo $form->textFieldRow($model, 'method');
-		echo '<a href="index.php?r=admin/Tmp/edit&tmp='.$model->tmp.'">Edit Inside Template!</a><br/>';
+		echo '<a href="index.php?r=admin/Tmp/update&tmp='.$model->tmp.'">Edit Inside Template!</a><br/>';
 		echo 'Copy Your PHP files in "protected/blocks/',$this->block->id.'"';
 		echo '<div class="form-actions">';
 		$con->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));

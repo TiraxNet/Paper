@@ -8,7 +8,7 @@ $this->Insert('#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; 
 
 $c='<a href="#" class="btn btn-primary  pull-right" id="EditBlockPosSave">Save</a>';
 $c.='<a href="#OptionsDialog" class="btn btn-primary  pull-right" data-toggle="modal">Options</a>';
-$c.='<a href="index.php?r=admin/Tmp/edit&tmp='.$this->Action->tmp.'" class="btn btn-primary pull-right">Close</a>';
+$c.='<a href="index.php?r=admin/Tmp/update&id='.$this->Action->tmp.'" class="btn btn-primary pull-right">Close</a>';
 Admin::Menu($c);
 
 echo '<div id="PapaDIV"><img src="'.$ImgURL.'" id="MainIMG"/></div>';
