@@ -153,7 +153,7 @@ class GBlock{
 	 * @return GWidget Widget Class extends of GWidget
 	 */
 	public function WidgetClass(){
-		Yii::import("application.widgets.".".W".$this->widget);
+		Yii::import("application.GWidgets.".".W".$this->widget);
 		$cname='W'.$this->widget;
 		$widget=new $cname($this->GC,$this);
 		return $widget;
