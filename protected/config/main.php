@@ -6,7 +6,6 @@
 * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
 */
 
-Yii::setPathOfAlias('templates', Yii::getPathOfAlias('application.templates'));
 
 return array(
 	'params'=>array(

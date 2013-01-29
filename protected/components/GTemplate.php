@@ -49,7 +49,7 @@ class GTemplate{
 	 */
 	public function SaveNew(){
 		$this->db->save();
-		mkdir(Yii::getPathOfAlias('application.templates.'.$this->db->id));
+		mkdir(self::GetPath($this->db->id).DS.$this->db->id);
 		return $this->db->id;
 	}
 	/**
@@ -70,7 +70,7 @@ class GTemplate{
 	 */
 	public function delete(){
 		$this->db->delete();
-		$dir=Yii::getPathOfAlias('application.templates.'.$this->db->id);
+		$dir=self::GetPath($this->db->id).DS.$this->db->id;
 		Yii::app()->functions->rrmdir($dir);
 	}
 	/**
@@ -107,7 +107,7 @@ class GTemplate{
 	 * @return Ambigous <boolean, string, mixed, multitype:string >
 	 */
 	public static function GetPath($id){
-		return Yii::getPathOfAlias('application.templates.'.$id);
+		return Yii::getPathOfAlias('application.GTemplates.'.$id);
 	}
 	/**
 	 * Scan template folder and return types

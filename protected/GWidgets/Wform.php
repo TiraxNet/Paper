@@ -18,7 +18,7 @@ class Wform extends GWidget{
 		}
 	}
 	public function EvalFile(){
-		$path=Yii::getPathOfAlias('application.blocks.'.$this->block->id).DS.$this->GetOpt('RenderFile');
+		$path=GBlock::GetPath($this->block->id).DS.$this->GetOpt('RenderFile');
 		if (!file_exists($path)) return false;
 		$code=file_get_contents($path);
 		$code=str_replace('<?php','',$code);
@@ -59,7 +59,7 @@ class Wform extends GWidget{
 		$tmpl->parent=$this->block->id;
 		$tmplid=$tmpl->SaveNew();
 		$hndl=$this->block->GetImage();
-		$path=Yii::getPathOfAlias('application.templates.'.$tmplid).DS.'index.jpg';
+		$path=GTemplate::GetPath($tmplid).DS.'index.jpg';
 		imagejpeg($hndl,$path,100);
 		$db=blocks::model()->findByPk($this->block->id);
 		$db->opt=serialize(array('tmp'=>$tmplid));

@@ -198,6 +198,6 @@ class GBlock{
 	 * @return Ambigous <boolean, string, mixed, multitype:string >
 	 */
 	public static function GetPath($id){
-		return Yii::getPathOfAlias('application.blocks.'.$id);
+		return Yii::getPathOfAlias('application.GBlocks.'.$id);
 	}
 }

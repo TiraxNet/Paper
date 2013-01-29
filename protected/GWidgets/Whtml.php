@@ -30,7 +30,7 @@ class Whtml extends GWidget{
 		$tmpl->parent=$this->block->id;
 		$tmplid=$tmpl->SaveNew();
 		$hndl=$this->block->GetImage();
-		$path=Yii::getPathOfAlias('application.templates.'.$tmplid).DS.'index.jpg';
+		$path=GTemplate::GetPath($tmplid).DS.'index.jpg';
 		imagejpeg($hndl,$path,100);
 		$db=blocks::model()->findByPk($this->block->id);
 		$db->opt=serialize(array('tmp'=>$tmplid));
