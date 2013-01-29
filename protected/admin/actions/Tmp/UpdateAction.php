@@ -5,18 +5,42 @@
  */
 class UpdateAction extends GAdminAction{
 	
+	/**
+	 * Template id will be stored here
+	 * @var string
+	 */
 	public $tmp;
+	/**
+	 * Template type will be stored here
+	 * @var string
+	 */
+	public $type;
+	/**
+	 * Template GClass will be stored here
+	 * @var string
+	 */
 	public $GC;
+	/**
+	 * JavaScript Code will be stored here
+	 * @var string
+	 */
 	public $script;
 	
-	public function run($id){
+	/**
+	 * Run action!
+	 * @param string $id	Get template id form request
+	 * @param string $type	Get template type form request
+	 */
+	public function run($id,$type='index'){
 		$this->init();
 		$this->tmp=$id;
+		$this->type=$type;
 		$this->GC=new GClass($id);
-		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$id));
+		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$id,'type'=>$type));
 		$this->RenderScript();
 		$this->controller->render("update",array('script'=>$this->script,
-												'ImgURL'=>$ImgURL
+												 'ImgURL'=>$ImgURL,
+												 'types'=>GTemplate::GetTypes($id),
 											  )
 								  );
 		

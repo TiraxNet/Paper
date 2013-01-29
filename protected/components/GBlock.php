@@ -2,7 +2,8 @@
 /**
  * This Class provides all we need to work with Blocks.
  * @author Mohammad Hosein Saadatfar
- *
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  */
 class GBlock{
 	/**
@@ -190,5 +191,13 @@ class GBlock{
 			}
 		}
 		return $hndl_dest;
+	}
+	/**
+	 * Get a block id and return folder location
+	 * @param string $id block id
+	 * @return Ambigous <boolean, string, mixed, multitype:string >
+	 */
+	public static function GetPath($id){
+		return Yii::getPathOfAlias('application.blocks.'.$id);
 	}
 }

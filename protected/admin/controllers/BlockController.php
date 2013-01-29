@@ -5,7 +5,11 @@
  */
 class BlockController extends GAdminController
 {
-
+	/**
+	 * Page Title
+	 * @var string
+	 */
+	public $Title='Block Managment';
 	public function actions()
     {
         return array(

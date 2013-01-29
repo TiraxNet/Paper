@@ -39,7 +39,7 @@ $form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 <input type="hidden" name="NewBlockModel[y1]" id="y1" value=""/>
 <input type="hidden" name="NewBlockModel[x2]" id="x2" value=""/>
 <input type="hidden" name="NewBlockModel[y2]" id="y2" value=""/>
-<input type="hidden" name="NewBlockModel[parent]" id="parent" value="<?php echo $_REQUEST['parent'];?>"/>
+<input type="hidden" name="NewBlockModel[parent]" id="parent" value="0"/>
 <input type="hidden" name="NewBlockModel[tmp]" id="tmp" value="<?php echo $this->Action->tmp;?>"/>
 </div>
 

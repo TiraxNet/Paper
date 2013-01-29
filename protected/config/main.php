@@ -1,4 +1,12 @@
 <?php
+/**
+* Paper! Config File 
+* @author Mohammad Hosein Saadatfar
+* @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+* @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+*/
+
+Yii::setPathOfAlias('templates', Yii::getPathOfAlias('application.templates'));
 
 return array(
 	'params'=>array(

@@ -5,13 +5,23 @@
  */
 class NewAction extends GAdminAction{
 	
+	/**
+	 * User Massage and alerts will be stored here by "save" method
+	 * @var string
+	 */
 	public $msg;
 	
+	/**
+	 * Run New Action!
+	 */
 	public function run(){
 		$this->init();
 		if (array_key_exists('NewTmpModel',$_POST)) $this->save();
 		$this->controller->render("new",array('msg'=>$this->msg));
 	}
+	/*
+	 * Save Template
+	 */
 	public function save(){
 		$model=new NewTmpModel;
 		$model->setAttributes($_POST['NewTmpModel'],false);

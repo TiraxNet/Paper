@@ -3,7 +3,11 @@
 class LoginController extends GAdminController
 {
 	
-	
+	/**
+	 * Page Title
+	 * @var string
+	 */
+	public $Title='Administratot Login';
 	public function actions()
     {
         return array(

@@ -1,7 +1,9 @@
 <?php
 /**
  * This Class provides all we need to work with paper!
- * @author Mohammad Hosein Saadatfar 
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
 class GClass{
@@ -63,8 +65,8 @@ class GClass{
 		$tmp_db=templates::model()->findByPk($tmp);
 		if ($tmp_db==null) throw new CHttpException('10001','Template not found');
 		
-		if (!file_exists(Yii::getPathOfAlias('application.templates.'.$tmp).DS.'index.jpg')) throw new CHttpException('10002','Template Index image not found');
-		$this->Pic->Address=Yii::getPathOfAlias('application.templates.'.$tmp);
+		if (!file_exists(GTemplate::GetPath($tmp).DS.'index.jpg')) throw new CHttpException('10002','Template Index image not found');
+		$this->Pic->Address=GTemplate::GetPath($tmp);
 		
 		$this->name=$tmp_db['name'];
 		$this->id=$tmp;

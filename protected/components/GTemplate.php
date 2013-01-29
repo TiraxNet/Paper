@@ -1,55 +1,76 @@
 <?php
 /**
  * This Class provides all we need to work with Templates
- * @author Mohammad Hosein Saadatfar 
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
+ * @property string $id Template id
+ * @property string $name Template name
+ * @property string $title Template title
+ * @property strign $css Template CSS
+ * @property int 	$version Template version
  */
 class GTemplate{
+	
 	/**
-	 * Template id
-	 * @var string
+	 * Database active record
+	 * @var templates
 	 */
-	public $id;
+	private $db;
+	
 	/**
-	 * Template name
-	 * @var string
+	 * Constructor!
 	 */
-	public $name;
+	function __construct(){
+		$this->db=new templates();
+	}
 	/**
-	 * Template title
-	 * @var string
+	 * Database Setter!
+	 * @param string $name
+	 * @param string $value
 	 */
-	public $title;
+	public function __set($name,$value){
+		if ($this->db->hasAttribute($name)) $this->db->$name=$value;
+		else trigger_error('Undefined property '.$name);
+	}
 	/**
-	 * Template css
-	 * @var string
+	 * Database getter!
+	 * @param string $name
+	 * @return mixed
 	 */
-	public $css;
-	/**
-	 * Template parent template id
-	 * @var string
-	 */
-	public $parent;
+	public function __get($name){
+		if ($this->db->hasAttribute($name)) return $this->db->$name;
+		else if ($name=='db') return $this->db;
+		else trigger_error('Undefined property '.$name);
+	}
 	/**
 	 * Saves current parameters as new template.
 	 */
 	public function SaveNew(){
-		$db= new templates();
-		$db->name=$this->name;
-		$db->title=$this->title;
-		$db->css=$this->css;
-		$db->parent=$this->parent;
-		$db->save();
-		mkdir(Yii::getPathOfAlias('application.templates.'.$db->id));
-		return $db->id;
+		$this->db->save();
+		mkdir(Yii::getPathOfAlias('application.templates.'.$this->db->id));
+		return $this->db->id;
+	}
+	/**
+	 * Save template changes
+	 */
+	public function Save(){
+		$this->db->save();
+	}
+	/**
+	 * Increase template version
+	 */
+	public function Increase_Version(){
+		$this->db->version=$this->db->version+1;
+		$this->db->save();
 	}
 	/**
 	 * Delete template by current "id" parameter
 	 */
 	public function delete(){
-		$db=templates::model()->findByPk($this->id);
-		$db->delete();
-		$dir=Yii::getPathOfAlias('application.templates.'.$db->id);
+		$this->db->delete();
+		$dir=Yii::getPathOfAlias('application.templates.'.$this->db->id);
 		Yii::app()->functions->rrmdir($dir);
 	}
 	/**
@@ -57,9 +78,9 @@ class GTemplate{
 	 * @param array $arr parameters array
 	 */
 	public function SetFromArray($arr){
-		foreach (get_class_vars('GTemplate') as $var=>$val){
+		foreach ($this->db->getAttributes() as $var=>$val){
 			if (array_key_exists($var,$arr)){
-						$this->$var=$arr[$var];
+						$this->db->$var=$arr[$var];
 			}
 		}
 	}
@@ -68,7 +89,7 @@ class GTemplate{
 	 * @param CActiveRecord $db
 	 */
 	public function SetFromDB($db){
-		$this->SetFromArray($db->getAttributes());
+		$this->db=$db;
 	}
 	/**
 	 * Search and fill parameters from database.
@@ -79,5 +100,25 @@ class GTemplate{
 		$db=templates::model()->findByPk($id);
 		$template->SetFromDB($db);
 		return $template;
+	}
+	/**
+	 * Gets a template id and returns folder location
+	 * @param string $id template id
+	 * @return Ambigous <boolean, string, mixed, multitype:string >
+	 */
+	public static function GetPath($id){
+		return Yii::getPathOfAlias('application.templates.'.$id);
+	}
+	/**
+	 * Scan template folder and return types
+	 * @param $id Template id
+	 */
+	public static function GetTypes($id){
+		$con=scandir(GTemplate::GetPath($id));
+		$con=preg_grep('/jpg/', $con);
+		foreach ($con as $key=>$val){
+			$con[$key]=substr($con[$key],0,-4);
+		}
+		return $con;
 	}
 }

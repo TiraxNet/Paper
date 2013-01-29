@@ -1,9 +1,21 @@
 <?php
+/**
+ * Template managment controller
+ * @author Mohammad Hosein Saadatfar
+ *
+ */
 
 class TmpController extends GAdminController
 {
-	
-	
+	/**
+	 * Page Title
+	 * @var string
+	 */
+	public $Title='Template Managment';
+	/**
+	 * (non-PHPdoc)
+	 * @see CController::actions()
+	 */
 	public function actions()
     {
         return array(
@@ -23,6 +35,10 @@ class TmpController extends GAdminController
 			'list'=>array(
                 'class'=>'application.admin.actions.Tmp.ListAction',
             ),
+        	/* Upload template image */
+        	'uploadimg'=>array(
+        		'class'=>'application.admin.actions.Tmp.UploadIMGAction',
+        	)
         );
     }
 }
