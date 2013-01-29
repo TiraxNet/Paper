@@ -27,7 +27,7 @@ return array(
     	'application.components.*',
 		'application.extensions.*',
 		'application.models.*',
-		'application.extensions.GWidgets.*',
+		'application.GWidgets.*',
     	'application.admin.components.*',
 	),
 	'preload'=>array(

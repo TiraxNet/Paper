@@ -49,7 +49,7 @@ class GTemplate{
 	 */
 	public function SaveNew(){
 		$this->db->save();
-		mkdir(self::GetPath($this->db->id).DS.$this->db->id);
+		mkdir(self::GetPath($this->db->id));
 		return $this->db->id;
 	}
 	/**
@@ -70,7 +70,7 @@ class GTemplate{
 	 */
 	public function delete(){
 		$this->db->delete();
-		$dir=self::GetPath($this->db->id).DS.$this->db->id;
+		$dir=self::GetPath($this->db->id);
 		Yii::app()->functions->rrmdir($dir);
 	}
 	/**

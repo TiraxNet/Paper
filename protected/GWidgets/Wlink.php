@@ -42,7 +42,8 @@ public function Options(){
 			'type'=>'horizontal',
 			'action'=>$Arg->action,
 		));
-		echo $form->textFieldRow($model, 'href');
+		echo $form->textFieldRow($model, 'href', array('id'=>'href'));
+		$con->widget('application.widgets.TmpLinkWidget',array('InputId'=>'href'));
 		echo $form->checkBoxRow($model, 'hover');
 		echo '<div class="form-actions">';
 		$con->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));
