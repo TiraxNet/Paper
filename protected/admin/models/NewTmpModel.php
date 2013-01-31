@@ -8,7 +8,30 @@
  */
 class NewTmpModel extends CFormModel
 {
+	/**
+	 * Template name
+	 * @var string
+	 */
     public $name;
+    /**
+     * Template title
+     * @var string
+     */
 	public $title;
+	/**
+	 * Template CSS
+	 * @var string
+	 */
 	public $css;
+	
+	/**
+	 * (non-PHPdoc)
+	 * @see CModel::rules()
+	 */
+	public function rules()
+	{
+		return array(
+				array('name', 'required'),
+		);
+	}
 }

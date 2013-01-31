@@ -28,13 +28,20 @@ class NewAction extends GAdminAction{
 	public function save(){
 		$model=new NewTmpModel;
 		$model->setAttributes($_POST['NewTmpModel'],false);
-		$tmp=new GTemplate();
-		$tmp->name=$model->name;
-		$tmp->css=$model->css;
-		$tmp->title=$model->title;
-		$tmp->parent=0;
-		$id=$tmp->SaveNew();
-		$this->msg='Now you should copy your images in "protected\templates\\'.$id.'"';
+		if ($model->validate()){
+			$tmp=new GTemplate();
+			$tmp->name=$model->name;
+			$tmp->css=$model->css;
+			$tmp->title=$model->title;
+			$tmp->parent=0;
+			$id=$tmp->SaveNew();
+			$this->controller->redirect(array('Tmp/uploadimg','id'=>$id,'type'=>'index'));
+		}else{
+			$this->msg='You need some changes!:';
+			foreach($model->getErrors() as $key=>$Error){
+				$this->msg=$this->msg.'<br/>-'.$Error[0];
+			}
+		}
 	}
 	
 }

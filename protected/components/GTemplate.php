@@ -50,6 +50,7 @@ class GTemplate{
 	public function SaveNew(){
 		$this->db->save();
 		mkdir(self::GetPath($this->db->id));
+		copy(dirname(__FILE__).DS.'assets'.DS.'NewTmp.jpg',self::GetPath($this->db->id).DS.'index.jpg');
 		return $this->db->id;
 	}
 	/**

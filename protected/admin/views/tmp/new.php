@@ -12,7 +12,7 @@
 <div class="well" style="margin:50px auto; width:700px">
 <?php
 if ($msg!=''){
-	echo "<div class=\"alert alert-success\">$msg</div>";
+	echo "<div class=\"alert alert-error\">$msg</div>";
 }
 $model=new NewTmpModel;
 $form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
