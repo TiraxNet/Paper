@@ -1,3 +1,13 @@
+<?php
+/**
+ * Admin site action view
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
+?>
+
 
 <h1><?php echo $this->uniqueId . '/' . $this->action->id; ?></h1>
 

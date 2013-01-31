@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Create a form main body and its template
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
 class Wform extends GWidget{
 	public function Options(){
 		return array('NameID','tmp','action','method','RenderFile');

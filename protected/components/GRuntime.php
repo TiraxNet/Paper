@@ -1,7 +1,9 @@
 <?php
 /**
- * This class runs at start and creates proper GClass 
- * @author Mohammad hosein saadatfar
+ * This class runs at start and creates proper GClass
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
 class GRuntime{

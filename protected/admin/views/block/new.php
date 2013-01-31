@@ -1,4 +1,14 @@
 <?php
+/**
+ * Admin new block action view
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
+?>
+
+<?php
 
 $this->InsertAsset('edit.js','script');
 $this->InsertAsset('imgareaselect.js','script');

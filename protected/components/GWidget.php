@@ -1,7 +1,9 @@
 <?php
 /**
  * This Class contains main param an methods for using Widgets and is used as extends.
- * @author Mohammad Hosein Saadatfar 
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
 class GWidget{

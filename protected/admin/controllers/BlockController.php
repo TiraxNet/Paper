@@ -1,7 +1,10 @@
 <?php
-
 /**
- * SiteController is the default controller to handle user requests.
+ * Admin Block managment controller
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
  */
 class BlockController extends GAdminController
 {
@@ -10,6 +13,10 @@ class BlockController extends GAdminController
 	 * @var string
 	 */
 	public $Title='Block Managment';
+	/**
+	 * (non-PHPdoc)
+	 * @see CController::actions()
+	 */
 	public function actions()
     {
         return array(

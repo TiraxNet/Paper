@@ -1,7 +1,9 @@
 <?php
 /**
- *  A class to store picture details.
- * @author Mohmmad hosein saadatfar
+ * A class to store picture details.
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
 class GPic{

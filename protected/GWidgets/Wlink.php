@@ -1,8 +1,14 @@
 <?php
-
+/**
+ * Link image part to given location
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
 
 class Wlink extends GWidget{
-public function Options(){
+	public function Options(){
 		return array('href','hover');
 	}
 	public function Content(){

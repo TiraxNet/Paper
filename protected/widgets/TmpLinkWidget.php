@@ -1,6 +1,6 @@
 <?php
 /**
- * This Widget Shows a Template list links in order to linking pages 
+ *  Show a Template list links in order to linking pages 
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -13,6 +13,10 @@ class TmpLinkWidget extends CWidget
 	public $type='inverse';
 	public $InputId;
 	
+	/**
+	 * (non-PHPdoc)
+	 * @see CWidget::run()
+	 */
 	public function run()
 	{
 		$this->RegisterJS();
@@ -27,6 +31,9 @@ class TmpLinkWidget extends CWidget
 				),
 		));
 	}
+	/**
+	 * Echo modal body of widget
+	 */
 	public function Render_Modal()
 	{
 	
@@ -71,6 +78,9 @@ class TmpLinkWidget extends CWidget
 		 
 		<?php $this->endWidget();
 	}
+	/**
+	 * Register JavaScript function Code of widget
+	 */
 	public function RegisterJS()
 	{
 		$script="	function FillTMPURL(url){

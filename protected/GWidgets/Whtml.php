@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Get an html code and echo it on apropriate location
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
 class Whtml extends GWidget{
 	public function Options(){
 		return array('html');

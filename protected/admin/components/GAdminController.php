@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Admin Controller initializer and methods
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
 class GAdminController extends CController{
 	public $AssetsBase;
 	public $Name;
@@ -28,6 +34,12 @@ class GAdminController extends CController{
 			Yii::app() -> clientScript -> registerCssFile($this->AssetsBase.'/'.$name);
 		}	
 	}
+	/**
+	 * Insert Javascript/CSS code in page
+	 * @param string $text Javascript/CSS text
+	 * @param string $type Type of code, use 'script' for javascript code and 'CSS'  for CSS code
+	 * @param string $pos Optional| Javascript position @see registerScript
+	 */
 	public function Insert($text,$type,$pos=CClientScript::POS_END){
 		if ($type=='script'){
 			Yii::app() -> clientScript ->registerScript (uniqid(),$text,$pos);

@@ -1,3 +1,13 @@
+<?php
+/**
+ * Admin template list action view
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
+?>
+
 <?php Admin::Menu('');?>
 <div class="well" style="margin:50px auto; width:700px">
 <?php $this->widget('bootstrap.widgets.BootGridView', array(

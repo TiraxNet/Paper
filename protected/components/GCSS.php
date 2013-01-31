@@ -1,7 +1,9 @@
 <?php
 /**
- * * This Class provides all we need to work with CSS.
- * @author Mohammad hosein saadatfar
+ * provide all we need to work with CSS.
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
 class GCSS{

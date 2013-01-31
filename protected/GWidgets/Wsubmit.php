@@ -1,4 +1,11 @@
 <?php
+/**
+ * Use image part as submit button
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
 class Wsubmit extends GWidget{
 	public function Options(){
 		return array('name','value');

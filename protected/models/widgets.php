@@ -1,7 +1,9 @@
 <?php
 /**
  * Database "widgets" table CActive Record
- * @author Mohammad hosein Saadatfar
+ * @author Mohammad Hosein Saadatfar
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */ 
 class widgets extends CActiveRecord
