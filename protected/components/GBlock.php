@@ -169,16 +169,16 @@ class GBlock{
 			$hndl=imagecreatefromjpeg($GC->Pic->Address.DS.$type.".jpg");
 			$width=$this->width;
 			$height=$this->height;
-			$hndl_dest=imagecreate($width,$height);
-			imagecopymerge($hndl_dest,$hndl,0,0,$this->x1,$this->y1,$this->width,$this->height,100);
+			$hndl_dest=imagecreatetruecolor($width,$height);
+			imagecopy($hndl_dest,$hndl,0,0,$this->x1,$this->y1,$this->width,$this->height);
 			return $hndl_dest;
 		}
 		$types=$this->WidgetClass()->Types();
 		$hndl=imagecreatefromjpeg($GC->Pic->Address.DS.$types[0].".jpg");
 		$width=(sizeof($types))*($this->width);
 		$height=$this->height;
-		$hndl_dest=imagecreate($width,$height);
-		imagecopymerge($hndl_dest,$hndl,0,0,$this->x1,$this->y1,$this->width,$this->height,100);
+		$hndl_dest=imagecreatetruecolor($width,$height);
+		imagecopy($hndl_dest,$hndl,0,0,$this->x1,$this->y1,$this->width,$this->height);
 		$counter=0;
 		if ($types!=''){
 			foreach ($types as $index => $val){
