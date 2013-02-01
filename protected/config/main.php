@@ -32,16 +32,13 @@ return array(
 	'preload'=>array(
 			'bootstrap',
 	),
-	/*'aliases' => array(
-	    'admin' => 'ext.admin'
-	),*/
+	'aliases' => array(
+	),
 	'components'=>array(
 		'Paper' => array(
 			'class' => 'application.components.GRuntime',
 		),
-		'GWidget' => array(
-			'class' => 'application.components.GWRuntime',
-		),'decoda' => array(
+		'decoda' => array(
         	'class' => 'ext.decoda.YiiDecoda',
         	'defaults' => true,
     	),

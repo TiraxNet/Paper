@@ -12,15 +12,11 @@ class Wlink extends GWidget{
 		return array('href','hover');
 	}
 	public function Content(){
-		$block=$this->block;
-		$link=$this->GetOpt('link');
-		$HTML='<a ';
-		foreach ($this->opt as $key=>$val){
-			$HTML.=$key.'="'.$val.'" ';
-		}
-		$HTML.='>';
+		$HTML='<a href="';
+		$HTML.=$this->GetOpt('href');
+		$HTML.='">';
 		$HTML.='<img src="publics/images/spacer.gif" width="'
-			    .$block->width.'" height="'.$block->height.'"/>';
+			    .$this->block->width.'" height="'.$this->block->height.'"/>';
 		$HTML.="</a>";
 		return $HTML;
 	}
@@ -28,10 +24,10 @@ class Wlink extends GWidget{
 		$GTemp=$this->GTemp;
 		$CSS=new GCSS();
 		$id=$this->block->id;
-		$img_addr=GWTools::BlockImgUrl($id,NULL,$GTemp->id);
+		$img_addr=$this->BlockImgUrl();
 		$CSS->Add("#".$GTemp->name."_".$id, array("background" => "url('".$img_addr."') 0px"));
 		if ($this->GetOpt('hover')==1){
-			$start=GWTools::BlockImgPos($id,'hover',$GTemp->id);
+			$start=$this->BlockImgPosition('hover');
 			$CSS->Add("#".$GTemp->name."_".$id.":hover", array("background" => "url('".$img_addr."') ".$start."px"));
 		}
 		return $CSS;
