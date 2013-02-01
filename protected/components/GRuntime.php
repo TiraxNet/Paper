@@ -8,23 +8,24 @@
  */
 class GRuntime{
 	/**
-	 * Runtime GClass
-	 * @var GClass
+	 * Runtime GTemplate
+	 * @var GTemplate
 	 */
-	public $GC;
+	public $GTemp;
 	/**
-	 * Get template id from request, create and save it in $this->GC 
+	 * Get template id from request, create and save it in $this->GTemp 
 	 */
 	function init(){
-		$tmp=yii::app()->getRequest()->getQuery("tmp","1");
-		$this->GC=new GClass($tmp);
+		$id=yii::app()->getRequest()->getQuery("id","1");
+		$this->GTemp=GTemplate::FindById($id);
+		if ($this->GTemp==null) throw new CHttpException('10001','Template not found');
 	}
 	/**
-	 * Return GClass
-	 * @return GClass Current GC 
+	 * Return GTemplate
+	 * @return GTemplate Current GTemplate 
 	 */
-	function getGC(){
-		return $this->GC;
+	function getTemp(){
+		return $this->GTemp;
 	}
 		
 	

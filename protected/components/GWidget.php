@@ -8,10 +8,10 @@
  */
 class GWidget{
 	/**
-	 * Current Widget GClass
-	 * @var GClass
+	 * Current Widget GTemplate
+	 * @var GTemplate
 	 */
-	public $GC;
+	public $GTemp;
 	/**
 	 * Widget GBlock
 	 * @var GBlock
@@ -30,11 +30,11 @@ class GWidget{
 	
 	/**
 	 * GWidget Constructor 
-	 * @param GClass $GC
+	 * @param GTemplate $GTemp
 	 * @param GBlock $block
 	 */
-	function __construct($GC,$block){
-		$this->GC=$GC;
+	function __construct($GTemp,$block){
+		$this->GTemp=$GTemp;
 		$this->block=$block;
 		$this->Render=new GWRender($this);
 		if (array_key_exists('opt',$block))
@@ -90,11 +90,11 @@ class GWidget{
 	 * @return GCSS Widget CSS code 
 	 */
 	public function CSS(){
-		$GC=$this->GC;
+		$GTemp=$this->GTemp;
 		$id=$this->block->id;
 		$CSS=new GCSS();
-		$img_addr=GWTools::BlockImgUrl($id,NULL,$GC->id);
-		$CSS->Add("#".$GC->name."_".$id, array("background" => "url('".$img_addr."') 0px"));
+		$img_addr=GWTools::BlockImgUrl($id,NULL,$GTemp->id);
+		$CSS->Add("#".$GTemp->name."_".$id, array("background" => "url('".$img_addr."') 0px"));
 		return $CSS; 	
 	}
 	/**

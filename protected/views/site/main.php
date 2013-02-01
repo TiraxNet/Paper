@@ -15,7 +15,6 @@ if (Yii::app()->user->id=='admin'){
 	Admin::Menu('');
 }
 ?>
-
 <div id="PapaDIV">
 <?php echo $this->body; ?>
 </div>

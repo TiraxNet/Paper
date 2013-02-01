@@ -14,10 +14,10 @@ class EditAction extends GAdminAction{
 	 */
 	public $tmp;
 	/**
-	 * GClass of template
-	 * @var GClass
+	 * Template class
+	 * @var GTemplate
 	 */
-	public $GC;
+	public $GTemp;
 	/**
 	 * GBlock Class of editing block
 	 * @var GBlock
@@ -38,7 +38,7 @@ class EditAction extends GAdminAction{
 	public function run($tmp,$block){
 		$this->controller->Action=$this;
 		$this->tmp=$tmp;
-		$this->GC=new GClass($tmp);
+		$this->GTemp=GTemplate::FindById($tmp);
 		$this->spblock=GBlock::FindById($block);
 		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$tmp));
 		$this->RenderScript();
@@ -52,7 +52,8 @@ class EditAction extends GAdminAction{
 	 * Renders JavaScript code of Block editing page and save it in $this->scripr
 	 */
 	public function RenderScript(){
-		$blocks=$this->GC->blocks;
+		$this->GTemp->RenderStructure();
+		$blocks=$this->GTemp->blocks;
 		$script='$(\'#MainIMG\').ready(function(){
 					ready();
 					update();
@@ -70,7 +71,7 @@ class EditAction extends GAdminAction{
 		$script.="];\n";
 		
 		$script.="function update(){\n";
-		$blocks=$this->GC->blocks;
+		$blocks=$this->GTemp->blocks;
 		$spblock=$this->spblock;
 		foreach ($blocks as $block){
 			if ($block->id==$spblock->id) {continue;}

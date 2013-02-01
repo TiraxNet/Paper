@@ -5,11 +5,13 @@
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
- * @property string $id Template id
- * @property string $name Template name
- * @property string $title Template title
- * @property strign $css Template CSS
- * @property int 	$version Template version
+ * @property string $id 		Template id
+ * @property string $name 		Template name
+ * @property string $title 		Template title
+ * @property strign $css 		Template CSS
+ * @property int 	$version 	Template version
+ * @property int 	$width 		Template width
+ * @property int 	$height 	Template height
  */
 class GTemplate{
 	
@@ -18,12 +20,22 @@ class GTemplate{
 	 * @var templates
 	 */
 	private $db;
-	
+	/**
+	 * Template renderer Class
+	 * @var GRender
+	 */
+	private $Renderer;
+	/**
+	 * Template blocks
+	 * @var GBlock[string]
+	 */
+	public $blocks;
 	/**
 	 * Constructor!
 	 */
 	function __construct(){
 		$this->db=new templates();
+		$this->Renderer=new GRender($this);
 	}
 	/**
 	 * Database Setter!
@@ -93,12 +105,44 @@ class GTemplate{
 		$this->db=$db;
 	}
 	/**
+	 * Render template structure
+	 */
+	public function RenderStructure()
+	{
+		$this->Renderer->RenderStructure();	
+	}
+	/**
+	 * Render templates & return Template Content (HTML Code)
+	 * @return string
+	 */
+	public function GetContent()
+	{
+		return $this->Renderer->HTML();
+	}
+	/**
+	 * Render templates & return Template CSS object
+	 * @return GCSS
+	 */
+	public function GetCSS()
+	{
+		return $this->Renderer->CSS();
+	}
+	/**
+	 * Render templates & return Template JavaScript Code
+	 * @return string
+	 */
+	public function GetJS(){
+		return $this->Renderer->JS();
+	}
+	/**
 	 * Search and fill parameters from database.
 	 * @param string $id Block id 
+	 * @return GTemplate|null if template found, return its class else return null
 	 */
 	public static function FindById($id){
 		$template=new GTemplate();
 		$db=templates::model()->findByPk($id);
+		if ($db==null) return null;
 		$template->SetFromDB($db);
 		return $template;
 	}

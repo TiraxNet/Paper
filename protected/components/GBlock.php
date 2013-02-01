@@ -82,16 +82,16 @@ class GBlock{
 	 */
 	public $auto;
 	/**
-	 * Block Template GClass
-	 * @var GClass
+	 * Block template class
+	 * @var GTemplate
 	 */
-	public $GC;
+	public $GTemp;
 	/**
 	 * GBlock Constructor
-	 * @param GClass $GC Block Template GClass 
+	 * @param GTemplate $GTemp Block Template class 
 	 */
-	public function __construct($GC=NULL){
-		$this->GC=$GC;
+	public function __construct($GTemp=NULL){
+		$this->GTemp=$GTemp;
 	}
 	/**
 	 * Fill Parameters from an array.
@@ -140,9 +140,9 @@ class GBlock{
 		$db->save();
 		$this->SetFromDB($db);
 
-		$this->GC=new GClass($db->tmp);
-		$this->width=$this->GC->blocks[$db->id]->width;
-		$this->height=$this->GC->blocks[$db->id]->height;
+		$this->GTemp=GTemplate::FindById($db->tmp);
+		$this->width=$this->GTemp->blocks[$db->id]->width;
+		$this->height=$this->GTemp->blocks[$db->id]->height;
 
 		$this->WidgetClass()->CreateNew();
 		
@@ -155,7 +155,7 @@ class GBlock{
 	public function WidgetClass(){
 		Yii::import("application.GWidgets.".".W".$this->widget);
 		$cname='W'.$this->widget;
-		$widget=new $cname($this->GC,$this);
+		$widget=new $cname($this->GTemp,$this);
 		return $widget;
 	}
 	/**
@@ -164,9 +164,9 @@ class GBlock{
 	 * @return resource Created image resource handle
 	 */
 	public function GetImage($type=NULL){
-		$GC=$this->GC;
+		$GTemp=$this->GTemp;
 		if ($type!=NULL){
-			$hndl=imagecreatefromjpeg($GC->Pic->Address.DS.$type.".jpg");
+			$hndl=imagecreatefromjpeg(GTemplate::GetPath($GTemp->id).DS.$type.".jpg");
 			$width=$this->width;
 			$height=$this->height;
 			$hndl_dest=imagecreatetruecolor($width,$height);
@@ -174,7 +174,7 @@ class GBlock{
 			return $hndl_dest;
 		}
 		$types=$this->WidgetClass()->Types();
-		$hndl=imagecreatefromjpeg($GC->Pic->Address.DS.$types[0].".jpg");
+		$hndl=imagecreatefromjpeg(GTemplate::GetPath($GTemp->id).DS.$types[0].".jpg");
 		$width=(sizeof($types))*($this->width);
 		$height=$this->height;
 		$hndl_dest=imagecreatetruecolor($width,$height);
@@ -185,7 +185,7 @@ class GBlock{
 				if ($index==0) continue;
 				$counter++;
 				imagedestroy($hndl);
-				$hndl=imagecreatefromjpeg($GC->Pic->Address.DS.$val.".jpg");
+				$hndl=imagecreatefromjpeg(GTemplate::GetPath($GTemp->id).DS.$val.".jpg");
 				imagecopymerge($hndl_dest,$hndl,($counter)*$this->width,0,
 					$this->x1,$this->y1,$this->width,$this->height,100);
 			}

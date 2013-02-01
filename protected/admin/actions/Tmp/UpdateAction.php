@@ -19,10 +19,10 @@ class UpdateAction extends GAdminAction{
 	 */
 	public $type;
 	/**
-	 * Template GClass will be stored here
-	 * @var string
+	 * Template class will be stored here
+	 * @var GTemplate
 	 */
-	public $GC;
+	public $GTemp;
 	/**
 	 * JavaScript Code will be stored here
 	 * @var string
@@ -38,7 +38,7 @@ class UpdateAction extends GAdminAction{
 		$this->init();
 		$this->tmp=$id;
 		$this->type=$type;
-		$this->GC=new GClass($id);
+		$this->GTemp=GTemplate::FindById($id);
 		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$id,'type'=>$type));
 		$this->RenderScript();
 		$this->controller->render("update",array('script'=>$this->script,
@@ -49,7 +49,8 @@ class UpdateAction extends GAdminAction{
 		
 	}
 	public function RenderScript(){
-		$blocks=$this->GC->blocks;
+		$this->GTemp->RenderStructure();
+		$blocks=$this->GTemp->blocks;
 		$script='XOffset = $("#MainIMG").offset().left;
 				YOffset = $("#MainIMG").offset().top;
 				$(\'#MainIMG\').ready(function(){
@@ -66,7 +67,6 @@ class UpdateAction extends GAdminAction{
 		}
 		$script.="];\n";
 		$script.="function update(){\n";
-		$blocks=$this->GC->blocks;
 		foreach ($blocks as $block){
 			if ($block->auto==true) continue;
 			$script.='$("body").append(\'<a href="'

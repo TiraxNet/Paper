@@ -14,10 +14,10 @@ class NewAction extends GAdminAction{
 	 */
 	public $tmp;
 	/**
-	 * GClass of template
-	 * @var GClass
+	 * Template class
+	 * @var GTemplate
 	 */
-	public $GC;
+	public $GTemp;
 	/**
 	 * Stores page script; "RenderScript" function fill it.
 	 * @var string
@@ -31,7 +31,7 @@ class NewAction extends GAdminAction{
 	public function run($tmp){
 		$this->init();
 		$this->tmp=$tmp;
-		$this->GC=new GClass($tmp);
+		$this->GTemp=GTemplate::FindById($tmp);
 		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$tmp));
 		$this->RenderScript();
 		$this->controller->render("new",array(
@@ -44,7 +44,8 @@ class NewAction extends GAdminAction{
 	 * Renders JavaScript code of Block editing page and save it in $this->scripr
 	 */
 	public function RenderScript(){
-		$blocks=$this->GC->blocks;
+		$this->GTemp->RenderStructure();
+		$blocks=$this->GTemp->blocks;
 		$script='$(\'#MainIMG\').ready(function(){
 					ready();
 					update();
@@ -60,7 +61,7 @@ class NewAction extends GAdminAction{
 		}
 		$script.="];\n";
 		$script.="function update(){\n";
-		$blocks=$this->GC->blocks;
+		$blocks=$this->GTemp->blocks;
 		foreach ($blocks as $block){
 			if ($block->auto==true) continue;
 			$script.='$("body").append(\'<div id="'

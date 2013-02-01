@@ -11,12 +11,12 @@ class Wform extends GWidget{
 		return array('NameID','tmp','action','method','RenderFile');
 	}
 	public function Content(){
-		$con=$this->GetSubGC()->Render->HTML();
+		$con=$this->GetSubGTemp()->Render->HTML();
 		$form='<form method="post" style="margin:0px;">';
 		return $form.$con.'</form>';
 	}
 	public function CSS(){
-		return $this->GetSubGC()->Render->CSS();
+		return $this->GetSubGTemp()->Render->CSS();
 	}
 	public function RenderInit(){
 		if (array_key_exists($this->GetOpt('NameID'),$_POST)){
@@ -34,10 +34,10 @@ class Wform extends GWidget{
 		$result=eval($code);
 		Yii::app()->params[$this->GetOpt('NameID').'Result']=$result;
 	}
-	public function GetSubGC(){
+	public function GetSubGTemp(){
 		$subtmp=$this->GetOpt('tmp');
-		$WGC=new GClass($subtmp);
-		return $WGC;
+		$WGT=GTemplate::FindById($subtmp);
+		return $WGT;
 	}
 	public function RenderOptions($Arg){
 		$con=Yii::app()->controller;

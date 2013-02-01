@@ -31,7 +31,7 @@ class SiteController extends CController
 	{	
 		$css_addr=$this->createUrl("css/index",array('tmp'=>$tmp));
 		$js_addr=$this->createUrl("javascript/index",array('tmp'=>$tmp));
-		$this->body=Yii::app()->gc->GC->Render->HTML();
+		$this->body=Yii::app()->Paper->GTemp->GetContent();
 		$this->render("main",array('css_addr'=>$css_addr,'js_addr'=>$js_addr));
 	}
 }

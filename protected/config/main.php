@@ -36,7 +36,7 @@ return array(
 	    'admin' => 'ext.admin'
 	),*/
 	'components'=>array(
-		'gc' => array(
+		'Paper' => array(
 			'class' => 'application.components.GRuntime',
 		),
 		'GWidget' => array(
