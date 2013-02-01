@@ -27,7 +27,11 @@ class GWidget{
 	 * @var GWRender
 	 */
 	public $Render;
-	
+	/**
+	 * This object is used to inset widget
+	 * @var GWWidget
+	 */
+	public $Widget;
 	/**
 	 * GWidget Constructor 
 	 * @param GTemplate $GTemp
@@ -36,6 +40,7 @@ class GWidget{
 	function __construct($GTemp,$block){
 		$this->GTemp=$GTemp;
 		$this->block=$block;
+		$this->Widget=new GWWidget($this);
 		$this->Render=new GWRender($this);
 		if (array_key_exists('opt',$block))
 			if ($block->opt!='')

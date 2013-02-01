@@ -37,19 +37,18 @@ class Wlink extends GWidget{
 		else return array('index');  
 	}
 	public function RenderOptions($Arg){
-		$con=Yii::app()->controller;
-		$model=$Arg->FormModel;
-		$form = $con->beginWidget('bootstrap.widgets.BootActiveForm', array(
+		$form = $this->Widget->beginWidget('Form', array(
 			'id'=>'horizontalForm',
 			'type'=>'horizontal',
 			'action'=>$Arg->action,
+			'model'=>$Arg->FormModel,
 		));
-		echo $form->textFieldRow($model, 'href', array('id'=>'href'));
-		$con->widget('application.widgets.TmpLinkWidget',array('InputId'=>'href'));
-		echo $form->checkBoxRow($model, 'hover');
+		$form->widget('textFieldRow','href', array('id'=>'href'));
+		$this->Widget->widget('TmpLinkWidget',array('InputId'=>'href'));
+		$form->widget('checkBoxRow', 'hover',array());
 		echo '<div class="form-actions">';
-		$con->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));
+		$this->Widget->widget('Button', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));
 		echo '</div>';
-		$con->endWidget();
+		$form->endWidget();
 	}
 }
