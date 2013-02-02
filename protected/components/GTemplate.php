@@ -53,8 +53,28 @@ class GTemplate{
 	 */
 	public function __get($name){
 		if ($this->db->hasAttribute($name)) return $this->db->$name;
-		else if ($name=='db') return $this->db;
+		else if (method_exists($this, 'Get'.$name))
+		{
+			$method_name='Get'.$name; 
+			return $this->$method_name();
+		}
 		else trigger_error('Undefined property '.$name);
+	}
+	/**
+	 * Return template width
+	 * @return int template width
+	 */
+	private function Getwidth(){
+		$size=getimagesize(self::GetPath($this->id).DS.'index.jpg');
+		return $size[0];
+	}
+	/**
+	 * Return template height
+	 * @return int template height
+	 */
+	private function Getheight(){
+		$size=getimagesize(self::GetPath($this->id).DS.'index.jpg');
+		return $size[1];
 	}
 	/**
 	 * Saves current parameters as new template.
