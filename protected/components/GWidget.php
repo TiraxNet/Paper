@@ -33,6 +33,11 @@ class GWidget{
 	 */
 	public $Widget;
 	/**
+	 * Class of tools we need in widgets
+	 * @var GWTools
+	 */
+	public $Toold;
+	/**
 	 * GWidget Constructor 
 	 * @param GTemplate $GTemp
 	 * @param GBlock $block
@@ -41,6 +46,7 @@ class GWidget{
 		$this->GTemp=$GTemp;
 		$this->block=$block;
 		$this->Widget=new GWWidget($this);
+		
 		$this->Render=new GWRender($this);
 		if (array_key_exists('opt',$block))
 			if ($block->opt!='')
