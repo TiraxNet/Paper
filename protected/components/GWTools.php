@@ -8,6 +8,7 @@
  *
  */
 class GWTools{
+	
 	/**
 	 * Creates a relative URL for the specified action defined in this controller.
 	 * @param string $route the URL route. This should be in the format of 'ControllerID/ActionID'.

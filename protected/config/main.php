@@ -5,29 +5,29 @@
 * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
 * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
 */
-
+include 'User_config.php';
 return array(
 	'params'=>array(
 		'AdminUsername' => 'admin',
 		'AdminPass' => '13721372'
 	),
 	'modules'=>array(
-        'gii'=>array(
-            'class'=>'system.gii.GiiModule',
-            'password'=>'13721372',
-        ),
-        'admin'=>array(
-            'class'=>'application.admin.AdminModule',
-        ),
+		'gii'=>array(
+		    'class'=>'system.gii.GiiModule',
+		    'password'=>'13721372',
+		),
+		'admin'=>array(
+		    'class'=>'application.admin.AdminModule',
+		),
     ),
-	'name'=>'Paper!',
+	'name'=>$UConfig['website']['Name'],
 	'basePath'=>dirname(__FILE__).DS.'..',
 	'import'=>array(
     	'application.components.*',
 		'application.extensions.*',
 		'application.models.*',
 		'application.GWidgets.*',
-    	'application.admin.components.*',
+		'application.admin.components.*',
 	),
 	'preload'=>array(
 			'bootstrap',
@@ -39,25 +39,26 @@ return array(
 			'class' => 'application.components.GRuntime',
 		),
 		'decoda' => array(
-        	'class' => 'ext.decoda.YiiDecoda',
-        	'defaults' => true,
+        		'class' => 'ext.decoda.YiiDecoda',
+        		'defaults' => true,
     	),
-        'cache'=>array(
-            'class'=>'system.caching.CFileCache',
-        ),
-		'db'=>array(
-            'class'=>'CDbConnection',
-            'connectionString'=>'mysql:host=localhost;dbname=paper',
-            'username'=>'root',
-            'password'=>'',
-            'emulatePrepare'=>true,
-			'charset'=>'utf8',
-        ),
+		'cache'=>array(
+		    	'class'=>'system.caching.CFileCache',
+		),
 		'bootstrap'=>array(
-        	'class'=>'ext.bootstrap.components.Bootstrap',
-    	),
-    	'functions'=>array(
-    		'class'=>'ext.functions.functions',
-    	)
+			'class'=>'ext.bootstrap.components.Bootstrap',
+	    	),
+	    'functions'=>array(
+	    	'class'=>'ext.functions.functions',
+	    ),
+	    'db'=>array(
+	    		'class'=>'CDbConnection',
+	    		'connectionString'=>'mysql:host='.$UConfig['db']['Host'].';dbname='.$UConfig['db']['Table'],
+	    		'username'=>$UConfig['db']['UserName'],
+	    		'password'=>$UConfig['db']['Password'],
+	    		'emulatePrepare'=>true,
+	    		'charset'=>'utf8',
+	    ),
     ),
 );
+

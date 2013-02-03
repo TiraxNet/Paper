@@ -1,0 +1,15 @@
+#!/bin/bash
+#tmp=$(mktemp -d)
+tmp="../Paper"
+mkdir $tmp
+echo 'TEMP Folder:' $tmp;
+cp * "$tmp" -R
+rm "$tmp"/CreateInstaller
+rm "$tmp"/README.md
+rm "$tmp"/protected/config/User_config.php
+rm "$tmp"/assets/* -r
+rm "$tmp"/protected/GTemplates/* -r
+rm "$tmp"/protected/GBlocks/* -r
+find $tmp -name ".gitignore" -exec rm -rf {} \;
+tar -zcvf Paper.tar.gz $tmp
+rm "$tmp" -r
