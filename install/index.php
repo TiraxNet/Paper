@@ -12,5 +12,6 @@ define( 'INSTALL_PATH', dirname(__FILE__));
 include 'Render.php';
 include 'SQL.php';
 $Rnd=new Render();
+$Rnd->CheckFilePermissions();
 $Rnd->CheckForPost();
 include 'View.php';

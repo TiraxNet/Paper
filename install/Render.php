@@ -26,11 +26,29 @@ class Render{
 	 */
 	public function Render_Request($data)
 	{
+		if (!$this->CheckFilePermissions()) return false;
 		if (!$this->InstallSQLStructure($data)) return false;
 		if (!$this->CopySample()) return false;
 		mysql_close();
 		header('Location: ../index.php');
 		die;
+	}
+	/**
+	 * Checks if Config & Sample folders are writable
+	 * @return boolean
+	 */
+	public function CheckFilePermissions(){
+		if (!is_writable(BASE_PATH.DS.'protected'.DS.'config'))
+		{
+			$this->MSG='" '.BASE_PATH.DS.'protected'.DS.'config "'.' is not writable!';
+			return false;
+		}
+		if (!is_writable(BASE_PATH.DS.'protected'.DS.'GTemplates'))
+		{
+			$this->MSG='" '.BASE_PATH.DS.'protected'.DS.'GTemplates "'.' is not writable!';
+			return false;
+		}
+		return true;
 	}
 	/**
 	 * Install tables on database
@@ -57,7 +75,12 @@ class Render{
 		$str=str_replace('_DB_PASS_',$data['SQLPassword'],$str);
 		$str=str_replace('_DB_NAME_',$data['SQLName'],$str);
 		$str=str_replace('_WEBSITE_NAME_',$data['WebsiteName'],$str);
-		file_put_contents(BASE_PATH.DS.'protected'.DS.'config'.DS.'User_config.php', $str);
+		$st=@file_put_contents(BASE_PATH.DS.'protected'.DS.'config'.DS.'User_config.php', $str);
+		if ($st===false)
+		{
+			$this->MSG='Could not write Config file. Please Check for permission.';
+			return false;
+		}
 		
 		if (!SQL::RunSQLFile('Tables_SQL.sql')){
 			$this->MSG='Could not Create Tables Structre';
@@ -74,8 +97,9 @@ class Render{
 			$this->MSG='Could not Install Sample SQL Data.';
 			return false;
 		}
-		self::recurse_copy(INSTALL_PATH.DS.'sample'.DS.'GTemplates',BASE_PATH.DS.'protected'.DS.'GTemplates');
-		return true;
+		$st=self::recurse_copy(INSTALL_PATH.DS.'sample'.DS.'GTemplates',BASE_PATH.DS.'protected'.DS.'GTemplates');
+		if ($st===false) return false;
+		else return true;
 	}
 	/**
 	 * Copy source folder to destination folde 
@@ -85,18 +109,22 @@ class Render{
 	public static function recurse_copy($src,$dst)
 	{
 		$dir = opendir($src);
-		//@mkdir($dst);
+		@mkdir($dst);
 		while(false !== ( $file = readdir($dir)) ) {
 			if (( $file != '.' ) && ( $file != '..' )) {
 				if ( is_dir($src . '/' . $file) ) {
-					self::recurse_copy($src . '/' . $file,$dst . '/' . $file);
+					$st=self::recurse_copy($src . '/' . $file,$dst . '/' . $file);
+					if ($st===false) return false;
 				}
 				else {
-					copy($src . '/' . $file,$dst . '/' . $file);
+					$st=@copy($src . '/' . $file,$dst . '/' . $file);
+					if ($st===false) return false;
+					else return true;
 				}
 			}
 		}
 		closedir($dir);
+		return true;
 	}
 }
 
