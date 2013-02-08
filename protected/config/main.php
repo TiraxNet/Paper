@@ -38,10 +38,6 @@ return array(
 		'Paper' => array(
 			'class' => 'application.components.GRuntime',
 		),
-		'decoda' => array(
-        		'class' => 'ext.decoda.YiiDecoda',
-        		'defaults' => true,
-    	),
 		'cache'=>array(
 		    	'class'=>'system.caching.CFileCache',
 		),
