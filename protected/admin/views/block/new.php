@@ -24,8 +24,9 @@ echo '<div id="PapaDIV"><img src="'.$ImgURL.'" id="MainIMG"/></div>';
 
 $model=new NewBlockModel;
 $WList=array();
-foreach (Yii::app()->GWidget->List as $w){
-	$WList[$w['PathName']]=$w['Name'];
+$db=widgets::model()->findAll('1');
+foreach ($db as $w){
+	$WList[$w->pathname]=$w->name;
 }
 ?>
 

@@ -141,9 +141,9 @@ class GBlock{
 		$this->SetFromDB($db);
 
 		$this->GTemp=GTemplate::FindById($db->tmp);
+		$this->GTemp->RenderStructure();
 		$this->width=$this->GTemp->blocks[$db->id]->width;
 		$this->height=$this->GTemp->blocks[$db->id]->height;
-
 		$this->WidgetClass()->CreateNew();
 		
 		return $db->id;
