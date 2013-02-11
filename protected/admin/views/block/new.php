@@ -10,11 +10,12 @@
 
 <?php
 
-$this->InsertAsset('edit.js','script');
-$this->InsertAsset('imgareaselect.js','script');
-$this->Insert($script,'script');
-$this->InsertAsset('imgareaselect.css','CSS');
-$this->Insert('#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}','CSS');
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.js');
+Yii::app()->clientScript->registerCssFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.css');
+
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'block'.DS.'BlockEdit.js');
+Yii::app()->clientScript->registerScript(uniqid(), $script);
+Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}');
 
 $c='<a href="#SaveDialog" class="btn btn-primary pull-right" data-toggle="modal">Save</a>';
 $c.='<a class="btn pull-right" onclick="FixBlockPosition();">Fix it!</a>';

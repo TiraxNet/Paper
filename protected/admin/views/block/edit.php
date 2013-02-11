@@ -9,12 +9,12 @@
 ?>
 
 <?php
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.js');
+Yii::app()->clientScript->registerCssFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.css');
 
-$this->InsertAsset('edit.js','script');
-$this->InsertAsset('imgareaselect.js','script');
-$this->InsertAsset('imgareaselect.css','CSS');
-$this->Insert($script,'script');
-$this->Insert('#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}','CSS');
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'block'.DS.'BlockEdit.js');
+Yii::app()->clientScript->registerScript(uniqid(), $script);
+Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}');
 
 $c='<a href="#" class="btn btn-primary  pull-right" id="EditBlockPosSave">Save</a>';
 $c.='<a href="#OptionsDialog" class="btn btn-primary  pull-right" data-toggle="modal">Options</a>';

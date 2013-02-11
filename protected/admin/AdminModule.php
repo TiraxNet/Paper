@@ -8,6 +8,8 @@
  */
 class AdminModule extends CWebModule
 {
+	private $_assetsUrl;
+	
 	public function init()
 	{
 		$this->setImport(array(
@@ -15,7 +17,15 @@ class AdminModule extends CWebModule
 			'application.admin.components.*',
 		));
 	}
-
+	
+	public function getAssetsUrl()
+	{
+		if ($this->_assetsUrl === null)
+			$this->_assetsUrl = Yii::app()->getAssetManager()->publish(
+					Yii::getPathOfAlias('admin.assets') );
+		return $this->_assetsUrl;
+	}
+	
 	public function beforeControllerAction($controller, $action)
 	{
 		if(parent::beforeControllerAction($controller, $action))

@@ -88,6 +88,6 @@ class TmpLinkWidget extends CWidget
  						$('#tmplinklist').modal('hide');
  					}
  				";
-		echo $this->getController()->Insert($script,'script');		
+		Yii::app()->clientScript->registerScript(uniqid(), $script);
 	}
 }

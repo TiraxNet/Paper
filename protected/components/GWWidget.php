@@ -59,7 +59,7 @@ class GWWidget
 			case 'Button':
 				return 'bootstrap.widgets.BootButton';
 			case 'TmpLinkWidget':
-				return 'application.widgets.TmpLinkWidget';
+				return 'admin.widgets.TmpLinkWidget';
 			default:
 				throw new Exception($type.' is not a valid type');
 		}
