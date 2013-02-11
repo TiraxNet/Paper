@@ -14,8 +14,8 @@ class ImgController extends CController
 	 * @param string $type template type
 	 * @throws CHttpException 10002:Template not found
 	 */
-	public function actionFullTmp($tmp,$type='index'){
-		if ($tmp==false) throw new CHttpException(10002,'No Template specified!');	
+	public function actionFullTmp($id,$type='index'){
+		if ($id==false) throw new CHttpException(10002,'No Template specified!');	
 		$GTemp=Yii::app()->Paper->GTemp;
 		
 		$hndl=imagecreatefromjpeg(GTemplate::GetPath($GTemp->id).DS.$type.".jpg");

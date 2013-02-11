@@ -18,9 +18,9 @@ class CssController extends CController
 	 * Show template css
 	 * @param string $tmp Get template id from request
 	 */
-	public function actionIndex($tmp)
+	public function actionIndex($id)
 	{
-		$this->tmp=$tmp;
+		$this->tmp=$id;
 		
 		header("Content-type: text/css; charset: UTF-8");
 		

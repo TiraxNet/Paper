@@ -32,7 +32,7 @@ class NewAction extends GAdminAction{
 		$this->init();
 		$this->tmp=$tmp;
 		$this->GTemp=GTemplate::FindById($tmp);
-		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$tmp));
+		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('id'=>$tmp));
 		$this->RenderScript();
 		$this->controller->render("new",array(
 												'script'=>$this->script,

@@ -29,7 +29,7 @@ class GTemplate{
 	 * Template blocks
 	 * @var GBlock[string]
 	 */
-	public $blocks;
+	public $blocks=array();
 	/**
 	 * Constructor!
 	 */

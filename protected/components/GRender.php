@@ -29,6 +29,7 @@ class GRender{
 	 */
 	public function RenderStructure(){
 		$dbblocks=blocks::model()->findAll('tmp=:tmp', array(':tmp'=>$this->GTemp->id));
+		if (!is_array($dbblocks)) $dbblocks=array();
 		foreach($dbblocks as $block){
 			$this->GTemp->blocks[$block['id']]=new GBlock($this->GTemp);
 			$this->GTemp->blocks[$block['id']]->SetFromArray($block->getAttributes());

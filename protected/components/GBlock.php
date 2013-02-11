@@ -47,11 +47,6 @@ class GBlock{
 	 */
 	public $tmp;
 	/**
-	 * Block Parent id
-	 * @var string
-	 */
-	public $parent;
-	/**
 	 * Block Widget
 	 * @var string
 	 */
@@ -135,7 +130,6 @@ class GBlock{
 		$db->y1=$this->y1;
 		$db->x2=$this->x2;
 		$db->y2=$this->y2;
-		$db->parent=$this->parent;
 		$db->tmp=$this->tmp;
 		$db->save();
 		$this->SetFromDB($db);

@@ -40,7 +40,7 @@ class EditAction extends GAdminAction{
 		$this->tmp=$tmp;
 		$this->GTemp=GTemplate::FindById($tmp);
 		$this->spblock=GBlock::FindById($block);
-		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$tmp));
+		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('id'=>$tmp));
 		$this->RenderScript();
 		$this->controller->render("edit",array(
 												'script'=>$this->script,

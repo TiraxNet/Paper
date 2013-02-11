@@ -39,7 +39,7 @@ class UpdateAction extends GAdminAction{
 		$this->tmp=$id;
 		$this->type=$type;
 		$this->GTemp=GTemplate::FindById($id);
-		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('tmp'=>$id,'type'=>$type));
+		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('id'=>$id,'type'=>$type));
 		$this->RenderScript();
 		$this->controller->render("update",array('script'=>$this->script,
 												 'ImgURL'=>$ImgURL,
