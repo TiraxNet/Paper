@@ -13,10 +13,11 @@
 $this->InsertAsset('edit.js','script');
 $this->InsertAsset('imgareaselect.js','script');
 $this->Insert($script,'script');
-$this->InsertAsset('imgareaselect-animated.css','CSS');
+$this->InsertAsset('imgareaselect.css','CSS');
 $this->Insert('#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}','CSS');
 
 $c='<a href="#SaveDialog" class="btn btn-primary pull-right" data-toggle="modal">Save</a>';
+$c.='<a class="btn pull-right" onclick="FixBlockPosition();">Fix it!</a>';
 Admin::Menu($c);
 
 echo '<div id="PapaDIV"><img src="'.$ImgURL.'" id="MainIMG"/></div>';

@@ -12,7 +12,7 @@
 
 $this->InsertAsset('edit.js','script');
 $this->InsertAsset('imgareaselect.js','script');
-$this->InsertAsset('imgareaselect-animated.css','CSS');
+$this->InsertAsset('imgareaselect.css','CSS');
 $this->Insert($script,'script');
 $this->Insert('#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}','CSS');
 
