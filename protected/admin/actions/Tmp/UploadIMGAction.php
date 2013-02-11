@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class UploadIMGAction extends GAdminAction{
+class UploadIMGAction extends CAction{
 	
 	/**
 	 * User Massage and alerts will be stored here by "save" method
@@ -18,7 +18,6 @@ class UploadIMGAction extends GAdminAction{
 	 * Run Action!
 	 */
 	public function run($id,$type=''){
-		$this->init();
 		if (array_key_exists('TMPUploadIMG',$_POST)) $this->save();
 		$this->controller->render("UploadIMG",array('msg'=>$this->msg,
 													'tmp'=>$id,

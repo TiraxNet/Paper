@@ -7,7 +7,7 @@
  *
  */
 
-class TmpController extends GAdminController
+class TmpController extends CController
 {
 	/**
 	 * Page Title

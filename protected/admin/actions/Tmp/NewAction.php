@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class NewAction extends GAdminAction{
+class NewAction extends CAction{
 	
 	/**
 	 * User Massage and alerts will be stored here by "save" method
@@ -18,7 +18,6 @@ class NewAction extends GAdminAction{
 	 * Run New Action!
 	 */
 	public function run(){
-		$this->init();
 		if (array_key_exists('NewTmpModel',$_POST)) $this->save();
 		$this->controller->render("new",array('msg'=>$this->msg));
 	}

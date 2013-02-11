@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class LoginController extends GAdminController
+class LoginController extends CController
 {
 	
 	/**

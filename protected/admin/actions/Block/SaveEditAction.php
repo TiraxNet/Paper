@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class SaveEditAction extends GAdminAction{
+class SaveEditAction extends CAction{
 	/**
 	 * GBlock Class of editing block
 	 * 

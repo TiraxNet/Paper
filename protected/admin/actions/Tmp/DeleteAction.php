@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class DeleteAction extends GAdminAction{
+class DeleteAction extends CAction{
 	public function run($id,$type='index'){
 		if ($type=='index')
 		{

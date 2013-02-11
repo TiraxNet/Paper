@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class NewAction extends GAdminAction{
+class NewAction extends CAction{
 	
 	/**
 	 * Template id
@@ -29,7 +29,6 @@ class NewAction extends GAdminAction{
 	 * @param string $tmp Gets Template id from request url
 	 */
 	public function run($tmp){
-		$this->init();
 		$this->tmp=$tmp;
 		$this->GTemp=GTemplate::FindById($tmp);
 		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('id'=>$tmp));

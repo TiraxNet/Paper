@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class UpdateAction extends GAdminAction{
+class UpdateAction extends CAction{
 	
 	/**
 	 * Template id will be stored here
@@ -35,7 +35,6 @@ class UpdateAction extends GAdminAction{
 	 * @param string $type	Get template type form request
 	 */
 	public function run($id,$type='index'){
-		$this->init();
 		$this->tmp=$id;
 		$this->type=$type;
 		$this->GTemp=GTemplate::FindById($id);

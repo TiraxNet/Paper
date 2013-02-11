@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class ListAction extends GAdminAction{
+class ListAction extends CAction{
 	
 	/**
 	 * Stores array of template records; "Create_list()" function fill it.
@@ -18,7 +18,6 @@ class ListAction extends GAdminAction{
 	 * Run Template list Action
 	 */
 	public function run(){
-		$this->init();
 		$this->Create_list();
 		$this->controller->render("List",array(
 											   'Tlist'=>$this->Tlist

@@ -14,7 +14,7 @@ Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'i
 Yii::app()->clientScript->registerCssFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.css');
 
 Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'block'.DS.'BlockEdit.js');
-Yii::app()->clientScript->registerScript(uniqid(), $script);
+Yii::app()->clientScript->registerScript(uniqid(), $script, CClientScript::POS_BEGIN);
 Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}');
 
 $c='<a href="#SaveDialog" class="btn btn-primary pull-right" data-toggle="modal">Save</a>';
@@ -53,7 +53,7 @@ $form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 <input type="hidden" name="NewBlockModel[x2]" id="x2" value=""/>
 <input type="hidden" name="NewBlockModel[y2]" id="y2" value=""/>
 <input type="hidden" name="NewBlockModel[parent]" id="parent" value="0"/>
-<input type="hidden" name="NewBlockModel[tmp]" id="tmp" value="<?php echo $this->Action->tmp;?>"/>
+<input type="hidden" name="NewBlockModel[tmp]" id="tmp" value="<?php echo Yii::app()->getController()->getAction()->tmp;?>"/>
 </div>
 
 <div class="modal-footer">

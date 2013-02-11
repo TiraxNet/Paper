@@ -7,7 +7,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class EditAction extends GAdminAction{
+class EditAction extends CAction{
 	/**
 	 * Template id
 	 * @var string

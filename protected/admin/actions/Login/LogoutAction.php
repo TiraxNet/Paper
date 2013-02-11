@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class LogoutAction extends GAdminAction{
+class LogoutAction extends CAction{
 	/**
 	 * Run logout action
 	 */
