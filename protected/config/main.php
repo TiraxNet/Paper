@@ -25,6 +25,7 @@ return array(
 	'import'=>array(
     	'application.components.*',
 		'application.extensions.*',
+		'application.extensions.functions.*',
 		'application.models.*',
 		'application.GWidgets.*',
 		'application.admin.components.*',

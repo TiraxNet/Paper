@@ -1,0 +1,5 @@
+#!/bin/bash
+FramWork="FrameWork_1.tar.gz"
+cd "framework"
+wget --output-document="$FramWork" "http://tiraxnet.org/paper/files/framework/""$FramWork"
+tar -xvf "$FramWork"

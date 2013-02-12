@@ -81,7 +81,7 @@ class GTemplate{
 	 */
 	public function SaveNew(){
 		$this->db->save();
-		mkdir(self::GetPath($this->db->id));
+		if(!@mkdir(self::GetPath($this->db->id))) throw  new CException("Could not create template directory.");
 		copy(dirname(__FILE__).DS.'assets'.DS.'NewTmp.jpg',self::GetPath($this->db->id).DS.'index.jpg');
 		return $this->db->id;
 	}
@@ -104,7 +104,7 @@ class GTemplate{
 	public function delete(){
 		$this->db->delete();
 		$dir=self::GetPath($this->db->id);
-		Yii::app()->functions->rrmdir($dir);
+		functions::rrmdir($dir);
 	}
 	/**
 	 * Fill Parameters from an array.
