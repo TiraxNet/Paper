@@ -21,7 +21,7 @@ class TmpLinkWidget extends CWidget
 	{
 		$this->RegisterJS();
 		$this->Render_Modal();
-		$this->widget('bootstrap.widgets.BootButton', array(
+		$this->widget('bootstrap.widgets.TbButton', array(
 				'label'=>'Templates',
 				'type'=>$this->type,
 				'size'=>$this->size,
@@ -37,7 +37,7 @@ class TmpLinkWidget extends CWidget
 	public function Render_Modal()
 	{
 	
-		$this->beginWidget('bootstrap.widgets.BootModal', array('id'=>'tmplinklist')); ?>
+		$this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'tmplinklist')); ?>
 		<div class="modal-header">
 		<a class="close" data-dismiss="modal">&times;</a>
 		<h4>Template link</h4>
@@ -55,7 +55,7 @@ class TmpLinkWidget extends CWidget
 			array_push($AList, $item);
 		}
 		$gridDataProvider = new CArrayDataProvider($AList);
-		$this->widget('bootstrap.widgets.BootGridView', array(
+		$this->widget('bootstrap.widgets.TbGridView', array(
 				'type'=>'striped bordered condensed',
 				'dataProvider'=>$gridDataProvider,
 				'template'=>"{items}",
@@ -69,7 +69,7 @@ class TmpLinkWidget extends CWidget
 		</div>
 		
 		<div class="modal-footer">
-		<?php $this->widget('bootstrap.widgets.BootButton', array(
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
 		        'label'=>'Close',
 		        'url'=>'#',
 		        'htmlOptions'=>array('onclick'=>'$(\'#tmplinklist\').modal(\'hide\');'),

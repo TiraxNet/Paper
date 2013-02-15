@@ -10,10 +10,10 @@
 
 <?php
 
-Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.js');
-Yii::app()->clientScript->registerCssFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.css');
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/imageSelect/imgareaselect.js');
+Yii::app()->clientScript->registerCssFile($this->module->getAssetsUrl().'/imageSelect/imgareaselect.css');
 
-Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'block'.DS.'BlockEdit.js');
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/block/BlockEdit.js');
 Yii::app()->clientScript->registerScript(uniqid(), $script, CClientScript::POS_BEGIN);
 Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}');
 
@@ -34,7 +34,7 @@ foreach ($db as $w){
 
 <div id="SaveDialog" class="modal fade" style="display: none;">
 <?php
-$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'NewBlockForm',
 	'type'=>'horizontal',
 	'action' => $this->createUrl("block/SaveNew"),
@@ -58,7 +58,7 @@ $form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
 
 <div class="modal-footer">
 	<input type="submit" class="btn btn-primary" value="Save" />
-	<?php $this->widget('bootstrap.widgets.BootButton', array(
+	<?php $this->widget('bootstrap.widgets.TbButton', array(
 		'label'=>'Close',
 		'url'=>'#',
 		'htmlOptions'=>array('data-dismiss'=>'modal'),

@@ -11,10 +11,10 @@
 <?php
 $CAction=Yii::app()->getController()->getAction();
 
-Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.js');
-Yii::app()->clientScript->registerCssFile($this->module->getAssetsUrl().DS.'imageSelect'.DS.'imgareaselect.css');
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/imageSelect/imgareaselect.js');
+Yii::app()->clientScript->registerCssFile($this->module->getAssetsUrl().'/imageSelect/imgareaselect.css');
 
-Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().DS.'block'.DS.'BlockEdit.js');
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/block/BlockEdit.js');
 Yii::app()->clientScript->registerScript(uniqid(), $script,CClientScript::POS_BEGIN);
 Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}');
 

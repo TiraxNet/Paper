@@ -19,7 +19,7 @@ Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#Pap
 
 echo '<div id="PapaDIV"><img src="'.$ImgURL.'" id="MainIMG"/><br/>';
 if ($CAction->type!='index'){
-	$this->widget('bootstrap.widgets.BootButton', array(
+	$this->widget('bootstrap.widgets.TbButton', array(
 			'label'=>'Delete type',
 			'type'=>'primary',
 			'size'=>'mini',
@@ -27,7 +27,7 @@ if ($CAction->type!='index'){
 			'url'=>$this->createUrl("Tmp/delete",array('id'=>$CAction->tmp,'type'=>$CAction->type)),
 	));
 }
-$this->widget('bootstrap.widgets.BootButton', array(
+$this->widget('bootstrap.widgets.TbButton', array(
 		'label'=>'Edit Picture',
 		'type'=>'primary',
 		'size'=>'mini',
@@ -35,14 +35,14 @@ $this->widget('bootstrap.widgets.BootButton', array(
 		'url'=>$this->createUrl("Tmp/uploadimg",array('id'=>$CAction->tmp,'type'=>$CAction->type)),
 ));
 foreach ($types as $type){
-	$this->widget('bootstrap.widgets.BootButton', array(
+	$this->widget('bootstrap.widgets.TbButton', array(
 			'label'=>$type,
 			'type'=>'inverse',
 			'size'=>'mini',
 			'url'=>$this->createUrl("Tmp/update",array('id'=>$CAction->tmp,'type'=>$type)),
 	));
 }
-$this->widget('bootstrap.widgets.BootButton', array(
+$this->widget('bootstrap.widgets.TbButton', array(
 		'label'=>'New Type ...',
 		'type'=>'inverse',
 		'size'=>'mini',

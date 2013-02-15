@@ -15,7 +15,7 @@ if ($msg!=''){
 	echo "<div class=\"alert alert-error\">$msg</div>";
 }
 $model=new NewTmpModel;
-$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'NewBlockForm',
 	'type'=>'horizontal',
 ));
@@ -27,8 +27,8 @@ echo $form->textAreaRow($model, 'css', array('rows'=>5));
 ?>
 
 <div class="form-actions">
-    <?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
-    <?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
 </div>
 
 <?php $this->endWidget(); ?> 

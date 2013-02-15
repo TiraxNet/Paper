@@ -55,9 +55,9 @@ class GWWidget
 		switch ($type)
 		{
 			case 'Form':
-				return 'bootstrap.widgets.BootActiveForm';
+				return 'bootstrap.widgets.TbActiveForm';
 			case 'Button':
-				return 'bootstrap.widgets.BootButton';
+				return 'bootstrap.widgets.TbButton';
 			case 'TmpLinkWidget':
 				return 'admin.widgets.TmpLinkWidget';
 			default:

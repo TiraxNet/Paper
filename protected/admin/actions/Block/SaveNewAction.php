@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class SaveNewAction extends GAdminAction{
+class SaveNewAction extends CAction{
 	/**
 	 * Run Save New Block action.
 	 * This funtion just runs "Save" funtion.

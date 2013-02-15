@@ -15,9 +15,24 @@ return array(
 		'gii'=>array(
 		    'class'=>'system.gii.GiiModule',
 		    'password'=>'13721372',
+			'generatorPaths' => array(
+				'ext.bootstrap.gii'
+			),
+			'preload'=>array('bootstrap'),
+			'components'=>array(
+					'bootstrap'=>array(
+							'class'=>'ext.bootstrap.components.Bootstrap'
+					)
+			)
 		),
 		'admin'=>array(
 		    'class'=>'application.admin.AdminModule',
+			'preload'=>array('bootstrap'),
+			'components'=>array(
+				'bootstrap'=>array(
+					'class'=>'ext.bootstrap.components.Bootstrap'
+				)
+			)
 		),
     ),
 	'name'=>$UConfig['website']['Name'],
@@ -30,9 +45,6 @@ return array(
 		'application.GWidgets.*',
 		'application.admin.components.*',
 	),
-	'preload'=>array(
-			'bootstrap',
-	),
 	'aliases' => array(
 	),
 	'components'=>array(
@@ -44,7 +56,7 @@ return array(
 		),
 		'bootstrap'=>array(
 			'class'=>'ext.bootstrap.components.Bootstrap',
-	    	),
+	    ),
 	    'functions'=>array(
 	    	'class'=>'ext.functions.functions',
 	    ),

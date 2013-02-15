@@ -10,7 +10,7 @@
 
 <?php Admin::Menu('');?>
 <div class="well" style="margin:50px auto; width:700px">
-<?php $this->widget('bootstrap.widgets.BootGridView', array(
+<?php $this->widget('bootstrap.widgets.TbGridView', array(
     'type'=>'striped bordered condensed',
     'dataProvider'=>$Tlist,
     'template'=>"{items}",
@@ -20,13 +20,13 @@
         array('name'=>'title', 'header'=>'Title'),
         array('name'=>'version', 'header'=>'Version'),
         array(
-            'class'=>'bootstrap.widgets.BootButtonColumn',
+            'class'=>'bootstrap.widgets.TbButtonColumn',
         	'template'=>'{update}{delete}',
             'htmlOptions'=>array('style'=>'width: 40px'),
         )
     ),
 )); ?>
-<?php $this->widget('bootstrap.widgets.BootButton', array(
+<?php $this->widget('bootstrap.widgets.TbButton', array(
     'label'=>'New Template',
     'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
     'size'=>'mini', // null, 'large', 'small' or 'mini'

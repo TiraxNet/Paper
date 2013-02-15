@@ -19,14 +19,14 @@ class Whtml extends GWidget{
 	public function RenderOptions($Arg){
 		$con=Yii::app()->controller;
 		$model=$Arg->FormModel;
-		$form = $con->beginWidget('bootstrap.widgets.BootActiveForm', array(
+		$form = $con->beginWidget('bootstrap.widgets.TbActiveForm', array(
 			'id'=>'horizontalForm',
 			'type'=>'horizontal',
 			'action'=>$Arg->action,
 		));
 		echo $form->textAreaRow($model, 'html', array('rows'=>5));
 		echo '<div class="form-actions">';
-		$con->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));
+		$con->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));
 		echo '</div>';
 		$con->endWidget();
 	}

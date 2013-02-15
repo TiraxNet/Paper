@@ -25,7 +25,7 @@ class LoginAction extends CAction{
 				$identity=new UserIdentity($data['username'],$data['password']);
 				ob_start();
 				Yii::app()->user->login($identity);
-				$this->controller->redirect('index.php');
+				$this->controller->redirect(array("/admin"));
 		}
 			
 	}

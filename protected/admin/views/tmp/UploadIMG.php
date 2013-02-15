@@ -15,7 +15,7 @@ if ($msg!=''){
 	echo "<div class=\"alert alert-error\">$msg</div>";
 }
 $model=new TMPUploadIMG();
-$form = $this->beginWidget('bootstrap.widgets.BootActiveForm', array(
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'NewBlockForm',
 	'type'=>'horizontal',
 	'htmlOptions' => array('enctype' => 'multipart/form-data'),
