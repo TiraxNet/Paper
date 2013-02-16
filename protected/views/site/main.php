@@ -8,10 +8,6 @@
  */
 ?>
 
-<?php
-Yii::app() -> clientScript -> registerCSSFile($css_addr);
-Yii::app() -> clientScript -> registerScriptFile($js_addr);
-?>
 <div id="PapaDIV">
-<?php echo $this->body; ?>
+<?php echo $body; ?>
 </div>
