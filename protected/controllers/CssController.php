@@ -24,8 +24,9 @@ class CssController extends CController
 		
 		header("Content-type: text/css; charset: UTF-8");
 		
-		$CSS=GRender::CSStoText(Yii::app()->Paper->GTemp->GetCSS());
-		$CSS.=Yii::app()->Paper->GTemp->css;
+		$Template=GTemplate::FindById($id);
+		$CSS=$Template->GetCSS()->Render();
+		$CSS.=$Template->css;
 		echo $CSS;
 	}
 }

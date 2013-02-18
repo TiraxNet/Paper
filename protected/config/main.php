@@ -48,9 +48,6 @@ return array(
 	'aliases' => array(
 	),
 	'components'=>array(
-		'Paper' => array(
-			'class' => 'application.components.GRuntime',
-		),
 		'cache'=>array(
 		    	'class'=>'system.caching.CFileCache',
 		),

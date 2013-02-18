@@ -16,9 +16,8 @@ class ImgController extends CController
 	 */
 	public function actionFullTmp($id,$type='index'){
 		if ($id==false) throw new CHttpException(10002,'No Template specified!');	
-		$GTemp=Yii::app()->Paper->GTemp;
 		
-		$hndl=imagecreatefromjpeg(GTemplate::GetPath($GTemp->id).DS.$type.".jpg");
+		$hndl=imagecreatefromjpeg(GTemplate::GetPath($id).DS.$type.".jpg");
 		header('Content-Type: image/jpeg');
 		imagejpeg($hndl,NULL,100);
 	}

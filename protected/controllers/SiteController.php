@@ -26,8 +26,9 @@ class SiteController extends CController
 	{	
 		Yii::app() -> clientScript -> registerCSSFile($this->createUrl("css/index",array('id'=>$id)));
 		Yii::app() -> clientScript -> registerScriptFile($this->createUrl("javascript/index",array('id'=>$id)));
-		$this->Title=Yii::app()->Paper->GTemp->title;
-		$body=Yii::app()->Paper->GTemp->GetContent();
+		$Template=GTemplate::FindById($id);
+		$this->Title=$Template->title;
+		$body=$Template->GetContent();
 		$this->render("main",array('body'=>$body));
 	}
 }

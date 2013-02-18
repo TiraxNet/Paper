@@ -171,23 +171,6 @@ class GRender{
 		return $CSS;
 	}
 	/**
-	 * Convert CSS class to text 
-	 * @param GCSS $CSSObject
-	 * @return string CSS code
-	 */
-	public static function CSStoText($CSSObject){
-		$CSS=$CSSObject->CSS;
-		$txt='';
-		foreach($CSS as $name => $body){
-			$txt.=$name."{\n";
-			foreach ($body as $index => $val){
-				$txt.="\t".$index.": ".$val.";\n";
-			}
-			$txt.="}\n";
-		}
-		return $txt;
-	}
-	/**
 	 * Render JavaScript code 
 	 * @return string Rendered JS code
 	 */

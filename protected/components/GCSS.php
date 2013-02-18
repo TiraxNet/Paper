@@ -36,4 +36,19 @@ class GCSS{
 			$this->Add($Element, $val);
 		}
 	}
+	/**
+	 * Returns CSS Standard code
+	 * @return string CSS standard code
+	 */
+	public function Render(){
+		$txt='';
+		foreach($this->CSS as $name => $body){
+			$txt.=$name."{\n";
+			foreach ($body as $index => $val){
+				$txt.="\t".$index.": ".$val.";\n";
+			}
+			$txt.="}\n";
+		}
+		return $txt;
+	}
 }

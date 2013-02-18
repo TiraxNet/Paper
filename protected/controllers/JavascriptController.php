@@ -12,7 +12,6 @@ class JavascriptController extends CController{
 	 * @param string $tmp Get template id from request
 	 */
 	public function actionIndex($id){
-		$GTemp=GTemplate::FindById($id);
-		echo $GTemp->GetJS();
+		echo GTemplate::FindById($id)->GetJS();
 	}
 }
