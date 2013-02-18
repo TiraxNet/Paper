@@ -1,3 +1,6 @@
 [submodule "protected/extensions/bootstrap"]
 	path = protected/extensions/bootstrap
 	url = https://github.com/clevertech/YiiBooster.git
+[submodule "framework"]
+	path = framework
+	url = git@github.com:TiraxNet/YiiFramework.git
