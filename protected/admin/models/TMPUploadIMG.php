@@ -22,7 +22,7 @@ class TMPUploadIMG extends CFormModel
 	 * Template id
 	 * @var string
 	 */
-	public $template;
+	public $id;
 	
 	/**
 	 * (non-PHPdoc)
@@ -31,7 +31,7 @@ class TMPUploadIMG extends CFormModel
 	public function rules()
 	{
 		return array(
-				array('template, type', 'required'),
+				array('id, type', 'required'),
 				array('file', 'file',  'allowEmpty' => FALSE,'types' => 'jpg')
 		);
 	}

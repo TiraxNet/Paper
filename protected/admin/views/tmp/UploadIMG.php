@@ -20,12 +20,12 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'type'=>'horizontal',
 	'htmlOptions' => array('enctype' => 'multipart/form-data'),
 ));
-$model->template=$tmp;
+$model->id=$tmp;
 $model->type=$type;
 ?>
 <?php
-echo $form->hiddenField($model, 'template');
-echo $form->uneditableRow($model, 'template');
+echo $form->hiddenField($model, 'id');
+echo $form->uneditableRow($model, 'id');
 echo $form->textFieldRow($model, 'type');
 echo $form->fileFieldRow($model, 'file');
 ?>

@@ -32,11 +32,11 @@ class UploadIMGAction extends CAction{
 		$model->setAttributes($_POST['TMPUploadIMG'],false);
 		if($model->validate()){
 			$model->file=CUploadedFile::getInstance($model,'file');
-			$file_path=GTemplate::GetPath($model->template).DS.
+			$file_path=GTemplate::GetPath($model->id).DS.
 					   $model->type.'.jpg';
 			$model->file->saveAs($file_path,true);
-			GTemplate::FindById($model->template)->Increase_Version();
-			$this->getController()->redirect(array('Tmp/update','id'=>$model->template));
+			GTemplate::FindById($model->id)->Increase_Version();
+			$this->getController()->redirect(array('Tmp/update','id'=>$model->id));
 		}else{
 			$this->msg='You need some changes!:';
 			foreach($model->getErrors() as $key=>$Error){

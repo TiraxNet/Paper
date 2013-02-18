@@ -44,7 +44,7 @@
 			</div>
 		</div>
 		<div class="control-group">
-			<label class="control-label" for="SQLName">SQL Name:</label>
+			<label class="control-label" for="SQLName">SQL Database:</label>
 			<div class="controls">
 				<input type="text" id="SQLName" placeholder="SQL Database Name" name="IForm[SQLName]">
 			</div>
