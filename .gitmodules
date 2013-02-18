@@ -3,4 +3,7 @@
 	url = https://github.com/clevertech/YiiBooster.git
 [submodule "framework"]
 	path = framework
-	url = git@github.com:TiraxNet/YiiFramework.git
+	url = https://github.com/TiraxNet/YiiFramework.git
+[submodule "install/sample"]
+	path = install/sample
+	url = https://github.com/TiraxNet/PaperSample.git
