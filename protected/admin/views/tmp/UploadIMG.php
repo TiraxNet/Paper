@@ -31,9 +31,9 @@ echo $form->fileFieldRow($model, 'file');
 ?>
 
 <div class="form-actions">
-    <?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
-    <?php $this->widget('bootstrap.widgets.BootButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
-    <?php $this->widget('bootstrap.widgets.BootButton', array('label'=>'Back','url'=>$this->createUrl('Tmp/update',array('id'=>$tmp)))); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Submit')); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('buttonType'=>'reset', 'icon'=>'remove', 'label'=>'Reset')); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array('label'=>'Back','url'=>$this->createUrl('Tmp/update',array('id'=>$tmp)))); ?>
 </div>
 
 <?php $this->endWidget(); ?> 
