@@ -28,7 +28,6 @@ class SaveNewAction extends CAction{
 		$block->y1=$data['y1'];
 		$block->x2=$data['x2'];
 		$block->y2=$data['y2'];
-		$block->parent=$data['parent'];
 		$block->tmp=$data['tmp'];
 		$id=$block->SaveNew();
 		$this->controller->redirect(

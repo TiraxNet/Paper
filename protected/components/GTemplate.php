@@ -107,24 +107,6 @@ class GTemplate{
 		functions::rrmdir($dir);
 	}
 	/**
-	 * Fill Parameters from an array.
-	 * @param array $arr parameters array
-	 */
-	public function SetFromArray($arr){
-		foreach ($this->db->getAttributes() as $var=>$val){
-			if (array_key_exists($var,$arr)){
-						$this->db->$var=$arr[$var];
-			}
-		}
-	}
-	/**
-	 * Fill parameters from database active record
-	 * @param CActiveRecord $db
-	 */
-	public function SetFromDB($db){
-		$this->db=$db;
-	}
-	/**
 	 * Render template structure
 	 */
 	public function RenderStructure()
@@ -163,7 +145,7 @@ class GTemplate{
 		$template=new GTemplate();
 		$db=templates::model()->findByPk($id);
 		if ($db==null) return null;
-		$template->SetFromDB($db);
+		$template->db=$db;
 		return $template;
 	}
 	/**

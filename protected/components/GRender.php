@@ -28,11 +28,11 @@ class GRender{
 	 * Render Template Structures, this rendering should be done before any other template rendering
 	 */
 	public function RenderStructure(){
-		$dbblocks=blocks::model()->findAll('tmp=:tmp', array(':tmp'=>$this->GTemp->id));
-		if (!is_array($dbblocks)) $dbblocks=array();
+		$dbblocks=blocks::model()->findAll('tmp='.$this->GTemp->id);
+		if (!is_array($dbblocks)) $dbblocks=array();		
 		foreach($dbblocks as $block){
 			$this->GTemp->blocks[$block['id']]=new GBlock($this->GTemp);
-			$this->GTemp->blocks[$block['id']]->SetFromArray($block->getAttributes());
+			$this->GTemp->blocks[$block['id']]->SetFromDB($block);
 			$this->GTemp->blocks[$block['id']]->auto=false;
 		}
 		$break_points=array('x'=>array(0,$this->GTemp->width),'y'=>array(0,$this->GTemp->height));
@@ -47,7 +47,6 @@ class GRender{
 		
 		$break_points['x']=array_values(array_unique($break_points['x'],SORT_NUMERIC));
 		$break_points['y']=array_values(array_unique($break_points['y'],SORT_NUMERIC));
-		
 		foreach($this->GTemp->blocks as $index => $Mobject){
 			$i=0;
 			$j=0;
@@ -59,8 +58,6 @@ class GRender{
 			while($break_points['y'][$i]!=$Mobject->y1) $i++;
 			while($break_points['y'][$i+$j]!=$Mobject->y2) $j++;
 			$this->GTemp->blocks[$index]->rowspan=$j;
-			$this->GTemp->blocks[$index]->width=$Mobject->x2-$Mobject->x1;
-			$this->GTemp->blocks[$index]->height=$Mobject->y2-$Mobject->y1;
 		}
 		$MHelp=array_fill(0, sizeof($break_points['x']),
 				array_fill(0, sizeof($break_points['y'],0), 0)
@@ -95,13 +92,10 @@ class GRender{
 					$block=new GBlock($this->GTemp);
 					$block->name=$row.'_'.$col;
 					$block->id='A_'.$block->name;
-					$block->type=0;
 					$block->x1=$break_points['x'][$col];
 					$block->y1=$break_points['y'][$row];
 					$block->x2=$break_points['x'][$col+$i];
 					$block->y2=$break_points['y'][$row+$j];
-					$block->width=$break_points['x'][$col+$i]-$break_points['x'][$col];
-					$block->height=$break_points['y'][$row+$j]-$break_points['y'][$row];
 					$block->colspan=$i;
 					$block->rowspan=$j;
 					$block->widget="none";

@@ -7,60 +7,10 @@
  */
 class GBlock{
 	/**
-	 * Block id
-	 * @var string
+	 * Block active record
+	 * @var blocks
 	 */
-	public $id;
-	/**
-	 * Block name
-	 * @var string
-	 */
-	public $name;
-	/**
-	 * Block Start X
-	 * @var integer
-	 */
-	public $x1;
-	/**
-	 * Block End X
-	 * @var integer
-	 */
-	public $x2;
-	/**
-	 * Block Start Y
-	 * @var integer
-	 */
-	public $y1;
-	/**
-	 * Block End Y
-	 * @var integer
-	 */
-	public $y2;
-	/**
-	 * Block Options
-	 * @var string
-	 */
-	public $opt;
-	/**
-	 * Block Template id
-	 * @var string
-	 */
-	public $tmp;
-	/**
-	 * Block Widget
-	 * @var string
-	 */
-	public $widget;
-	/**
-	 * Block Width
-	 * @var integer
-	 */
-	public $width;
-	/**
-	 * Block Height
-	 * @var integer
-	 */
-	public $height;
+	private $db;
 	/**
 	 * Block Colspan
 	 * @var integer
@@ -72,7 +22,7 @@ class GBlock{
 	 */
 	public $rowspan;
 	/**
-	 * Shows block is auto made or not.
+	 * Shows if block is auto made or not.
 	 * @var bool
 	 */
 	public $auto;
@@ -87,26 +37,51 @@ class GBlock{
 	 */
 	public function __construct($GTemp=NULL){
 		$this->GTemp=$GTemp;
+		$this->db=new blocks();
 	}
 	/**
-	 * Fill Parameters from an array.
-	 * @param array $arr parameters array
+	 * Database getter!
+	 * @param string $name
+	 * @return mixed
 	 */
-	public function SetFromArray($arr){
-		foreach (get_class_vars('GBlock') as $var=>$val){
-			if (array_key_exists($var,$arr)){
-						$this->$var=$arr[$var];
-			}
+	public function __get($name){
+		if ($this->db->hasAttribute($name)) return $this->db->$name;
+		else if (method_exists($this, 'Get'.$name))
+		{
+			$method_name='Get'.$name;
+			return $this->$method_name();
 		}
-		$this->width=$this->x2-$this->x1;
-		$this->height=$this->y2-$this->y1;
+		else trigger_error('Undefined property '.$name);
+	}
+	/**
+	 * Database Setter!
+	 * @param string $name
+	 * @param string $value
+	 */
+	public function __set($name,$value){
+		if ($this->db->hasAttribute($name)) $this->db->$name=$value;
+		else trigger_error('Undefined property '.$name);
+	}
+	/**
+	 * Returns block width
+	 * @return number block width
+	 */
+	private function Getwidth() {
+		return $this->x2-$this->x1;
+	}
+	/**
+	 * Returns block height
+	 * @return number block height
+	 */
+	private function Getheight() {
+		return $this->y2-$this->y1;
 	}
 	/**
 	 * Fill parameters from database active record
 	 * @param CActiveRecord $db
 	 */
 	public function SetFromDB($db){
-		$this->SetFromArray($db->getAttributes());
+		$this->db=$db;
 	}
 	/**
 	 * Search and fill parameters from database.
@@ -115,32 +90,31 @@ class GBlock{
 	public static function FindById($id){
 		$block=new GBlock();
 		$db=blocks::model()->findByPk($id);
-		if ($db==null) throw new CHttpException('10003','Block not found');
-		$block->SetFromDB($db);
+		if ($db==null) return null;
+		$block->db=$db;
 		return $block;
 	}
 	/**
 	 * Saves current parameters as new block.
 	 */
 	public function SaveNew(){
-		$db=new blocks;
-		$db->name=$this->name;
-		$db->widget=$this->widget;
-		$db->x1=$this->x1;
-		$db->y1=$this->y1;
-		$db->x2=$this->x2;
-		$db->y2=$this->y2;
-		$db->tmp=$this->tmp;
-		$db->save();
-		$this->SetFromDB($db);
-
-		$this->GTemp=GTemplate::FindById($db->tmp);
+		$this->db->save();
+		$this->GTemp=GTemplate::FindById($this->tmp);
 		$this->GTemp->RenderStructure();
-		$this->width=$this->GTemp->blocks[$db->id]->width;
-		$this->height=$this->GTemp->blocks[$db->id]->height;
 		$this->WidgetClass()->CreateNew();
-		
-		return $db->id;
+		return $this->db->id;
+	}
+	/**
+	 * Save current settings in database
+	 */
+	public function Save(){
+		$this->db->save();
+	}
+	/**
+	 * Delete block which has current "id" parameter
+	 */
+	public function delete(){
+		$this->db->delete();
 	}
 	/**
 	 * Return Widget Class of block.

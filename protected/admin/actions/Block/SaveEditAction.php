@@ -35,19 +35,19 @@ class SaveEditAction extends CAction{
 	public function SavePos(){
 		if (!array_key_exists('EditBlockPos',$_POST)) return false;
 		$data=$_POST['EditBlockPos'];
-		$db=blocks::model()->findByPk($data['block']);
+		$block=GBlock::FindById($data['block']);
 		if ($data['x1']==0 && $data['y1']==0 && $data['x2']==0 && $data['y2']==0){
-			$tmp=$db->tmp;
-			$db->delete();
+			$tmp=$block->tmp;
+			$block->delete();
 			$this->controller->redirect($this->controller->createUrl("Tmp/update",array('id'=>$tmp)));
 			exit();
 			return true;
 		}
-		$db->x1=$data['x1'];
-		$db->y1=$data['y1'];
-		$db->x2=$data['x2'];
-		$db->y2=$data['y2'];
-		$db->save();
+		$block->x1=$data['x1'];
+		$block->y1=$data['y1'];
+		$block->x2=$data['x2'];
+		$block->y2=$data['y2'];
+		$block->Save();
 	 }
 	 /**
 	 * Get Options of block from request and Save it in database.
