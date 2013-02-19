@@ -5,36 +5,12 @@
 * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
 * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
 */
-include 'User_config.php';
+require(dirname(__FILE__).DS.'User_config.php');
 return array(
 	'params'=>array(
 		'AdminUsername' => 'admin',
 		'AdminPass' => '13721372'
 	),
-	'modules'=>array(
-		'gii'=>array(
-		    'class'=>'system.gii.GiiModule',
-		    'password'=>'13721372',
-			'generatorPaths' => array(
-				'ext.bootstrap.gii'
-			),
-			'preload'=>array('bootstrap'),
-			'components'=>array(
-					'bootstrap'=>array(
-							'class'=>'ext.bootstrap.components.Bootstrap'
-					)
-			)
-		),
-		'admin'=>array(
-		    'class'=>'application.admin.AdminModule',
-			'preload'=>array('bootstrap'),
-			'components'=>array(
-				'bootstrap'=>array(
-					'class'=>'ext.bootstrap.components.Bootstrap'
-				)
-			)
-		),
-    ),
 	'name'=>$UConfig['website']['Name'],
 	'basePath'=>dirname(__FILE__).DS.'..',
 	'import'=>array(
@@ -45,7 +21,16 @@ return array(
 		'application.GWidgets.*',
 		'application.admin.components.*',
 	),
-	'aliases' => array(
+	'modules'=>array(
+		'admin'=>array(
+			'class'=>'application.admin.AdminModule',
+			'preload'=>array('bootstrap'),
+			'components'=>array(
+				'bootstrap'=>array(
+					'class'=>'ext.bootstrap.components.Bootstrap'
+				)
+			)
+		),
 	),
 	'components'=>array(
 		'cache'=>array(

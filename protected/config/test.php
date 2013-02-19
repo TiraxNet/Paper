@@ -1,6 +1,6 @@
 <?php 
 return CMap::mergeArray(
-    require(dirname(__FILE__).'/main.php'),
+    require(dirname(__FILE__).DS.'main.php'),
     array(
         'components'=>array(
             'fixture'=>array(
