@@ -24,8 +24,9 @@ class ImgController extends CController
 			$GTemp=GTemplate::FindById($tmp);
 		}
 		$GTemp->RenderStructure();
-		if (!array_key_exists($id, $GTemp->blocks)) throw  new CHttpException('10003','Block not found'); 
-		$hndl=$GTemp->blocks[$id]->GetImage($type);
+		$block=$GTemp->blocks->GetById($id);
+		if ($block==null) throw  new CHttpException('10003','Block not found'); 
+		$hndl=$block->GetImage($type);
 		header('Content-Type: image/jpeg');
 		imagejpeg($hndl,NULL,100);
 		imagedestroy($hndl);

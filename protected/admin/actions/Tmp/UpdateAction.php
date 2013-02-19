@@ -49,7 +49,7 @@ class UpdateAction extends CAction{
 	}
 	public function RenderScript(){
 		$this->GTemp->RenderStructure();
-		$blocks=$this->GTemp->blocks;
+		$blocks=$this->GTemp->blocks->GetAll();
 		$script='XOffset = $("#MainIMG").offset().left;
 				YOffset = $("#MainIMG").offset().top;
 				$(\'#MainIMG\').ready(function(){

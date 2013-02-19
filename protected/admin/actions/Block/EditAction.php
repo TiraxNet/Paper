@@ -53,7 +53,7 @@ class EditAction extends CAction{
 	 */
 	public function RenderScript(){
 		$this->GTemp->RenderStructure();
-		$blocks=$this->GTemp->blocks;
+		$blocks=$this->GTemp->blocks->GetAll();
 		$script='$(\'#MainIMG\').ready(function(){
 					ready();
 					update();
@@ -71,7 +71,7 @@ class EditAction extends CAction{
 		$script.="];\n";
 		
 		$script.="function update(){\n";
-		$blocks=$this->GTemp->blocks;
+		$blocks=$this->GTemp->blocks->GetAll();
 		$spblock=$this->spblock;
 		foreach ($blocks as $block){
 			if ($block->id==$spblock->id) {continue;}

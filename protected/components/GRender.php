@@ -29,14 +29,9 @@ class GRender{
 	 */
 	public function RenderStructure(){
 		$dbblocks=blocks::model()->findAll('tmp='.$this->GTemp->id);
-		if (!is_array($dbblocks)) $dbblocks=array();		
-		foreach($dbblocks as $block){
-			$this->GTemp->blocks[$block['id']]=new GBlock($this->GTemp);
-			$this->GTemp->blocks[$block['id']]->SetFromDB($block);
-			$this->GTemp->blocks[$block['id']]->auto=false;
-		}
+		$this->GTemp->blocks->InsertFromDb($dbblocks,array('auto'=>false));
 		$break_points=array('x'=>array(0,$this->GTemp->width),'y'=>array(0,$this->GTemp->height));
-		foreach ($this->GTemp->blocks as $Mobject){
+		foreach ($this->GTemp->blocks->GetAll() as $Mobject){
 			array_push($break_points['x'],$Mobject->x1);
 			array_push($break_points['x'],$Mobject->x2);
 			array_push($break_points['y'],$Mobject->y1);
@@ -47,22 +42,22 @@ class GRender{
 		
 		$break_points['x']=array_values(array_unique($break_points['x'],SORT_NUMERIC));
 		$break_points['y']=array_values(array_unique($break_points['y'],SORT_NUMERIC));
-		foreach($this->GTemp->blocks as $index => $Mobject){
+		foreach($this->GTemp->blocks->GetAll() as $index => $Mobject){
 			$i=0;
 			$j=0;
 			while($break_points['x'][$i]!=$Mobject->x1) $i++;
 			while($break_points['x'][$i+$j]!=$Mobject->x2) $j++;
-			$this->GTemp->blocks[$index]->colspan=$j;
+			$this->GTemp->blocks->GetById($index)->colspan=$j;
 			$i=0;
 			$j=0;
 			while($break_points['y'][$i]!=$Mobject->y1) $i++;
 			while($break_points['y'][$i+$j]!=$Mobject->y2) $j++;
-			$this->GTemp->blocks[$index]->rowspan=$j;
+			$this->GTemp->blocks->GetById($index)->rowspan=$j;
 		}
 		$MHelp=array_fill(0, sizeof($break_points['x']),
 				array_fill(0, sizeof($break_points['y'],0), 0)
 		);
-		foreach ($this->GTemp->blocks as $block){
+		foreach ($this->GTemp->blocks->GetAll() as $block){
 			$x=0;
 			while($break_points['x'][$x]!=$block->x1) $x++;
 			$y=0;
@@ -100,11 +95,14 @@ class GRender{
 					$block->rowspan=$j;
 					$block->widget="none";
 					$block->auto=true;
-					$this->GTemp->blocks[$block->id]=$block;
+					$this->GTemp->blocks->Insert($block);
 					array_push($table_row,$block->id);
 				}else{
-					$inMap=$this->findBlockFromStart($break_points['x'][$col],$break_points['y'][$row]);
-					if ($inMap!=false) array_push($table_row,$inMap);
+					$inMap=$this->GTemp->blocks->GetByAttr(array(
+															'x1'=>$break_points['x'][$col],
+															'y1'=>$break_points['y'][$row]
+														   ));
+					if ($inMap!=null) array_push($table_row,$inMap->id);
 				}
 			}
 			array_push($table_struct,$table_row);
@@ -116,12 +114,12 @@ class GRender{
 	 * @return int|false
 	 */
 	private function findBlockFromStart($x,$y){
-		foreach($this->GTemp->blocks as $index => $Mobject){
+		foreach($this->GTemp->blocks->GetAll() as $index => $Mobject){
 			if ( $Mobject->x1==$x && $Mobject->y1==$y){
 				return $index;
 			}
 		}
-		return false;
+		return null;
 	}
 	/**
 	 * Render HTML code 
@@ -137,13 +135,13 @@ class GRender{
 		foreach ($table_struct as $index => $tr){
 			$HTML.="<tr>\n";
 			foreach ($tr as $td){
-				$width=$GTemp->blocks[$td]->width;
-				$height=$GTemp->blocks[$td]->height;
-				$colspan=$GTemp->blocks[$td]->colspan;
-				$rowspan=$GTemp->blocks[$td]->rowspan;
+				$width=$GTemp->blocks->GetById($td)->width;
+				$height=$GTemp->blocks->GetById($td)->height;
+				$colspan=$GTemp->blocks->GetById($td)->colspan;
+				$rowspan=$GTemp->blocks->GetById($td)->rowspan;
 				$HTML.='<td id="'.$GTemp->name.'_'.$td.'" colspan="'.$colspan.'" rowspan="'.$rowspan;
 				$HTML.='" width="'.$width.'" height="'.$height.'">'."\n";
-				$HTML.=$this->GTemp->blocks[$td]->WidgetClass()->Render->Content();
+				$HTML.=$this->GTemp->blocks->GetById($td)->WidgetClass()->Render->Content();
 				$HTML.="</td>\n";
 			}
 			$HTML.="</tr>\n";
@@ -158,7 +156,7 @@ class GRender{
 	public function CSS(){
 		if ($this->structure==null) $this->RenderStructure();
 		$CSS=new GCSS();
-		foreach ($this->GTemp->blocks as $id => $block){
+		foreach ($this->GTemp->blocks->GetAll() as $id => $block){
 			$new_css=$block->WidgetClass()->Render->CSS();
 			$CSS->merge($new_css);
 		}
@@ -171,7 +169,7 @@ class GRender{
 	public function JS(){
 		if ($this->structure==null) $this->RenderStructure();
 		$js='';
-		foreach ($this->GTemp->blocks as $block){
+		foreach ($this->GTemp->blocks->GetAll() as $block){
 			$widget=$block->WidgetClass();
 			$js.=$widget->Render->JS()."\n";
 		}

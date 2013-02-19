@@ -44,7 +44,7 @@ class NewAction extends CAction{
 	 */
 	public function RenderScript(){
 		$this->GTemp->RenderStructure();
-		$blocks=$this->GTemp->blocks;
+		$blocks=$this->GTemp->blocks->GetAll();
 		$script='$(\'#MainIMG\').ready(function(){
 					ready();
 					update();
@@ -60,7 +60,7 @@ class NewAction extends CAction{
 		}
 		$script.="];\n";
 		$script.="function update(){\n";
-		$blocks=$this->GTemp->blocks;
+		$blocks=$this->GTemp->blocks->GetAll();
 		foreach ($blocks as $block){
 			if ($block->auto==true) continue;
 			$script.='$("body").append(\'<div id="'

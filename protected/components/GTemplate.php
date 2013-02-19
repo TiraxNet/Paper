@@ -27,15 +27,16 @@ class GTemplate{
 	private $Renderer;
 	/**
 	 * Template blocks
-	 * @var GBlock[string]
+	 * @var GBlockList
 	 */
-	public $blocks=array();
+	public $blocks;
 	/**
 	 * Constructor!
 	 */
 	function __construct(){
 		$this->db=new templates();
 		$this->Renderer=new GRender($this);
+		$this->blocks=new GBlockList($this);
 	}
 	/**
 	 * Database Setter!
