@@ -59,9 +59,8 @@ class SaveEditAction extends CAction{
 		 $formname=get_class($widget->FormModel());
 		 if (!array_key_exists($formname,$_POST)) return false;
 		 $str=$widget->AnalizeOptions($_POST[$formname]);
-		 $db=blocks::model()->findByPk($this->spblock->id);
-		 $db->opt=$str;
-		 $db->save();
+		 $block->opt=$str;
+		 $block->save();
 	 }
 	
 }

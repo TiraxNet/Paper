@@ -46,11 +46,9 @@ class GWidget{
 		$this->GTemp=$GTemp;
 		$this->block=$block;
 		$this->Widget=new GWWidget($this);
-		
 		$this->Render=new GWRender($this);
-		if (array_key_exists('opt',$block))
-			if ($block->opt!='')
-				$this->opt=unserialize($block->opt);
+		if ($block->opt!='')
+			$this->opt=unserialize($block->opt);
 		if (method_exists($this,'init')) $this->init();
 	}
 	/**

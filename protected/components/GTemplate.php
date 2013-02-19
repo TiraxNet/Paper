@@ -31,12 +31,18 @@ class GTemplate{
 	 */
 	public $blocks;
 	/**
+	 * Template structure
+	 * @var GStruct
+	 */
+	public $struct;
+	/**
 	 * Constructor!
 	 */
 	function __construct(){
 		$this->db=new templates();
 		$this->Renderer=new GRender($this);
 		$this->blocks=new GBlockList($this);
+		$this->struct=new GStruct($this);
 	}
 	/**
 	 * Database Setter!
@@ -112,7 +118,7 @@ class GTemplate{
 	 */
 	public function RenderStructure()
 	{
-		$this->Renderer->RenderStructure();	
+		$this->struct->RenderStructure();	
 	}
 	/**
 	 * Render templates & return Template Content (HTML Code)

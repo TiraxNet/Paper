@@ -11,7 +11,7 @@ class GBlockList{
 	 * It's our block repository!
 	 * @var GBlock[]
 	 */
-	private $BlockList=array();
+	private $BlockList=null;
 	/**
 	 * Template class
 	 * @var GTemplate
@@ -24,12 +24,16 @@ class GBlockList{
 	public function __construct($GTemp) {
 		$this->GTemp=$GTemp;
 	}
+	public function Initialize() {
+		
+	}
 	/**
 	 * Returns block which has given id
 	 * @param string $id Block id
 	 * @return GBlock|NULL Block object if found, else null
 	 */
 	public function GetById($id){
+		if ($this->BlockList==null) $this->GTemp->RenderStructure();
 		if (array_key_exists($id, $this->BlockList)) return $this->BlockList[$id];
 		return null;	
 	}
@@ -39,6 +43,7 @@ class GBlockList{
 	 * @return GBlock|NULL Block object if found, else null
 	 */
 	public function GetByAttr($attr) {
+		if ($this->BlockList==null) $this->GTemp->RenderStructure();
 		foreach($this->BlockList as $id => $block) {
 			$found=true;
 			foreach ($attr as $key=>$val) {
@@ -81,6 +86,7 @@ class GBlockList{
 	 * @return GBlock[] All blocks array.
 	 */
 	public function GetAll() {
+		if ($this->BlockList==null) $this->GTemp->RenderStructure();
 		return $this->BlockList;
 	}
 }

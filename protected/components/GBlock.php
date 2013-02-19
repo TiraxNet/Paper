@@ -4,6 +4,19 @@
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ * 
+ * @property int 	$id 		Block id
+ * @property int 	$tmp 		Block template
+ * @property string $name 		Block name
+ * @property int 	$x1 		Block start point (x)
+ * @property int 	$y1 		Block start point (y)
+ * @property int 	$x2 		Block end point (x)
+ * @property int 	$y2 		Block end point (y)
+ * @property string $y2 		Block Widget
+ * @property string $opt		Serialized block widget options
+ * @property int 	$colspan 	Block Colspan in template table
+ * @property int 	$rowspan 	Block Rowspan in template table
+ * 
  */
 class GBlock{
 	/**
@@ -11,16 +24,6 @@ class GBlock{
 	 * @var blocks
 	 */
 	private $db;
-	/**
-	 * Block Colspan
-	 * @var integer
-	 */
-	public $colspan;
-	/**
-	 * Block Rowspan
-	 * @var string
-	 */
-	public $rowspan;
 	/**
 	 * Shows if block is auto made or not.
 	 * @var bool
@@ -75,6 +78,22 @@ class GBlock{
 	 */
 	private function Getheight() {
 		return $this->y2-$this->y1;
+	}
+	/**
+	 * Calculate & return block colspan
+	 * @return int
+	 */
+	private function Getcolspan(){
+		$x_points=$this->GTemp->struct->XPoints;
+		return array_search($this->x2, $x_points)-array_search($this->x1, $x_points);
+	}
+	/**
+	 * Calculate & return block rowspan
+	 * @return int
+	 */
+	private function Getrowspan(){
+		$y_points=$this->GTemp->struct->YPoints;
+		return array_search($this->y2, $y_points)-array_search($this->y1, $y_points);
 	}
 	/**
 	 * Fill parameters from database active record
