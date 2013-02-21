@@ -12,12 +12,20 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title><?php echo $this->Title; ?></title>
+<title><?php echo CHtml::encode($this->Title); ?></title>
 <link rel="stylesheet" href="publics/css/default.css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="publics/scripts/text.js"></script>
 </head>
 <body>
+<?php
+	if (isset($this->control)) {
+		$control=$this->control;
+	}else $control="";
+	$this->widget('admin.widgets.Menu', array(
+			'control'=>$control
+	));
+?>
 <?php echo $content; ?>
 </body>
 </html>

@@ -14,6 +14,11 @@ class BlockController extends CController
 	 */
 	public $Title='Block Managment';
 	/**
+	 * Control will be added to Menu by layout
+	 * @var string
+	 */
+	public $control='';
+	/**
 	 * (non-PHPdoc)
 	 * @see CController::actions()
 	 */

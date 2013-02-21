@@ -15,6 +15,11 @@ class LoginController extends CController
 	 */
 	public $Title='Administratot Login';
 	/**
+	 * Use default layout; Readonly!
+	 * @var string
+	 */
+	public $layout='//layouts/main';
+	/**
 	 * (non-PHPdoc)
 	 * @see CController::actions()
 	 */

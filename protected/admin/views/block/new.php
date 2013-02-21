@@ -19,7 +19,7 @@ Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#Pap
 
 $c='<a href="#SaveDialog" class="btn btn-primary pull-right" data-toggle="modal">Save</a>';
 $c.='<a class="btn pull-right" onclick="FixBlockPosition();">Fix it!</a>';
-Admin::Menu($c);
+$this->control=$c;
 
 echo '<div id="PapaDIV"><img src="'.$ImgURL.'" id="MainIMG"/></div>';
 
