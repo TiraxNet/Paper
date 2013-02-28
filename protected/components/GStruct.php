@@ -9,7 +9,7 @@
  * @property int[] $XPoints Array of columns break points
  * @property int[] $YPoints Array of rows break points
  */
-class GStruct{
+class GStruct extends CComponent{
 	/**
 	 * Array of columns break points
 	 * @varstructure int[]
@@ -38,23 +38,10 @@ class GStruct{
 		$this->GTemp=$GTemp;
 	}
 	/**
-	 * Getter!
-	 * @param string $name
-	 * @return mixed
-	 */
-	public function __get($name){
-		if (method_exists($this, 'Get'.$name))
-		{
-			$method_name='Get'.$name;
-			return $this->$method_name();
-		}
-		else trigger_error('Undefined property '.$name);
-	}
-	/**
 	 * Return array of columns break points
 	 * @return array
 	 */
-	private function GetXPoints(){
+	protected function getXPoints(){
 		if ($this->_XPoints==null) {
 			$this->RenderPoints();
 		}
@@ -64,7 +51,7 @@ class GStruct{
 	 * Return array of rows break points
 	 * @return array
 	 */
-	private function GetYPoints() {
+	protected function getYPoints() {
 		if ($this->_YPoints==null) {
 			$this->RenderPoints();
 		}
@@ -146,6 +133,7 @@ class GStruct{
 		
 		$x_points=$this->XPoints;
 		$y_points=$this->YPoints;
+		
 	
 		$MHelp=array_fill(0, sizeof($x_points),
 				array_fill(0, sizeof($y_points,0), 0)

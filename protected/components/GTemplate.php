@@ -14,7 +14,7 @@
  * @property int $width 	Template width
  * @property int $height 	Template height
  */
-class GTemplate{
+class GTemplate extends CComponent{
 	
 	/**
 	 * Database active record
@@ -51,8 +51,11 @@ class GTemplate{
 	 * @param string $value
 	 */
 	public function __set($name,$value){
-		if ($this->db->hasAttribute($name)) $this->db->$name=$value;
-		else trigger_error('Undefined property '.$name);
+		if ($this->db->hasAttribute($name)){
+			$this->db->$name=$value;
+			return;
+		}
+		parent::__set($name, $value);
 	}
 	/**
 	 * Write Template attributes to database active record
@@ -61,18 +64,13 @@ class GTemplate{
 	 */
 	public function __get($name){
 		if ($this->db->hasAttribute($name)) return $this->db->$name;
-		else if (method_exists($this, 'Get'.$name))
-		{
-			$method_name='Get'.$name; 
-			return $this->$method_name();
-		}
-		else trigger_error('Undefined property '.$name);
+		return parent::__get($name);
 	}
 	/**
 	 * Return template width
 	 * @return int template width
 	 */
-	private function Getwidth(){
+	protected function getwidth(){
 		$size=getimagesize(self::GetPath($this->id).DS.'index.jpg');
 		return $size[0];
 	}
@@ -80,7 +78,7 @@ class GTemplate{
 	 * Return template height
 	 * @return int template height
 	 */
-	private function Getheight(){
+	protected function getheight(){
 		$size=getimagesize(self::GetPath($this->id).DS.'index.jpg');
 		return $size[1];
 	}

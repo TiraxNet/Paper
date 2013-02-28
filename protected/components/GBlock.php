@@ -19,7 +19,7 @@
  * @property int $rowspan 	Block Rowspan in template table
  * 
  */
-class GBlock{
+class GBlock extends CComponent{
 	/**
 	 * Block active record
 	 * @var blocks
@@ -55,7 +55,7 @@ class GBlock{
 			$method_name='Get'.$name;
 			return $this->$method_name();
 		}
-		else trigger_error('Undefined property '.$name);
+		return parent::__get($name);
 	}
 	/**
 	 * Database Setter!
@@ -63,28 +63,31 @@ class GBlock{
 	 * @param string $value
 	 */
 	public function __set($name,$value){
-		if ($this->db->hasAttribute($name)) $this->db->$name=$value;
-		else trigger_error('Undefined property '.$name);
+		if ($this->db->hasAttribute($name)){
+			$this->db->$name=$value;
+			return;
+		}
+		parent::__set($name, $value);
 	}
 	/**
 	 * Returns block width
 	 * @return number block width
 	 */
-	private function Getwidth() {
+	protected function getwidth() {
 		return $this->x2-$this->x1;
 	}
 	/**
 	 * Returns block height
 	 * @return number block height
 	 */
-	private function Getheight() {
+	protected function getheight() {
 		return $this->y2-$this->y1;
 	}
 	/**
 	 * Calculate & return block colspan
 	 * @return int
 	 */
-	private function Getcolspan(){
+	protected function getcolspan(){
 		$x_points=$this->GTemp->struct->XPoints;
 		return array_search($this->x2, $x_points)-array_search($this->x1, $x_points);
 	}
@@ -92,7 +95,7 @@ class GBlock{
 	 * Calculate & return block rowspan
 	 * @return int
 	 */
-	private function Getrowspan(){
+	protected function getrowspan(){
 		$y_points=$this->GTemp->struct->YPoints;
 		return array_search($this->y2, $y_points)-array_search($this->y1, $y_points);
 	}
