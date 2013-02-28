@@ -1,12 +1,13 @@
 <?php
 /**
  * Admin panel image controller
+ * @package Paper.admin.controllers
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class ImgController extends CController
+class AdminImgController extends CController
 {
 	/**
 	 * Show given template id and type as a complete, non-edited picture 

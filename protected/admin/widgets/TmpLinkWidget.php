@@ -1,16 +1,28 @@
 <?php
 /**
  *  Show a Template list links in order to linking pages 
- * @author Mohammad Hosein Saadatfar
- * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
- * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *  @package Paper.admin.widgets
+ *  @author Mohammad Hosein Saadatfar
+ *  @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ *  @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
 class TmpLinkWidget extends CWidget
 {
-	
+	/**
+	 * Button size
+	 * @var string
+	 */
 	public $size='small';
+	/**
+	 * Button type
+	 * @var string
+	 */
 	public $type='inverse';
+	/**
+	 * URL input box id
+	 * @var string
+	 */
 	public $InputId;
 	
 	/**

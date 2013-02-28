@@ -5,14 +5,14 @@
 * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
 * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
 */
-require(dirname(__FILE__).DS.'User_config.php');
+require(dirname(__FILE__).DIRECTORY_SEPARATOR.'User_config.php');
 return array(
 	'params'=>array(
 		'AdminUsername' => 'admin',
 		'AdminPass' => '13721372'
 	),
 	'name'=>$UConfig['website']['Name'],
-	'basePath'=>dirname(__FILE__).DS.'..',
+	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'import'=>array(
     	'application.components.*',
 		'application.extensions.*',

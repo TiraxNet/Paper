@@ -1,6 +1,7 @@
 <?php
 /**
  * Admin Creatig new block action
+ * @package Paper.admin.actions
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -31,7 +32,7 @@ class NewAction extends CAction{
 	public function run($tmp){
 		$this->tmp=$tmp;
 		$this->GTemp=GTemplate::FindById($tmp);
-		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('id'=>$tmp));
+		$ImgURL=$this->controller->createUrl("AdminImg/FullTmp",array('id'=>$tmp));
 		$this->RenderScript();
 		$this->controller->render("new",array(
 												'script'=>$this->script,

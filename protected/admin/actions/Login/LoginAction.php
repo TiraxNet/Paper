@@ -1,6 +1,7 @@
 <?php
 /**
  * Admin login action
+ * @package Paper.admin.actions
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -30,7 +31,14 @@ class LoginAction extends CAction{
 			
 	}
 }
-
+/**
+ * Admin UserIdentity class
+ * @package Paper.admin.core
+ * @author Mohammad Hosein Saadatfar <mh.saadatfar@gmail.com>
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
 class UserIdentity extends CUserIdentity
 {
  

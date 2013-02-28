@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Admin, Block editing action
+ * Block editing action
+ * @package Paper.admin.actions
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -40,7 +41,7 @@ class EditAction extends CAction{
 		$this->tmp=$tmp;
 		$this->GTemp=GTemplate::FindById($tmp);
 		$this->spblock=GBlock::FindById($block);
-		$ImgURL=$this->controller->createUrl("Img/FullTmp",array('id'=>$tmp));
+		$ImgURL=$this->controller->createUrl("AdminImg/FullTmp",array('id'=>$tmp));
 		$this->RenderScript();
 		$this->controller->render("edit",array(
 												'script'=>$this->script,
@@ -128,12 +129,4 @@ class EditAction extends CAction{
 	
 }
 
-/**
- * A Class to Save Windget Option Argument.
- * @author Mohammad Hosein Saadatfar
- *
- */
-class GWOptionsArguments{
-	public $action;
-	public $FormModel;
-}
+

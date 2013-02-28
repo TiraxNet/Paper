@@ -1,21 +1,22 @@
 <?php
 /**
  * This Class provides all we need to work with Blocks.
+ * @package Paper.core
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * 
- * @property int 	$id 		Block id
- * @property int 	$tmp 		Block template
+ * @property int $id 		Block id
+ * @property int $tmp 		Block template
  * @property string $name 		Block name
- * @property int 	$x1 		Block start point (x)
- * @property int 	$y1 		Block start point (y)
- * @property int 	$x2 		Block end point (x)
- * @property int 	$y2 		Block end point (y)
- * @property string $y2 		Block Widget
+ * @property int $x1 		Block start point (x)
+ * @property int $y1 		Block start point (y)
+ * @property int $x2 		Block end point (x)
+ * @property int $y2 		Block end point (y)
+ * @property int $y2 		Block Widget
  * @property string $opt		Serialized block widget options
- * @property int 	$colspan 	Block Colspan in template table
- * @property int 	$rowspan 	Block Rowspan in template table
+ * @property int $colspan 	Block Colspan in template table
+ * @property int $rowspan 	Block Rowspan in template table
  * 
  */
 class GBlock{

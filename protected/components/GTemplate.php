@@ -1,6 +1,7 @@
 <?php
 /**
  * This Class provides all we need to work with Templates
+ * @package Paper.core
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -9,9 +10,9 @@
  * @property string $name 		Template name
  * @property string $title 		Template title
  * @property strign $css 		Template CSS
- * @property int 	$version 	Template version
- * @property int 	$width 		Template width
- * @property int 	$height 	Template height
+ * @property int $version 	Template version
+ * @property int $width 	Template width
+ * @property int $height 	Template height
  */
 class GTemplate{
 	

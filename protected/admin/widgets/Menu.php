@@ -1,6 +1,18 @@
 <?php
+/**
+ * Admin menu widget
+ * @package Paper.admin.widgets
+ * @author Mohammad Hosein Saadatfar <mh.saadatfar@gmail.com>
+ * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
+ * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
+ *
+ */
 class Menu extends CWidget
 {
+	/**
+	 * An HTML code that will be presented on the right side of menu
+	 * @var string
+	 */
 	public $control;
 	
 	/**

@@ -1,12 +1,13 @@
 <?php
 /**
- * Admin, New template action
+ * New template action
+ * @package Paper.admin.actions
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-class NewAction extends CAction{
+class TmpNewAction extends CAction{
 	
 	/**
 	 * User Massage and alerts will be stored here by "save" method

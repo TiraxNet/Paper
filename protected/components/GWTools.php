@@ -2,6 +2,7 @@
 /**
  * This class contains some tools to use in GWidgets
  * This class makes user free of learning Yii
+ * @package Paper.core
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License

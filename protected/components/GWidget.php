@@ -1,6 +1,7 @@
 <?php
 /**
  * This Class implements main parameters and methods needed for Widgets and is the base class for all Widget classes.
+ * @package Paper.core
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -178,6 +179,7 @@ class GWidget{
 }
 /**
  * CFormModel of Widget options.
+ * @package Paper.core
  * @author Mohammad hosein saadatfar
  *
  */
@@ -201,4 +203,15 @@ class FormModel extends CFormModel{
 	public function __set($name, $value){
 		$this->attributes[$name]=$value;
 	}
+}
+
+/**
+ * A Class to Save a Widget Option Arguments.
+ * @package Paper.core
+ * @author Mohammad Hosein Saadatfar
+ * 
+ */
+class GWOptionsArguments{
+	public $action;
+	public $FormModel;
 }
