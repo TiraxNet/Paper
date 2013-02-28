@@ -28,6 +28,9 @@ return array(
 			'components'=>array(
 				'bootstrap'=>array(
 					'class'=>'ext.bootstrap.components.Bootstrap'
+				),
+				'AdminAuth'=>array(
+					'class'=>'application.admin.components.AdminAuth'
 				)
 			)
 		),

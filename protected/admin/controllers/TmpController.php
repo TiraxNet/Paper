@@ -21,6 +21,13 @@ class TmpController extends CController
 	 */
 	public $control='';
 	/**
+	 * Make sure that current user is admin
+	 * @see CController::init()
+	 */
+	public function init(){
+		Yii::app()->getModule('admin')->AdminAuth->check();
+	}
+	/**
 	 * (non-PHPdoc)
 	 * @see CController::actions()
 	 */

@@ -10,12 +10,15 @@
 class DefaultController extends CController
 {
 	public $Title;
+	/**
+	 * Make sure that current user is admin
+	 * @see CController::init()
+	 */
+	public function init(){
+		Yii::app()->getModule('admin')->AdminAuth->check();
+	}
 	public function actionIndex()
 	{
-		if (Yii::app()->user->id=='admin'){
-			$this->redirect(array('Tmp/list'));
-		}else{
-			$this->redirect(array('login/login'));
-		}
+		$this->redirect(array('Tmp/list'));
 	}
 }
