@@ -1,6 +1,6 @@
 <?php
 /**
- * This Class contains main param an methods for using Widgets and is used as extends.
+ * This Class implements main parameters and methods needed for Widgets and is the base class for all Widget classes.
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License

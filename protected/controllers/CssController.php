@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This Controller shows dynamic css pages
+ * Create & echo a Template CSS code
  * @author Mohammad Hosein Saadatfar
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License

@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ * It's a block repository
  * @author Mohammad Hosein Saadatfar <mh.saadatfar@gmail.com>
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
@@ -18,7 +18,7 @@ class GBlockList{
 	 */
 	public $GTemp;
 	/**
-	 * Construct GBlockList
+	 * GBlock list Contructor!
 	 * @param GTemplate $GTemp Template object
 	 */
 	public function __construct($GTemp) {
@@ -28,7 +28,7 @@ class GBlockList{
 		
 	}
 	/**
-	 * Returns block which has given id
+	 * Return block which has given id
 	 * @param string $id Block id
 	 * @return GBlock|NULL Block object if found, else null
 	 */
@@ -38,7 +38,7 @@ class GBlockList{
 		return null;	
 	}
 	/**
-	 * Returns block which has given attributes
+	 * Return block which has given attributes
 	 * @param array $attr attribues array. ex: array('x1'=>100,'x2'=>50)
 	 * @return GBlock|NULL Block object if found, else null
 	 */
@@ -82,7 +82,7 @@ class GBlockList{
 		}
 	}
 	/**
-	 * Returns all blocks in an array.
+	 * Return all blocks in an array.
 	 * @return GBlock[] All blocks array.
 	 */
 	public function GetAll() {

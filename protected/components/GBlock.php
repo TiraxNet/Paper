@@ -180,7 +180,7 @@ class GBlock{
 		return $hndl_dest;
 	}
 	/**
-	 * Get a block id and return folder location
+	 * Get a block id and return corresponding folder location
 	 * @param string $id block id
 	 * @return Ambigous <boolean, string, mixed, multitype:string >
 	 */

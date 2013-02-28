@@ -45,7 +45,7 @@ class GTemplate{
 		$this->struct=new GStruct($this);
 	}
 	/**
-	 * Database Setter!
+	 * Read Template attributes from database active record
 	 * @param string $name
 	 * @param string $value
 	 */
@@ -54,7 +54,7 @@ class GTemplate{
 		else trigger_error('Undefined property '.$name);
 	}
 	/**
-	 * Database getter!
+	 * Write Template attributes to database active record
 	 * @param string $name
 	 * @return mixed
 	 */
@@ -84,7 +84,7 @@ class GTemplate{
 		return $size[1];
 	}
 	/**
-	 * Saves current parameters as new template.
+	 * Save current parameters as new template.
 	 */
 	public function SaveNew(){
 		$this->db->save();
@@ -106,7 +106,7 @@ class GTemplate{
 		$this->db->save();
 	}
 	/**
-	 * Delete template by current "id" parameter
+	 * Delete template using "ID" property
 	 */
 	public function delete(){
 		$this->db->delete();
@@ -121,7 +121,7 @@ class GTemplate{
 		$this->struct->RenderStructure();	
 	}
 	/**
-	 * Render templates & return Template Content (HTML Code)
+	 * Render template & return Template Content (HTML Code)
 	 * @return string
 	 */
 	public function GetContent()
@@ -129,7 +129,7 @@ class GTemplate{
 		return $this->Renderer->HTML();
 	}
 	/**
-	 * Render templates & return Template CSS object
+	 * Render template & return Template CSS object
 	 * @return GCSS
 	 */
 	public function GetCSS()
@@ -137,14 +137,14 @@ class GTemplate{
 		return $this->Renderer->CSS();
 	}
 	/**
-	 * Render templates & return Template JavaScript Code
+	 * Render template & return Template JavaScript Code
 	 * @return string
 	 */
 	public function GetJS(){
 		return $this->Renderer->JS();
 	}
 	/**
-	 * Search and fill parameters from database.
+	 * Find a template by Id and return corresponding GTemplate object
 	 * @param string $id Block id 
 	 * @return GTemplate|null if template found, return its class else return null
 	 */
@@ -156,7 +156,7 @@ class GTemplate{
 		return $template;
 	}
 	/**
-	 * Gets a template id and returns folder location
+	 * Get a template ID and return corresponding folder location
 	 * @param string $id template id
 	 * @return Ambigous <boolean, string, mixed, multitype:string >
 	 */
