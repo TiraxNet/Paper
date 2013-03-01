@@ -10,13 +10,6 @@
 class AdminImgController extends CController
 {
 	/**
-	 * Make sure that current user is admin
-	 * @see CController::init()
-	 */
-	public function init(){
-		Yii::app()->getModule('admin')->AdminAuth->check();
-	}
-	/**
 	 * Show given template id and type as a complete, non-edited picture 
 	 * @param string $tmp template id
 	 * @param string $type template type

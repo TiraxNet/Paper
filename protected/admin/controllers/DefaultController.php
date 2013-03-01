@@ -9,14 +9,14 @@
  */
 class DefaultController extends CController
 {
+	/**
+	 * Each page should has a title, even redirecting page!
+	 * @var string
+	 */
 	public $Title;
 	/**
-	 * Make sure that current user is admin
-	 * @see CController::init()
+	 * Redirect user to templates list
 	 */
-	public function init(){
-		Yii::app()->getModule('admin')->AdminAuth->check();
-	}
 	public function actionIndex()
 	{
 		$this->redirect(array('Tmp/list'));

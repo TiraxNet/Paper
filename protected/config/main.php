@@ -24,7 +24,7 @@ return array(
 	'modules'=>array(
 		'admin'=>array(
 			'class'=>'application.admin.AdminModule',
-			'preload'=>array('bootstrap'),
+			'preload'=>array('bootstrap','AdminAuth'),
 			'components'=>array(
 				'bootstrap'=>array(
 					'class'=>'ext.bootstrap.components.Bootstrap'
