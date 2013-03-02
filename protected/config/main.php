@@ -36,6 +36,9 @@ return array(
 		),
 	),
 	'components'=>array(
+		'TempRep'=>array(
+				'class'=>'application.components.GTempRepository'
+		),
 		'cache'=>array(
 		    	'class'=>'system.caching.CFileCache',
 		),

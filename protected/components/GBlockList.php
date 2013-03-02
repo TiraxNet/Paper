@@ -14,27 +14,11 @@ class GBlockList{
 	 */
 	private $BlockList=null;
 	/**
-	 * Template class
-	 * @var GTemplate
-	 */
-	public $GTemp;
-	/**
-	 * GBlock list Contructor!
-	 * @param GTemplate $GTemp Template object
-	 */
-	public function __construct($GTemp) {
-		$this->GTemp=$GTemp;
-	}
-	public function Initialize() {
-		
-	}
-	/**
 	 * Return block which has given id
 	 * @param string $id Block id
 	 * @return GBlock|NULL Block object if found, else null
 	 */
 	public function GetById($id){
-		if ($this->BlockList==null) $this->GTemp->RenderStructure();
 		if (array_key_exists($id, $this->BlockList)) return $this->BlockList[$id];
 		return null;	
 	}
@@ -44,7 +28,6 @@ class GBlockList{
 	 * @return GBlock|NULL Block object if found, else null
 	 */
 	public function GetByAttr($attr) {
-		if ($this->BlockList==null) $this->GTemp->RenderStructure();
 		foreach($this->BlockList as $id => $block) {
 			$found=true;
 			foreach ($attr as $key=>$val) {
@@ -74,7 +57,7 @@ class GBlockList{
 	public function InsertFromDb($dbblocks,$attr=array()){
 		if (!is_array($dbblocks)) $dbblocks=array($dbblocks);
 		foreach ($dbblocks as $record){
-			$block=new GBlock($this->GTemp);
+			$block=new GBlock();
 			$block->SetFromDB($record);
 			foreach ($attr as $key=>$val){
 				$block->$key=$val;
@@ -87,7 +70,10 @@ class GBlockList{
 	 * @return GBlock[] All blocks array.
 	 */
 	public function GetAll() {
-		if ($this->BlockList==null) $this->GTemp->RenderStructure();
 		return $this->BlockList;
+	}
+	public function ISNull(){
+		if ($this->BlockList==null) return true;
+		return false;
 	}
 }

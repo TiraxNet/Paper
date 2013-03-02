@@ -22,28 +22,24 @@ class GTemplate extends CComponent{
 	 */
 	private $db;
 	/**
-	 * Template renderer Class
-	 * @var GRender
-	 */
-	private $Renderer;
-	/**
 	 * Template blocks
 	 * @var GBlockList
 	 */
-	public $blocks;
+	public $_blocks=null;
 	/**
 	 * Template structure
 	 * @var GStruct
 	 */
-	public $struct;
+	public $_struct=null;
 	/**
 	 * Constructor!
 	 */
-	function __construct(){
+	function __construct($id){
 		$this->db=new templates();
-		$this->Renderer=new GRender($this);
-		$this->blocks=new GBlockList($this);
-		$this->struct=new GStruct($this);
+		$this->id=$id;
+		$this->_blocks=new GBlockList($this);
+		Yii::app()->TempRep->Insert($this);
+		$this->RenderStructure();
 	}
 	/**
 	 * Read Template attributes from database active record
@@ -65,6 +61,20 @@ class GTemplate extends CComponent{
 	public function __get($name){
 		if ($this->db->hasAttribute($name)) return $this->db->$name;
 		return parent::__get($name);
+	}
+	/**
+	 * Get Blocks list
+	 * @return GBlockList
+	 */
+	public function getblocks(){
+		return $this->_blocks;
+	}
+	/**
+	 * Get Template structure 
+	 * @return GStruct 
+	 */
+	public function getstruct(){
+		return $this->_struct;
 	}
 	/**
 	 * Return template width
@@ -117,7 +127,7 @@ class GTemplate extends CComponent{
 	 */
 	public function RenderStructure()
 	{
-		$this->struct->RenderStructure();	
+		$this->_struct=GRender::RenderStructure($this);
 	}
 	/**
 	 * Render template & return Template Content (HTML Code)
@@ -125,7 +135,7 @@ class GTemplate extends CComponent{
 	 */
 	public function GetContent()
 	{
-		return $this->Renderer->HTML();
+		return GRender::HTML($this);
 	}
 	/**
 	 * Render template & return Template CSS object
@@ -133,14 +143,14 @@ class GTemplate extends CComponent{
 	 */
 	public function GetCSS()
 	{
-		return $this->Renderer->CSS();
+		return GRender::CSS($this);
 	}
 	/**
 	 * Render template & return Template JavaScript Code
 	 * @return string
 	 */
 	public function GetJS(){
-		return $this->Renderer->JS();
+		return GRender::JS($this);
 	}
 	/**
 	 * Find a template by Id and return corresponding GTemplate object
@@ -148,7 +158,7 @@ class GTemplate extends CComponent{
 	 * @return GTemplate|null if template found, return its class else return null
 	 */
 	public static function FindById($id){
-		$template=new GTemplate();
+		$template=new GTemplate($id);
 		$db=templates::model()->findByPk($id);
 		if ($db==null) return null;
 		$template->db=$db;

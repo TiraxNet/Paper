@@ -37,7 +37,7 @@ class GWidget{
 	 * Class of tools we need in widgets
 	 * @var GWTools
 	 */
-	public $Toold;
+	public $Tools;
 	/**
 	 * GWidget Constructor 
 	 * @param GTemplate $GTemp

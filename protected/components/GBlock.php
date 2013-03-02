@@ -31,17 +31,17 @@ class GBlock extends CComponent{
 	 */
 	public $auto;
 	/**
-	 * Block template class
-	 * @var GTemplate
-	 */
-	public $GTemp;
-	/**
 	 * GBlock Constructor
 	 * @param GTemplate $GTemp Block Template class 
 	 */
-	public function __construct($GTemp=NULL){
-		$this->GTemp=$GTemp;
+	public function __construct(){
 		$this->db=new blocks();
+	}
+	/**
+	 * Get Block Template from repository
+	 */
+	public function getGTemp(){
+		return Yii::app()->TempRep->GetById($this->tmp);
 	}
 	/**
 	 * Database getter!
