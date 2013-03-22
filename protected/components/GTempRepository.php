@@ -27,6 +27,8 @@ class GTempRepository extends CApplicationComponent{
 	 */
 	public function GetById($id){
 		if (array_key_exists($id, $this->_TmpRep)) return $this->_TmpRep[$id];
-		return null;
+		$tmp = GTemplate::FindById($id);
+		$this->Insert($tmp);
+		return $tmp;
 	}
 }

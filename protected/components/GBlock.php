@@ -122,7 +122,6 @@ class GBlock extends CComponent{
 	 */
 	public function SaveNew(){
 		$this->db->save();
-		$this->GTemp=GTemplate::FindById($this->tmp);
 		$this->GTemp->RenderStructure();
 		$this->WidgetClass()->CreateNew();
 		return $this->db->id;
