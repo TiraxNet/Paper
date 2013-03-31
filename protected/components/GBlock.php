@@ -50,11 +50,6 @@ class GBlock extends CComponent{
 	 */
 	public function __get($name){
 		if ($this->db->hasAttribute($name)) return $this->db->$name;
-		else if (method_exists($this, 'Get'.$name))
-		{
-			$method_name='Get'.$name;
-			return $this->$method_name();
-		}
 		return parent::__get($name);
 	}
 	/**
