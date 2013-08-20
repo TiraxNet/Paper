@@ -6,12 +6,13 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-
-define( 'DS', DIRECTORY_SEPARATOR );
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 defined('MULTI_USER') or define('MULTI_USER',true);
 
-if (!file_exists(dirname(__FILE__).DS.'protected'.DS.'config'.DS.'User_config.php'))
+define( 'BASE_PATH', dirname(__FILE__) );
+define( 'DS', DIRECTORY_SEPARATOR );
+
+if (!file_exists(BASE_PATH.DS.'user'.DS.'User_config.php'))
 {
 	header('Location: install');
 	die();

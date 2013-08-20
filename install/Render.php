@@ -69,13 +69,13 @@ class Render{
 			return false;
 		}
 		
-		$str=file_get_contents(BASE_PATH.DS.'protected'.DS.'config'.DS.'User_config_template.php');
+		$str=file_get_contents(BASE_PATH.DS.'user'.DS.'User_config_template.php');
 		$str=str_replace('_DB_HOST_',$data['SQLHost'],$str);
 		$str=str_replace('_DB_USERNAME_',$data['SQLUsername'],$str);
 		$str=str_replace('_DB_PASS_',$data['SQLPassword'],$str);
 		$str=str_replace('_DB_NAME_',$data['SQLName'],$str);
 		$str=str_replace('_WEBSITE_NAME_',$data['WebsiteName'],$str);
-		$st=@file_put_contents(BASE_PATH.DS.'protected'.DS.'config'.DS.'User_config.php', $str);
+		$st=@file_put_contents(BASE_PATH.DS.'user'.DS.'User_config.php', $str);
 		if ($st===false)
 		{
 			$this->MSG='Could not write Config file. Please Check for permission.';

@@ -5,7 +5,7 @@
 * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
 * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
 */
-require(dirname(__FILE__).DIRECTORY_SEPARATOR.'User_config.php');
+require(BASE_PATH.DS.'user'.DS.'User_config.php');
 return array(
 	'params'=>array(
 		'AdminUsername' => 'admin',
