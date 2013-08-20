@@ -29,7 +29,7 @@ class TmpNewAction extends CAction{
 		$model=new NewTmpModel;
 		$model->setAttributes($_POST['NewTmpModel'],false);
 		if ($model->validate()){
-			$tmp=new GTemplate();
+			$tmp=new GTemplate(null);
 			$tmp->name=$model->name;
 			$tmp->css=$model->css;
 			$tmp->title=$model->title;

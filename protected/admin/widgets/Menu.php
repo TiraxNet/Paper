@@ -30,8 +30,8 @@ class Menu extends CWidget
 					'class'=>'bootstrap.widgets.TbMenu',
 					'items'=>array(
 						array('label'=>'Home', 'url'=>'index.php', 'active'=>true),
-						array('label'=>'Templates', 'url'=>'index.php?r=admin/Tmp/list'),
-						array('label'=>'Logout', 'url'=>'index.php?r=admin/login/logout'),
+						array('label'=>'Templates', 'url'=>Yii::app()->getController()->createUrl('Tmp/list')),
+						array('label'=>'Logout', 'url'=>Yii::app()->getController()->createUrl('login/logout')),
 					),
 				),
 				$this->control,

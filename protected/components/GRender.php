@@ -73,7 +73,9 @@ class GRender{
 		
 		$XPoints=array(0,$GTemp->width);
 		$YPoints=array(0,$GTemp->height);
-		foreach ($GTemp->blocks->GetAll() as $Mobject){
+		$block_list=$GTemp->blocks->GetAll();
+		if ($block_list!=Null)
+		foreach ($block_list as $Mobject){
 			array_push($XPoints,$Mobject->x1);
 			array_push($XPoints,$Mobject->x2);
 			array_push($YPoints,$Mobject->y1);
@@ -87,6 +89,7 @@ class GRender{
 		$MHelp=array_fill(0, sizeof($XPoints),
 				array_fill(0, sizeof($YPoints,0), 0)
 		);
+		if ($block_list!=Null)
 		foreach ($GTemp->blocks->GetAll() as $block){
 			$x=0;
 			while($XPoints[$x]!=$block->x1) $x++;

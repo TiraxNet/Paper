@@ -28,7 +28,7 @@
     'label'=>'New Template',
     'type'=>'primary', // null, 'primary', 'info', 'success', 'warning', 'danger' or 'inverse'
     'size'=>'mini', // null, 'large', 'small' or 'mini'
-    'url'=>'index.php?r=admin/Tmp/new',
+    'url'=>$this->createUrl('Tmp/new'),
 	'icon'=>'file'
 )); ?>
 

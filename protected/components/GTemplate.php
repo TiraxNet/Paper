@@ -33,13 +33,16 @@ class GTemplate extends CComponent{
 	public $_struct=null;
 	/**
 	 * Constructor!
+	 * @param int $id set id=null to create new one! 
 	 */
 	function __construct($id){
 		$this->db=new templates();
-		$this->id=$id;
-		$this->_blocks=new GBlockList($this);
-		Yii::app()->TempRep->Insert($this);
-		$this->RenderStructure();
+		if ($id!=null){
+			$this->id=$id;
+			$this->_blocks=new GBlockList($this);
+			Yii::app()->TempRep->Insert($this);
+			$this->RenderStructure();
+		}
 	}
 	/**
 	 * Read Template attributes from database active record
@@ -170,7 +173,7 @@ class GTemplate extends CComponent{
 	 * @return Ambigous <boolean, string, mixed, multitype:string >
 	 */
 	public static function GetPath($id){
-		return Yii::getPathOfAlias('application.GTemplates.'.$id);
+		return Yii::getPathOfAlias('webroot.user.GTemplates.'.$id);
 	}
 	/**
 	 * Scan template folder and return types

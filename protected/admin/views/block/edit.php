@@ -20,7 +20,8 @@ Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#Pap
 
 $c='<a href="#" class="btn btn-primary  pull-right" id="EditBlockPosSave">Save</a>';
 $c.='<a href="#OptionsDialog" class="btn btn-primary  pull-right" data-toggle="modal">Options</a>';
-$c.='<a href="index.php?r=admin/Tmp/update&id='.$CAction->tmp.'" class="btn btn-primary pull-right">Close</a>';
+$c.='<a href="'.$this->createUrl('Tmp/update',array('id'=>$CAction->tmp)).'" class="btn btn-primary pull-right">Close</a>';
+
 $this->control=$c;
 
 echo '<div id="PapaDIV"><img src="'.$ImgURL.'" id="MainIMG"/></div>';

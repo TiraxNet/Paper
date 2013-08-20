@@ -41,9 +41,9 @@ class Wform extends GWidget{
 		return $WGT;
 	}
 	public function RenderOptions($Arg){
-		$con=Yii::app()->controller;
+		$controller=Yii::app()->controller;
 		$model=$Arg->FormModel;
-		$form = $con->beginWidget('bootstrap.widgets.TbActiveForm', array(
+		$form = $controller->beginWidget('bootstrap.widgets.TbActiveForm', array(
 			'id'=>'horizontalForm',
 			'type'=>'horizontal',
 			'action'=>$Arg->action,
@@ -53,15 +53,15 @@ class Wform extends GWidget{
 		echo $form->textFieldRow($model, 'tmp');
 		echo $form->textFieldRow($model, 'action');
 		echo $form->textFieldRow($model, 'method');
-		echo '<a href="index.php?r=admin/Tmp/update&tmp='.$model->tmp.'">Edit Inside Template!</a><br/>';
+		echo '<a href="'.$controller->createUrl('Tmp/update',array('id'=>$model->tmp)).'">Edit Inside Template!</a><br/>';
 		echo 'Copy Your PHP files in "protected/blocks/',$this->block->id.'"';
 		echo '<div class="form-actions">';
-		$con->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));
+		$controller->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));
 		echo '</div>';
-		$con->endWidget();
+		$controller->endWidget();
 	}
 	public function CreateNew(){
-		$tmpl=new GTemplate();
+		$tmpl=new GTemplate(null);
 		$tmpl->name=$this->block->name.'_TMPL';
 		$tmpl->parent=$this->block->id;
 		$tmplid=$tmpl->SaveNew();

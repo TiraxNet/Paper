@@ -183,6 +183,6 @@ class GBlock extends CComponent{
 	 * @return Ambigous <boolean, string, mixed, multitype:string >
 	 */
 	public static function GetPath($id){
-		return Yii::getPathOfAlias('application.GBlocks.'.$id);
+		return Yii::getPathOfAlias('webroot.user.GBlocks.'.$id);
 	}
 }
