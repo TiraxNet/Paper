@@ -97,7 +97,7 @@ class Render{
 			$this->MSG='Could not Install Sample SQL Data.';
 			return false;
 		}
-		$st=self::recurse_copy(INSTALL_PATH.DS.'sample'.DS.'GTemplates',BASE_PATH.DS.'protected'.DS.'GTemplates');
+		$st=self::recurse_copy(INSTALL_PATH.DS.'sample'.DS.'GTemplates',BASE_PATH.DS.'user'.DS.'GTemplates');
 		if ($st===false) return false;
 		else return true;
 	}

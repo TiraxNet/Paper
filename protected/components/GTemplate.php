@@ -173,7 +173,7 @@ class GTemplate extends CComponent{
 	 * @return Ambigous <boolean, string, mixed, multitype:string >
 	 */
 	public static function GetPath($id){
-		return Yii::getPathOfAlias('webroot.user.GTemplates.'.$id);
+		return Yii::getPathOfAlias('user.GTemplates.'.$id);
 	}
 	/**
 	 * Scan template folder and return types

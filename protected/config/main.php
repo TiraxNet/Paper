@@ -5,7 +5,18 @@
 * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
 * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
 */
-require(BASE_PATH.DS.'user'.DS.'User_config.php');
+if (MULTI_USER)
+	$user_folder=BASE_PATH.DS.'user'.DS.'_'.USER;
+else
+	$user_folder=BASE_PATH.DS.'user';
+Yii::setPathOfAlias('user', $user_folder);
+if (!file_exists($user_folder.DS.'User_config.php'))
+{
+	header('Location: install');
+	die();
+}
+require($user_folder.DS.'User_config.php');
+
 return array(
 	'params'=>array(
 		'AdminUsername' => 'admin',

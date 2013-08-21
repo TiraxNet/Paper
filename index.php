@@ -8,18 +8,12 @@
  */
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 defined('MULTI_USER') or define('MULTI_USER',true);
+defined('USER') or define('USER','main');
 
 define( 'BASE_PATH', dirname(__FILE__) );
 define( 'DS', DIRECTORY_SEPARATOR );
 
-if (!file_exists(BASE_PATH.DS.'user'.DS.'User_config.php'))
-{
-	header('Location: install');
-	die();
-}
-
 require_once(dirname(__FILE__).DS.'framework'.DS.'yii.php');
-
 
 $app=Yii::createWebApplication(dirname(__FILE__).DS.'protected'.DS.'config'.DS.'main.php')->run();
 
