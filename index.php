@@ -6,7 +6,7 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-defined('YII_DEBUG') or define('YII_DEBUG',true);
+defined('YII_DEBUG') or define('YII_DEBUG',false);
 defined('MULTI_USER') or define('MULTI_USER',true);
 defined('USER') or define('USER','main');
 

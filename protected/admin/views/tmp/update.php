@@ -6,9 +6,6 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
-?>
-
-<?php
 
 $CAction=Yii::app()->getController()->getAction();
 $c='<a href="'.$this->createUrl("block/new",array('tmp'=>$CAction->tmp))
@@ -16,9 +13,22 @@ $c='<a href="'.$this->createUrl("block/new",array('tmp'=>$CAction->tmp))
 $this->control=$c;
 
 Yii::app()->clientScript->registerScript(uniqid(), $script);
-Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV img{ border:1px dashed #666; margin-bottom:20px;}');
+Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV canvas{ border:1px dashed #666; margin-bottom:20px;}');
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/jCanvaScript/jCanvaScript.js');
+Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/GCanva.js');
 
-echo '<div id="PapaDIV"><img src="'.$ImgURL.'" id="MainIMG"/><br/>';
+?>
+<div id="PapaDIV">
+<canvas height="500" width="500" id="mainCanvas"></canvas>
+<br/>
+
+<script type="text/javascript">
+	jc.start('mainCanvas',true);
+	var GC=new GCTmpEdit('<?php echo $CAction->tmp ?>');
+	GC.addBackImg('<?php echo $ImgURL;?>');
+</script>
+
+<?
 if ($CAction->type!='index'){
 	$this->widget('bootstrap.widgets.TbButton', array(
 			'label'=>'Delete type',
@@ -49,5 +59,6 @@ $this->widget('bootstrap.widgets.TbButton', array(
 		'size'=>'mini',
 		'url'=>$this->createUrl("Tmp/uploadimg",array('id'=>$CAction->tmp,'type'=>'NEW')),
 ));
-echo '</div></div>';
 ?>
+
+</div>
