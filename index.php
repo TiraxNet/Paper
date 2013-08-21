@@ -7,7 +7,7 @@
  *
  */
 defined('YII_DEBUG') or define('YII_DEBUG',false);
-defined('MULTI_USER') or define('MULTI_USER',true);
+defined('MULTI_USER') or define('MULTI_USER',false);
 defined('USER') or define('USER','main');
 
 define( 'BASE_PATH', dirname(__FILE__) );
