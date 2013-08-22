@@ -39,11 +39,10 @@ class UpdateAction extends CAction{
 		$this->tmp=$id;
 		$this->type=$type;
 		$this->GTemp=GTemplate::FindById($id);
-		$ImgURL=$this->controller->createUrl("AdminImg/FullTmp",array('id'=>$id,'type'=>$type));
-		$this->RenderScript();
-		$this->controller->render("update",array('script'=>$this->script,
-												 'ImgURL'=>$ImgURL,
-												  'tmpId'=>$id,
+		$blocksJOb=$this->RenderScript();
+		$this->controller->render("update",array(
+												 'blocksJOb'=>$blocksJOb,
+												 'gtemp'=>$this->GTemp,
 												 'types'=>GTemplate::GetTypes($id),
 											  )
 								  );
@@ -52,11 +51,29 @@ class UpdateAction extends CAction{
 	public function RenderScript(){
 		$this->GTemp->RenderStructure();
 		$blocks=$this->GTemp->blocks->GetAll();
+		$_barray=array();
 		foreach ($blocks as $block){
-			if ($block->auto==true) continue;
-			$script.='GC.addBlock('.$block->x1.','.$block->y1.','.$block->x2.','.$block->y2.',"'.$block->id.'");';
+			if ($block->auto==false){
+				array_push($_barray, array('id'=>$block->id,
+										   'x1'=>$block->x1,
+										   'y1'=>$block->y1,
+										   'x2'=>$block->x2,
+										   'y2'=>$block->y2,
+										   'href'=>$this->controller->createUrl("block/edit",array('tmp'=>$this->tmp,'block'=>$block->id))
+				));
+			}
 		}
-		$this->script=$script;
+		JSON::sendArrayToJS('blocks', $_barray);
+		
+		$ImgURL=$this->controller->createUrl("AdminImg/FullTmp",array('id'=>$this->tmp,'type'=>$this->type));
+		$script = 
+<<<END
+jc.start('mainCanvas',true);
+var GC=new GCTmpEdit();
+GC.addBackImg('$ImgURL');
+GC.addAllBlocks(blocks);
+END;
+		Yii::app()->clientScript->registerScript(uniqid(), $script);
 	}
 	
 }

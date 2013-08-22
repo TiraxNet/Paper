@@ -27,7 +27,6 @@ return array(
 	'import'=>array(
     	'application.components.*',
 		'application.extensions.*',
-		'application.extensions.functions.*',
 		'application.models.*',
 		'application.GWidgets.*',
 		'application.admin.components.*',
@@ -57,8 +56,11 @@ return array(
 			'class'=>'ext.bootstrap.components.Bootstrap',
 	    ),
 	    'functions'=>array(
-	    	'class'=>'ext.functions.functions',
+	    	'class'=>'ext.functions',
 	    ),
+		'functions'=>array(
+			'class'=>'ext.JSON',
+		),
 	    'db'=>array(
 	    		'class'=>'CDbConnection',
 	    		'connectionString'=>'mysql:host='.$UConfig['db']['Host'].';dbname='.$UConfig['db']['Table'],

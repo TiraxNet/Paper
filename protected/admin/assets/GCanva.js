@@ -1,6 +1,4 @@
-function GCTmpEdit(tmpId){
-		this.tmpId=tmpId;
-}
+function GCTmpEdit(){}
 GCTmpEdit.prototype = {
 	addBackImg : function(src) {
 		var img = new Image();
@@ -9,13 +7,11 @@ GCTmpEdit.prototype = {
 			jc.image(img, 0, 0).level(-1);
 		}
 	},
-	addBlock : function(x1, y1, x2, y2, id) {
-		var parent = this;
-		jc.rect(x1, y1, x2 - x1, y2 - y1, 'rgba(255,156,135,0.5)', true)
-			.id("block_" + id)
+	addBlock : function(block) {
+		jc.rect(block.x1, block.y1, block.x2 - block.x1, block.y2 - block.y1, 'rgba(255,156,135,0.5)', true)
+			.id("block_" + block.id)
 			.click(function() {
-					window.location.href = "index.php?r=admin/block/edit&tmp="
-							+ parent.tmpId + "&block=" + id;
+					window.location.href = block.href;
 			})
 			.mouseover(function(){
 				$('body').css('cursor', 'pointer'); 
@@ -24,6 +20,11 @@ GCTmpEdit.prototype = {
 				$('body').css('cursor', 'default');
 			})
 			;
+	},
+	addAllBlocks : function (blocks){
+		for (var i=0;i<blocks.length;i++){
+			this.addBlock(blocks[i]);
+		}
 	}
 }
 

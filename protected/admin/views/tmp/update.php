@@ -19,14 +19,8 @@ Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/GCa
 
 ?>
 <div id="PapaDIV">
-<canvas height="500" width="500" id="mainCanvas"></canvas>
+<canvas height="<?php echo $gtemp->height ?>" width="<?php echo $gtemp->width ?>" id="mainCanvas"></canvas>
 <br/>
-
-<script type="text/javascript">
-	jc.start('mainCanvas',true);
-	var GC=new GCTmpEdit('<?php echo $CAction->tmp ?>');
-	GC.addBackImg('<?php echo $ImgURL;?>');
-</script>
 
 <?
 if ($CAction->type!='index'){
