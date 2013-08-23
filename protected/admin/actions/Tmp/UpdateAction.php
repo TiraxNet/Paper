@@ -39,9 +39,8 @@ class UpdateAction extends CAction{
 		$this->tmp=$id;
 		$this->type=$type;
 		$this->GTemp=GTemplate::FindById($id);
-		$blocksJOb=$this->RenderScript();
+		$this->RenderScript();
 		$this->controller->render("update",array(
-												 'blocksJOb'=>$blocksJOb,
 												 'gtemp'=>$this->GTemp,
 												 'types'=>GTemplate::GetTypes($id),
 											  )
@@ -64,7 +63,6 @@ class UpdateAction extends CAction{
 			}
 		}
 		JSON::sendArrayToJS('blocks', $_barray);
-		
 		$ImgURL=$this->controller->createUrl("AdminImg/FullTmp",array('id'=>$this->tmp,'type'=>$this->type));
 		$script = 
 <<<END
@@ -72,6 +70,7 @@ jc.start('mainCanvas',true);
 var GC=new GCTmpEdit();
 GC.addBackImg('$ImgURL');
 GC.addAllBlocks(blocks);
+//GC.activeBlock(106);
 END;
 		Yii::app()->clientScript->registerScript(uniqid(), $script);
 	}
