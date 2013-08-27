@@ -20,27 +20,8 @@ class BlockController extends CController
 	 */
 	public $control='';
 	/**
-	 * (non-PHPdoc)
-	 * @see CController::actions()
+	 * Get New Block Options and save It!
 	 */
-	public function actions()
-    {
-        return array(
-            'edit'=>array(
-                'class'=>'application.admin.actions.Block.EditAction',
-            ),
-			'SaveEdit'=>array(
-                'class'=>'application.admin.actions.Block.SaveEditAction',
-            ),
-			'new'=>array(
-                'class'=>'application.admin.actions.Block.NewAction',
-            ),
-			/*'SaveNew'=>array(
-                'class'=>'application.admin.actions.Block.SaveNewAction',
-            ),*/
-
-        );
-    }
     public function actionSaveNew(){
     	$block=new GBlock();
     	$block->name=$_POST['NewBlockModel']['name'];
@@ -55,6 +36,10 @@ class BlockController extends CController
     	$msg['t']='s';
     	JSON::sendToPage($msg);
     }
+    /**
+     * Print template block list as json object
+     * @param string $id block id
+     */
     public function actionJsonList($id){
     	$tmp=GTemplate::FindById($id);
     	$blocks=$tmp->blocks->GetAll();
@@ -72,6 +57,14 @@ class BlockController extends CController
     	}
     	JSON::sendToPage($_barray);
     }
+    /**
+     * Get block position and save it
+     * @param string $block
+     * @param int $x
+     * @param int $y
+     * @param int $width
+     * @param int $height
+     */
     public function actionSavePos($block,$x,$y,$width,$height){
     	$block=GBlock::FindById($block);
     	if ($width==0){
@@ -88,6 +81,10 @@ class BlockController extends CController
     	$msg['t']='s';
     	JSON::sendToPage($msg);
     }
+    /**
+     * Print Block options form
+     * @param string $block block id
+     */
     public function actionBlockOptions($block){
     	$block=GBlock::FindById($block);
     	$widget=$block->WidgetClass();
@@ -106,7 +103,10 @@ class BlockController extends CController
     	$Arg->FormModel=$FormModel;
     	$widget->RenderOptions($Arg);
     }
-    
+    /**
+     * Get Block options and save it
+     * @param string $block block id
+     */
     public function actionSaveOptions($block){
     	$block=GBlock::FindById($block);
     	$widget=$block->WidgetClass();
