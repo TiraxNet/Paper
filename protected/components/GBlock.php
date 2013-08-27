@@ -116,15 +116,32 @@ class GBlock extends CComponent{
 	 * Saves current parameters as new block.
 	 */
 	public function SaveNew(){
+		$this->sortXY();
 		$this->db->save();
 		$this->GTemp->RenderStructure();
 		$this->WidgetClass()->CreateNew();
 		return $this->db->id;
 	}
 	/**
+	 * Sort and make x2>x1 & y2>y1
+	 */
+	private function sortXY(){
+		if ($this->x1 > $this->x2){
+			$t=$this->x1;
+			$this->x1=$this->x2;
+			$this->x2=$t;
+		}
+		if ($this->y1 > $this->y2){
+			$t=$this->y1;
+			$this->y1=$this->y2;
+			$this->y2=$t;
+		}
+	}
+	/**
 	 * Save current settings in database
 	 */
 	public function Save(){
+		$this->sortXY();
 		$this->db->save();
 	}
 	/**

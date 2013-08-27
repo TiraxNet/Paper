@@ -72,6 +72,10 @@ class GBlockList{
 	public function GetAll() {
 		return $this->BlockList;
 	}
+	/**
+	 * Returns true if block list is empty
+	 * @return boolean Is block list empty
+	 */
 	public function ISNull(){
 		if ($this->BlockList==null) return true;
 		return false;

@@ -24,7 +24,7 @@ class Winput extends GWidget{
 		$con=Yii::app()->controller;
 		$model=$Arg->FormModel;
 		$form = $con->beginWidget('bootstrap.widgets.TbActiveForm', array(
-			'id'=>'horizontalForm',
+			'id'=>'OptionsForm',
 			'type'=>'horizontal',
 			'action'=>$Arg->action,
 		));
@@ -33,7 +33,7 @@ class Winput extends GWidget{
 		echo $form->dropDownListRow($model, 'direction', array('RTL'=>'Right to Left',
 																'LTR'=>'Left to Right'));
 		echo '<div class="form-actions">';
-		$con->widget('bootstrap.widgets.TbButton', array('buttonType'=>'submit', 'type'=>'primary', 'icon'=>'ok white', 'label'=>'Save'));
+		$con->widget('bootstrap.widgets.TbButton', array('label'=>'Close','url'=>'#','htmlOptions'=>array('data-dismiss'=>'modal')));
 		echo '</div>';
 		$con->endWidget();
 	}

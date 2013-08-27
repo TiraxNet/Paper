@@ -8,9 +8,6 @@
  */
 
 $CAction=Yii::app()->getController()->getAction();
-$c='<a href="'.$this->createUrl("block/new",array('tmp'=>$CAction->tmp))
-	.'" class="btn btn-primary pull-right">New Block</a>';
-$this->control=$c;
 
 Yii::app()->clientScript->registerScript(uniqid(), $script);
 Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV canvas{ border:1px dashed #666; margin-bottom:20px;}');
@@ -19,11 +16,14 @@ Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/GCa
 
 ?>
 <div id="PapaDIV">
-<canvas height="<?php echo $gtemp->height ?>" width="<?php echo $gtemp->width ?>" id="mainCanvas"></canvas>
-<br/>
 
+	<canvas height="<?php echo $gtemp->height ?>"
+		width="<?php echo ($gtemp->width+30) ?>" id="mainCanvas"></canvas>
+	<br />
+	<div id="msg" style="text-align: center"></div>
+	<br />
 <?
-if ($CAction->type!='index'){
+if ($CAction->type != 'index'){
 	$this->widget('bootstrap.widgets.TbButton', array(
 			'label'=>'Delete type',
 			'type'=>'primary',
@@ -55,4 +55,60 @@ $this->widget('bootstrap.widgets.TbButton', array(
 ));
 ?>
 
+</div>
+
+<div id="OptionsDialog" class="modal fade" style="display: none;">
+	<div class="modal-header">
+		<a class="close" data-dismiss="modal">&times;</a>
+		<h3>One Step to Save...</h3>
+	</div>
+	<div class="modal-body" id="blockOptions"></div>
+</div>
+
+
+
+<?php
+$model=new NewBlockModel;
+$WList=array();
+$db=widgets::model()->findAll('1');
+foreach ($db as $w){
+	$WList[$w->pathname]=$w->name;
+}
+?>
+<div id="newBlockDialog" class="modal fade" style="display: none;">
+<?php
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+	'id'=>'newBlock',
+	'type'=>'horizontal',
+	'action' => $this->createUrl("block/SaveNew"),
+));
+?>
+<div class="modal-header"> 
+	<a class="close" data-dismiss="modal">&times;</a>
+	<h3>One Step to Save...</h3>
+</div>
+
+
+<div class="modal-body">
+<?php echo $form->textFieldRow($model, 'name'); ?>
+<?php echo $form->dropDownListRow($model, 'widget', $WList); ?>
+
+<!-- <input type="hidden" name="NewBlockModel[x1]" id="x1" value=""/>
+<input type="hidden" name="NewBlockModel[y1]" id="y1" value=""/>
+<input type="hidden" name="NewBlockModel[x2]" id="x2" value=""/>
+<input type="hidden" name="NewBlockModel[y2]" id="y2" value=""/>
+<input type="hidden" name="NewBlockModel[parent]" id="parent" value="0"/>
+<input type="hidden" name="NewBlockModel[tmp]" id="tmp" value="<?php echo Yii::app()->getController()->getAction()->tmp;?>"/>
+</div>  -->
+
+<div class="modal-footer">
+	<input type="button" class="btn btn-primary" value="Save" id="newBlockSaveBtn"/>
+	<?php $this->widget('bootstrap.widgets.TbButton', array(
+		'label'=>'Close',
+		'url'=>'#',
+		'htmlOptions'=>array('data-dismiss'=>'modal'),
+	)); ?>
+</div>
+<?php $this->endWidget(); ?> 
+</div> 
 </div>

@@ -48,29 +48,12 @@ class UpdateAction extends CAction{
 		
 	}
 	public function RenderScript(){
-		$this->GTemp->RenderStructure();
-		$blocks=$this->GTemp->blocks->GetAll();
-		$_barray=array();
-		foreach ($blocks as $block){
-			if ($block->auto==false){
-				array_push($_barray, array('id'=>$block->id,
-										   'x1'=>$block->x1,
-										   'y1'=>$block->y1,
-										   'x2'=>$block->x2,
-										   'y2'=>$block->y2,
-										   'href'=>$this->controller->createUrl("block/edit",array('tmp'=>$this->tmp,'block'=>$block->id))
-				));
-			}
-		}
-		JSON::sendArrayToJS('blocks', $_barray);
 		$ImgURL=$this->controller->createUrl("AdminImg/FullTmp",array('id'=>$this->tmp,'type'=>$this->type));
+		$NewURL=$this->controller->createUrl("block/new",array('tmp'=>$this->tmp));
+		$tmp = $this->tmp;
 		$script = 
 <<<END
-jc.start('mainCanvas',true);
-var GC=new GCTmpEdit();
-GC.addBackImg('$ImgURL');
-GC.addAllBlocks(blocks);
-//GC.activeBlock(106);
+gc.init($tmp,'$ImgURL');
 END;
 		Yii::app()->clientScript->registerScript(uniqid(), $script);
 	}

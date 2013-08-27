@@ -48,8 +48,10 @@ class GWidget{
 		$this->block=$block;
 		$this->Widget=new GWWidget($this);
 		$this->Render=new GWRender($this);
-		if ($block->opt!='')
+		if ($block->opt!=''){
 			$this->opt=unserialize($block->opt);
+			if (!is_array($this->opt)) $this->opt=array();
+		}
 		if (method_exists($this,'init')) $this->init();
 	}
 	/**
