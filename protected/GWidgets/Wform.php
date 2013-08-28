@@ -56,7 +56,7 @@ class Wform extends GWidget{
 		echo '<a href="'.$controller->createUrl('Tmp/update',array('id'=>$model->tmp)).'">Edit Inside Template!</a><br/>';
 		echo 'Copy Your PHP files in "protected/blocks/',$this->block->id.'"';
 		echo '<div class="form-actions">';
-		$con->widget('bootstrap.widgets.TbButton', array('label'=>'Close','url'=>'#','htmlOptions'=>array('data-dismiss'=>'modal')));
+		$this->Widget->widget('Button', array('label'=>'Close','url'=>'#','htmlOptions'=>array('data-dismiss'=>'modal')));
 		echo '</div>';
 		$controller->endWidget();
 	}

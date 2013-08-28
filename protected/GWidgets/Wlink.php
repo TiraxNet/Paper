@@ -48,7 +48,7 @@ class Wlink extends GWidget{
 		$this->Widget->widget('TmpLinkWidget',array('InputId'=>'href'));
 		$form->widget('checkBoxRow', 'hover',array());
 		echo '<div class="form-actions">';
-		$con->widget('bootstrap.widgets.TbButton', array('label'=>'Close','url'=>'#','htmlOptions'=>array('data-dismiss'=>'modal')));
+		$this->Widget->widget('Button', array('label'=>'Close','url'=>'#','htmlOptions'=>array('data-dismiss'=>'modal')));
 		echo '</div>';
 		$form->endWidget();
 	}
