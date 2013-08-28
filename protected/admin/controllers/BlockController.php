@@ -87,6 +87,9 @@ class BlockController extends CController
      */
     public function actionBlockOptions($block){
     	$block=GBlock::FindById($block);
+    	if ($block === null){
+    		throw new CHttpException(100010,'The specified block cannot be found.');
+    	}
     	$widget=$block->WidgetClass();
     	$Arg=new GWOptionsArguments;
     	$Arg->action=$this->createUrl("block/SaveOptions",array('block'=>$block->id));
