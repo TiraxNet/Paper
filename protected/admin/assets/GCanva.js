@@ -1,4 +1,26 @@
+/******************* JC Options Function ******************/
+jc.addFunction('link', function(href) {
+	this.click(function() {
+		window.location.href = href;
+	}).mouseover(function() {
+		$('body').css('cursor', 'pointer');
+	}).mouseout(function() {
+		$('body').css('cursor', 'default');
+	})
+	return this;
+});
+jc.addFunction('job', function(fn) {
+	this.click(fn).mouseover(function() {
+		$('body').css('cursor', 'pointer');
+	}).mouseout(function() {
+		$('body').css('cursor', 'default');
+	})
+	return this;
+});
+
+
 //(function (window, undefined) {
+/******************** GC Body ****************************/
 var gc = {
 	tmp : null,
 	init : function(tmp, backUrl) {
@@ -6,12 +28,30 @@ var gc = {
 		jc.start('mainCanvas', true);
 		this.addBackImg(backUrl);
 		this.blocks.loadBlocks();
-		this.initIcons();
-	},
-	initIcons : function() {
-		gc.icons.clear();
-		this.icons.add('plus', function(){
-			gc.blocks.addNew();
+		this.icons.initIcons();		
+		$('#newBlockSaveBtn').click(function(){
+			jb = jc("#block_new");
+			rect = jb.getRect('poor');
+			var data = {
+				id : gc.tmp,
+				x : (rect.x - 30) || 0,
+				y : (rect.y) || 0,
+				width : (rect.width) || 0,
+				height : (rect.height) || 0
+			};
+			var d1 = $.param(data);
+			var d2 = $('#newBlock').serialize();
+			data = d1 + '&' + d2;
+			console.log(data);
+			$('#newBlockDialog').modal('hide');
+			$.post("index.php?r=admin/block/saveNew", data, undefined, 'json')
+				.done(function(resault) {
+					gc.msg.addSuccess(resault.m);
+					gc.reload();
+				})
+				.fail(function() {
+					gc.msg.addError('Error while saving new block');
+				});
 		});
 	},
 	addBackImg : function(src) {
@@ -23,16 +63,14 @@ var gc = {
 		}
 	},
 	refresh : function(){
-		this.initIcons();
+		this.icons.initIcons();
 		this.blocks.refresh();
-		jc('#all').del();
-		jc.rect(30, 0, 10000, 10000, 'rgba(0,0,0,0.0)').level(10).id('all');
+		gc.desktop.refresh();
 	},
 	reload : function() {
-		this.initIcons();
+		this.icons.initIcons();
 		this.blocks.reloadAll();
-		jc('#all').del();
-		jc.rect(30, 0, 10000, 10000, 'rgba(0,0,0,0.0)').level(10).id('all');
+		gc.desktop.refresh();
 	},
 	block : function(id) {
 		if (id === undefined)
@@ -43,6 +81,7 @@ var gc = {
 		}
 	}
 }
+/********************* GC Blocks *************************/
 gc.blocks = {
 	_actived_block : null,
 	_block_array : new Array(),
@@ -53,7 +92,7 @@ gc.blocks = {
 		$.getJSON("index.php?r=admin/block/JsonList", data)
 		.done(function(resault) {
 			gc.blocks._block_array = resault;
-			gc.blocks.refresh();
+			gc.blocks.refresh();			
 		}).fail(function() {
 			gc.msg.addError('Error while Loading blocks');
 		});
@@ -79,7 +118,6 @@ gc.blocks = {
 	},
 	unjobAll : function() {
 		for ( var i = 0; i < this._block_array.length; i++) {
-			// this.unjob(this._block_array[i].id);
 			gc.block(this._block_array[i].id).unjob();
 		}
 	},
@@ -97,7 +135,9 @@ gc.blocks = {
 		gc.icons.addCancel();
 		gc.icons.add('tick', function() {
 			gc.block(gc.blocks._actived_block).savePos();
-			gc.block(gc.blocks._actived_block).saveOptions();
+			if (gc.block(gc.blocks._actived_block).found() == true){
+				gc.block(gc.blocks._actived_block).saveOptions();
+			}
 		});
 		gc.icons.add('gear', function() {
 			gc.block(id).openOptions();
@@ -108,12 +148,22 @@ gc.blocks = {
 		gc.icons.clear();
 		gc.icons.addCancel();
 		gc.icons.add('tick', function() {
-			gc.block('new').saveNew();
+			gc.blocks.showSaveNewDialog();
 		});
+	},
+	showSaveNewDialog : function() {
+		$('#newBlockDialog').modal('show');
 	}
 }
+/***************************** GC Icons ****************************/
 gc.icons = {
 	pointer : 0,
+	initIcons : function() {
+		gc.icons.clear();
+		gc.icons.add('plus', function(){
+			gc.blocks.addNew();
+		});
+	},
 	add : function(icon, fn) {
 		var icons = {
 			tick : {
@@ -161,6 +211,7 @@ gc.icons = {
 		this.block('new').selectable();
 	}
 }
+/**************************** GC Message ******************************/
 gc.msg = {
 	addSuccess : function(msg) {
 		$('#msg').html('<div class="alert alert-success">' + msg + '</div>');
@@ -169,28 +220,15 @@ gc.msg = {
 		$('#msg').html('<div class="alert alert-error">' + msg + '</div>');
 	}
 }
-
-jc.addFunction('link', function(href) {
-	this.click(function() {
-		window.location.href = href;
-	}).mouseover(function() {
-		$('body').css('cursor', 'pointer');
-	}).mouseout(function() {
-		$('body').css('cursor', 'default');
-	})
-	return this;
-});
-jc.addFunction('job', function(fn) {
-	this.click(fn).mouseover(function() {
-		$('body').css('cursor', 'pointer');
-	}).mouseout(function() {
-		$('body').css('cursor', 'default');
-	})
-	return this;
-});
-
-/** ***********************New Type*******************/
+gc.desktop = {
+	relfresh : function(){
+		jc('#all').del();
+		jc.rect(30, 0, 10000, 10000, 'rgba(0,0,0,0.0)').level(10).id('all');
+	}
+}
+/*********************/
 var gcproto = {}
+/****************************** GC Block ******************************/
 gcproto.block = function(id) {
 	this.id = id;
 	this.jb = jc("#block_" + id);
@@ -272,33 +310,14 @@ gcproto.block = function(id) {
 			}
 		});
 	}
-	this.saveNew = function() {
-		jb = this.jb;
-		$('#newBlockSaveBtn').click(function(){
-			rect = jb.getRect('poor');
-			var data = {
-				id : gc.tmp,
-				x : (rect.x - 30) || 0,
-				y : (rect.y) || 0,
-				width : (rect.width) || 0,
-				height : (rect.height) || 0
-			};
-			var d1 = $.param(data);
-			var d2 = $('#newBlock').serialize();
-			data = d1 + '&' + d2;
-			console.log(data);
-			$('#newBlockDialog').modal('hide');
-			$.post("index.php?r=admin/block/saveNew", data, undefined, 'json')
-				.done(function(resault) {
-					gc.msg.addSuccess(resault.m);
-					gc.reload();
-				})
-				.fail(function() {
-					gc.msg.addError('Error while saving new block');
-				});
-		});
-		$('#newBlockDialog').modal('show');
-
+	this.found = function(){
+		if ((this.jb.getRect().width||0) == 0){
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 }
 // })(window, undefined);
+
