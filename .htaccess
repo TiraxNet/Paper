@@ -1,0 +1,2 @@
+#RewriteEngine On    # Turn on the rewriting engine
+#RewriteRule    ^u_([A-Za-z-]*)/?    index.php?user=$1   [QSA,NC,L]

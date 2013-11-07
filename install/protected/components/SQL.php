@@ -1,5 +1,5 @@
 <?php
-class SQL{
+class SQL extends CComponent{
 	public static function RunSQLFile($fileName)
 	{
 		if (!($sql_query = @fread(@fopen($fileName, 'r'), @filesize($fileName))))

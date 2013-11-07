@@ -6,12 +6,12 @@
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  *
  */
+ 
+defined('YII_DEBUG') or define('YII_DEBUG',false);
+
+define( 'BASE_PATH', dirname(__FILE__) );
 define( 'DS', DIRECTORY_SEPARATOR );
-define( 'BASE_PATH', dirname(__FILE__).DS.'..' );
-define( 'INSTALL_PATH', dirname(__FILE__));
-include 'Render.php';
-include 'SQL.php';
-$Rnd=new Render();
-$Rnd->CheckFilePermissions();
-$Rnd->CheckForPost();
-include 'View.php';
+
+require_once(dirname(__FILE__).DS.'..'.DS.'framework'.DS.'yii.php');
+
+$app=Yii::createWebApplication(dirname(__FILE__).DS.'protected'.DS.'config.php')->run();
