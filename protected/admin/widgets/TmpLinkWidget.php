@@ -61,7 +61,7 @@ class TmpLinkWidget extends CWidget
 		$AList=array();
 		foreach ($DList as $tmp)
 		{
-			$url=$this->getController()->createUrl('/site/index',array('tmp'=>$tmp->id));
+			$url='<tmpl:'.$tmp->id.'>';
 			$name='<a onclick="FillTMPURL(\''.$url.'\')" href="#">'.$tmp->name.'</a>';
 			$item=array('id'=>$tmp->id,'name'=>$name,'title'=>$tmp->title);
 			array_push($AList, $item);
@@ -95,11 +95,14 @@ class TmpLinkWidget extends CWidget
 	 */
 	public function RegisterJS()
 	{
-		$script="	function FillTMPURL(url){
+		$script="<script>
+ 					function FillTMPURL(url){
  						document.getElementById('".$this->InputId."').value=url;
  						$('#tmplinklist').modal('hide');
  					}
+ 				</script>
  				";
+		echo $script;
 		Yii::app()->clientScript->registerScript(uniqid(), $script);
 	}
 }

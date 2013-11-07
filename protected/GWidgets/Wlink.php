@@ -13,8 +13,13 @@ class Wlink extends GWidget{
 		return array('href','hover');
 	}
 	public function Content(){
+		$href=$this->GetOpt('href');
+		if(preg_match('$\<tmpl\:\d*\>$', $href, $r)){
+			preg_match('$\d+$',$r[0],$r);
+			$href=Yii::app()->createUrl("site/index",array('id'=>$r[0]));
+		}
 		$HTML='<a href="';
-		$HTML.=$this->GetOpt('href');
+		$HTML.=$href;
 		$HTML.='">';
 		$HTML.='<img src="publics/images/spacer.gif" width="'
 			    .$this->block->width.'" height="'.$this->block->height.'"/>';
