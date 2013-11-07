@@ -44,7 +44,7 @@ var gc = {
 			data = d1 + '&' + d2;
 			console.log(data);
 			$('#newBlockDialog').modal('hide');
-			$.post("index.php?r=admin/block/saveNew", data, undefined, 'json')
+			$.post(URLs.saveNew, data, undefined, 'json')
 				.done(function(resault) {
 					gc.msg.addSuccess(resault.m);
 					gc.reload();
@@ -89,7 +89,7 @@ gc.blocks = {
 		data = {
 			id : gc.tmp
 		};
-		$.getJSON("index.php?r=admin/block/JsonList", data)
+		$.getJSON(URLs.JsonList, data)
 		.done(function(resault) {
 			gc.blocks._block_array = resault;
 			gc.blocks.refresh();			
@@ -188,7 +188,7 @@ gc.icons = {
 			}
 		}
 		var img = new Image();
-		img.src = "publics/images/icons.png";
+		img.src = URLs.base + "/publics/images/icons.png";
 		img.onload = function() {
 			jc.image(img, 0, gc.icons.pointer * 30, 30, 30, icons[icon].x,
 					icons[icon].y, 16, 16).job(fn).id(
@@ -221,7 +221,7 @@ gc.msg = {
 	}
 }
 gc.desktop = {
-	relfresh : function(){
+	refresh : function(){
 		jc('#all').del();
 		jc.rect(30, 0, 10000, 10000, 'rgba(0,0,0,0.0)').level(10).id('all');
 	}
@@ -252,7 +252,7 @@ gcproto.block = function(id) {
 			width : (rect.width) || 0,
 			height : (rect.height) || 0
 		};
-		$.getJSON("index.php?r=admin/block/savePos", data)
+		$.getJSON(URLs.SavePos, data)
 			.done(function(resault) {
 				gc.msg.addSuccess(resault.m);
 				gc.reload();
@@ -262,7 +262,7 @@ gcproto.block = function(id) {
 			});
 	}
 	this.loadOptions = function() {
-		$.get("index.php?r=admin/block/blockOptions", {block:id})
+		$.get(URLs.blockOptions, {block:id})
 			.done(function(resault) {
 				$('#blockOptions').html(resault);
 			})

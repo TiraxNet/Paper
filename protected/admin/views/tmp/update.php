@@ -14,6 +14,16 @@ Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#Pap
 Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/jCanvaScript.js');
 Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/GCanva.js');
 
+$urls="var URLs={}\n";
+$urls.="URLs.JsonList = '".$this->createUrl("block/JsonList")."';";
+$urls.="URLs.SavePos = '".$this->createUrl("block/savePos")."';";
+$urls.="URLs.blockOptions = '".$this->createUrl("block/blockOptions")."';";
+$urls.="URLs.saveNew = '".$this->createUrl("block/saveNew")."';";
+$urls.="URLs.SavePos = '".$this->createUrl("block/savePos")."';";
+$urls.="URLs.base = '".Yii::app()->baseUrl."';";
+
+Yii::app()->clientScript->registerScript(uniqid(), $urls, CClientScript::POS_HEAD);
+
 ?>
 <div id="PapaDIV">
 

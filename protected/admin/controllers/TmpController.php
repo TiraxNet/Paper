@@ -24,6 +24,9 @@ class TmpController extends CController
 	 * (non-PHPdoc)
 	 * @see CController::actions()
 	 */
+	public function init(){
+		
+	}
 	public function actions()
     {
         return array(

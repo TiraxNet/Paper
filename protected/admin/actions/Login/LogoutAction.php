@@ -13,6 +13,6 @@ class LogoutAction extends CAction{
 	 */
 	public function run(){
 		Yii::app()->user->logout();
-		$this->controller->redirect('index.php');
+		$this->controller->redirect(Yii::app()->createUrl('admin/default/index'));
 	}
 }

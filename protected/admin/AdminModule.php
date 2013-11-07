@@ -44,6 +44,7 @@ class AdminModule extends CWebModule
 	 */
 	public function beforeControllerAction($controller, $action)
 	{
+		$this->adminAuth->check();
 		if(parent::beforeControllerAction($controller, $action))
 		{
 			return true;

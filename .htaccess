@@ -1,2 +1,8 @@
-#RewriteEngine On    # Turn on the rewriting engine
-#RewriteRule    ^u_([A-Za-z-]*)/?    index.php?user=$1   [QSA,NC,L]
+RewriteEngine on
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# otherwise forward it to index.php
+RewriteRule . index.php

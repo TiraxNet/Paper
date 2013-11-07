@@ -29,7 +29,7 @@ class Menu extends CWidget
 				array(
 					'class'=>'bootstrap.widgets.TbMenu',
 					'items'=>array(
-						array('label'=>'Home', 'url'=>'index.php', 'active'=>true),
+						array('label'=>'Home', 'url'=>Yii::app()->createUrl('admin/default/index'), 'active'=>true),
 						array('label'=>'Templates', 'url'=>Yii::app()->getController()->createUrl('Tmp/list')),
 						array('label'=>'Logout', 'url'=>Yii::app()->getController()->createUrl('login/logout')),
 					),

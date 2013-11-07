@@ -11,9 +11,11 @@ if (file_exists(BASE_PATH.DS.'user'.DS.'INSTALL'))
 	die();
 }
 
-if(array_key_exists('user', $_REQUEST)){
-	$user_folder = BASE_PATH.DS.'user'.DS.$_REQUEST['user'];
-}else if (file_exists(BASE_PATH.DS.'user'.'config.php')){
+
+if(preg_match('$u/[0-9A-Za-z-]*[^\/]*$',$_SERVER['REQUEST_URI'],$m)){
+	$userName=substr($m[0],2);
+	$user_folder = BASE_PATH.DS.'user'.DS.$userName;
+}else if (file_exists(BASE_PATH.DS.'user'.DS.'config.php')){
 	$user_folder = BASE_PATH.DS.'user';
 }else{
 	$url=$_SERVER['REQUEST_URI'];
@@ -52,12 +54,12 @@ return array(
 	'modules'=>array(
 		'admin'=>array(
 			'class'=>'application.admin.AdminModule',
-			'preload'=>array('bootstrap','AdminAuth'),
+			'preload'=>array('bootstrap'),
 			'components'=>array(
 				'bootstrap'=>array(
 					'class'=>'ext.bootstrap.components.Bootstrap'
 				),
-				'AdminAuth'=>array(
+				'adminAuth'=>array(
 					'class'=>'application.admin.components.AdminAuth'
 				)
 			)
@@ -76,7 +78,7 @@ return array(
 	    'functions'=>array(
 	    	'class'=>'ext.functions',
 	    ),
-		'functions'=>array(
+		'JSON'=>array(
 			'class'=>'ext.JSON',
 		),
 	    'db'=>array(
@@ -87,6 +89,17 @@ return array(
 	    		'emulatePrepare'=>true,
 	    		'charset'=>'utf8',
 	    ),
+		'urlManager'=>array(
+			'class'=>'application.components.GUrlManager',
+			'showScriptName'=> false,
+			'urlFormat'=>'path',
+			'rules'=>array(
+					'page<id:\d+>'=>'site/index', //Page id for single User
+					'u/<u:\w+>(/page<id:\d+>)?'=>'site/index', //Page id for multi user 
+					'u/<u:\w+>/<A:.+>'=>'<A>',
+			),
+		),
+		
     ),
 );
 
