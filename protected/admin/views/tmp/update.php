@@ -103,14 +103,6 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 <?php echo $form->textFieldRow($model, 'name'); ?>
 <?php echo $form->dropDownListRow($model, 'widget', $WList); ?>
 
-<!-- <input type="hidden" name="NewBlockModel[x1]" id="x1" value=""/>
-<input type="hidden" name="NewBlockModel[y1]" id="y1" value=""/>
-<input type="hidden" name="NewBlockModel[x2]" id="x2" value=""/>
-<input type="hidden" name="NewBlockModel[y2]" id="y2" value=""/>
-<input type="hidden" name="NewBlockModel[parent]" id="parent" value="0"/>
-<input type="hidden" name="NewBlockModel[tmp]" id="tmp" value="<?php echo Yii::app()->getController()->getAction()->tmp;?>"/>
-</div>  -->
-
 <div class="modal-footer">
 	<input type="button" class="btn btn-primary" value="Save" id="newBlockSaveBtn"/>
 	<?php $this->widget('bootstrap.widgets.TbButton', array(
