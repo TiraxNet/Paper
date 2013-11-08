@@ -22,7 +22,7 @@ if(preg_match('$u/[0-9A-Za-z-]*[^\/]*$',$_SERVER['REQUEST_URI'],$m)){
 	$found=false;
 	require(BASE_PATH.DS.'user'.DS.'users.php');
 	foreach($USERS as $key=>$val){
-		if (@preg_match('/'.$val.'/i', $url)){
+		if (@preg_match('/'.$val.'/i', $_SERVER['HTTP_HOST']) || @preg_match('/'.$val.'/i', $_SERVER['REQUEST_URI'])){
 			$userName=$key;
 			$found=true;
 			break;
