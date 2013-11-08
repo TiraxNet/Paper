@@ -21,7 +21,7 @@ return array (
 						'class' => 'application.components.SQL' 
 				),
 				'render' => array (
-						'class' => 'application.components.render' 
+						'class' => 'application.components.Render' 
 				) 
 		),
 		'preload' => array (
