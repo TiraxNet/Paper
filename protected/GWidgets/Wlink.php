@@ -21,7 +21,7 @@ class Wlink extends GWidget{
 		$HTML='<a href="';
 		$HTML.=$href;
 		$HTML.='">';
-		$HTML.='<img src="publics/images/spacer.gif" width="'
+		$HTML.='<img src="'.Yii::app()->getBaseUrl().'/publics/images/spacer.gif" width="'
 			    .$this->block->width.'" height="'.$this->block->height.'"/>';
 		$HTML.="</a>";
 		return $HTML;
