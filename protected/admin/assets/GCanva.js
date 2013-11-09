@@ -160,6 +160,7 @@ gc.blocks = {
 gc.mouse = {
 	points : new Array(),
 	render_points : function(blocks) {
+		this.points=[];
 		for ( var i = 0; i < blocks.length; i++) {
 			var p1= {x: parseInt(blocks[i].x1) +30, y: blocks[i].y1};
 			var p2= {x: parseInt(blocks[i].x2) +30, y: blocks[i].y2};
