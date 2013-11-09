@@ -159,6 +159,7 @@ gc.blocks = {
 /***************************** GC Mouse ****************************/
 gc.mouse = {
 	points : new Array(),
+	stick_active : true,
 	render_points : function(blocks) {
 		this.points=[];
 		for ( var i = 0; i < blocks.length; i++) {
@@ -173,6 +174,7 @@ gc.mouse = {
 		}
 	},
 	stick_point : function (p) {
+		if (this.stick_active == false) return p;
 		for ( var i = 0; i < this.points.length; i++) {
 			rp=this.points[i];
 			if (Math.abs(rp.x-p.x) < 15){
@@ -215,7 +217,11 @@ gc.icons = {
 			close : {
 				x : 80,
 				y : 128
-			}
+			},
+			pin : {
+				x : 128,
+				y : 144
+			},
 		}
 		var img = new Image();
 		img.src = URLs.base + "/publics/images/icons.png";
@@ -314,6 +320,10 @@ gcproto.block = function(id) {
 			});
 	}
 	this.selectable = function() {
+		gc.icons.add('pin', function(){
+			if (gc.mouse.stick_active == true) gc.mouse.stick_active=false;
+			else gc.mouse.stick_active=true;
+		});
 		gc.blocks.unjobAll();
 		var new_block = new Object;
 		new_block.drawing = false;
