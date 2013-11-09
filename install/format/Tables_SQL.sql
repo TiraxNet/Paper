@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `widget` text CHARACTER SET latin1 NOT NULL,
   `opt` text CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=95 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 --
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS `templates` (
   `parent` int(11) NOT NULL,
   `css` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 --
@@ -43,5 +43,5 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   `name` text NOT NULL,
   `pathname` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
