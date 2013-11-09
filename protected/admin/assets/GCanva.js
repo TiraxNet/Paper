@@ -53,6 +53,16 @@ var gc = {
 					gc.msg.addError('Error while saving new block');
 				});
 		});
+		$('#tempOptionsSubmit').click(function(){
+			data=$('#templateOptionsForm').serialize();
+			$.post($('#templateOptionsForm').attr('action'),data,undefined,'json')
+			.done(function(resault) {
+				gc.msg.addSuccess(resault.m);
+			})
+			.fail(function() {
+				gc.msg.addError('Error while saving template options.');
+			});
+		});
 	},
 	addBackImg : function(src) {
 		jc.rect(30, 0, 10000, 10000, 'rgba(0,0,0,0.0)').level(10).id('all');
@@ -194,6 +204,9 @@ gc.icons = {
 		gc.icons.clear();
 		gc.icons.add('plus', function(){
 			gc.blocks.addNew();
+		});
+		gc.icons.add('gear', function(){
+			$('#templateOptions').modal();
 		});
 	},
 	add : function(icon, fn) {

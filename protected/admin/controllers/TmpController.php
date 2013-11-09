@@ -52,4 +52,18 @@ class TmpController extends CController
         	)
         );
     }
+    public function actionSaveOptions($id){
+    	$tmp=GTemplate::FindById($id);
+    	
+    	$model=new TmpOptionsModel();
+    	$model->setAttributes($_POST['TmpOptionsModel'],false);
+    	
+    	$tmp->title=$model->title;
+    	$tmp->css=$model->css;
+    	$tmp->Save();
+    	
+    	$msg['m']="Options Saved Successfully.";
+    	$msg['t']='s';
+    	JSON::sendToPage($msg);
+    }
 }

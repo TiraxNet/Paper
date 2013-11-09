@@ -15,10 +15,18 @@ Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/GCa
 Yii::app()->clientScript->registerScript(uniqid(), $urls, CClientScript::POS_HEAD);
 
 ?>
+<?php 
+/***************************************************************************
+ *
+ * 								Main Body
+ *
+ ****************************************************************************/
+?>
 <div id="PapaDIV">
 
 	<canvas height="<?php echo $gtemp->height ?>"
-		width="<?php echo ($gtemp->width+30) ?>" id="mainCanvas"></canvas>
+		width="<?php echo ($gtemp->width+30) ?>" id="mainCanvas">
+	</canvas>
 	<br />
 	<div id="msg" style="text-align: center"></div>
 	<br />
@@ -57,6 +65,13 @@ $this->widget('bootstrap.widgets.TbButton', array(
 
 </div>
 
+<?php 
+/***************************************************************************
+ *
+ * 							Block Options Dialog
+ *
+ ****************************************************************************/
+?>
 <div id="OptionsDialog" class="modal fade" style="display: none;">
 	<div class="modal-header">
 		<a class="close" data-dismiss="modal">&times;</a>
@@ -65,9 +80,61 @@ $this->widget('bootstrap.widgets.TbButton', array(
 	<div class="modal-body" id="blockOptions"></div>
 </div>
 
-
+<?php 
+/***************************************************************************
+ *
+ * 							Template Options Dialog
+ *
+ ****************************************************************************/
+?>
+<?php $this->beginWidget('bootstrap.widgets.TbModal', array('id'=>'templateOptions')); ?>
+ 
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">&times;</a>
+    <h4>Template Options</h4>
+</div>
+ 
+<div class="modal-body">
 
 <?php
+$model=new TmpOptionsModel;
+
+$model->title=$gtemp->title;
+$model->css=$gtemp->css;
+
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+	'id'=>'templateOptionsForm',
+	'type'=>'horizontal',
+	'action' => $this->createUrl("Tmp/SaveOptions",array('id'=>$gtemp->id)),
+));
+echo $form->textFieldRow($model, 'title');
+echo $form->textAreaRow($model, 'css', array('rows'=>5));
+$this->endWidget();
+?>
+</div>
+
+<div class="modal-footer">
+    <?php $this->widget('bootstrap.widgets.TbButton', array(
+        'type'=>'primary',
+        'label'=>'Save changes',
+        'url'=>'#',
+    	'id' => 'tempOptionsSubmit',
+        'htmlOptions'=>array('data-dismiss'=>'modal'),
+    )); ?>
+    <?php $this->widget('bootstrap.widgets.TbButton', array(
+        'label'=>'Close',
+        'url'=>'#',
+        'htmlOptions'=>array('data-dismiss'=>'modal'),
+    )); ?>
+</div>
+ <?php $this->endWidget(); ?>
+
+<?php
+/***************************************************************************
+ *
+ * 							New Block Dialog
+ *
+ ****************************************************************************/
 $model=new NewBlockModel;
 $WList=array();
 $db=widgets::model()->findAll('1');
