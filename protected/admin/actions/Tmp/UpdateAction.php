@@ -40,9 +40,11 @@ class UpdateAction extends CAction{
 		$this->type=$type;
 		$this->GTemp=GTemplate::FindById($id);
 		$this->RenderScript();
+		$urls=$this->CreateUrlsScript();
 		$this->controller->render("update",array(
 												 'gtemp'=>$this->GTemp,
 												 'types'=>GTemplate::GetTypes($id),
+												 'urls'=>$urls
 											  )
 								  );
 		
@@ -56,6 +58,16 @@ class UpdateAction extends CAction{
 gc.init($tmp,'$ImgURL');
 END;
 		Yii::app()->clientScript->registerScript(uniqid(), $script);
+	}
+	public function CreateUrlsScript(){
+		$urls="var URLs={}\n";
+		$urls.="URLs.JsonList = '".$this->getController()->createUrl("block/JsonList")."';";
+		$urls.="URLs.SavePos = '".$this->getController()->createUrl("block/savePos")."';";
+		$urls.="URLs.blockOptions = '".$this->getController()->createUrl("block/blockOptions")."';";
+		$urls.="URLs.saveNew = '".$this->getController()->createUrl("block/saveNew")."';";
+		$urls.="URLs.SavePos = '".$this->getController()->createUrl("block/savePos")."';";
+		$urls.="URLs.base = '".Yii::app()->baseUrl."';";
+		return $urls;
 	}
 	
 }
