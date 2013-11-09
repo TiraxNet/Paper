@@ -1,8 +1,4 @@
-<h1>PAPER!
+<h1>PAPER!</h1>
+<h2>Design your Website on paper!</h2>
 
-Design your Website on paper!
-
-
-
-<p>1-Extract FrameWorks.tar.gz file in working Directory.</p>
-<p>2-Run SQL.sql.</p>
+Copyright &copy; TiraxNet Co.
