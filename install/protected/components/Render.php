@@ -30,14 +30,9 @@ class Render extends CComponent{
 		if ($this->model->UserName!=null){
 			if (!$this->addUser()) return false;
 		}
-		if (!$this->RemoveInstall()) return false;
 		mysql_close();
 		header('Location: ../index.php');
 		die;
-	}
-	public function RemoveInstall(){
-		unlink(Yii::getPathOfAlias('parentRoot.user').DS.'INSTALL');
-		return true;
 	}
 	public function creatFileNames(){
 		if ($this->model->UserName==null){
