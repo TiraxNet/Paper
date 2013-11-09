@@ -9,7 +9,6 @@
 
 $CAction=Yii::app()->getController()->getAction();
 
-Yii::app()->clientScript->registerScript(uniqid(), $script);
 Yii::app()->clientScript->registerCss(uniqid(), '#PapaDIV{text-align:center}#PapaDIV canvas{ border:1px dashed #666; margin-bottom:20px;}');
 Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/jCanvaScript.js');
 Yii::app()->clientScript->registerScriptFile($this->module->getAssetsUrl().'/GCanva.js');
@@ -32,7 +31,7 @@ Yii::app()->clientScript->registerScript(uniqid(), $urls, CClientScript::POS_HEA
 	<br />
 	<div id="msg" style="text-align: center"></div>
 	<br />
-<?
+<?php 
 if ($CAction->type != 'index'){
 	$this->widget('bootstrap.widgets.TbButton', array(
 			'label'=>'Delete type',
