@@ -175,8 +175,11 @@ gc.mouse = {
 	stick_point : function (p) {
 		for ( var i = 0; i < this.points.length; i++) {
 			rp=this.points[i];
-			if ((Math.abs(rp.x-p.x) < 15) && (Math.abs(rp.y-p.y) < 15)){
-				return rp;
+			if (Math.abs(rp.x-p.x) < 15){
+				p.x=rp.x;
+			}
+			if (Math.abs(rp.y-p.y) < 15){
+				p.y=rp.y;
 			}
 		}
 		return p;
