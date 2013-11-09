@@ -92,6 +92,7 @@ gc.blocks = {
 		$.getJSON(URLs.JsonList, data)
 		.done(function(resault) {
 			gc.blocks._block_array = resault;
+			gc.mouse.render_points(resault);
 			gc.blocks.refresh();			
 		}).fail(function() {
 			gc.msg.addError('Error while Loading blocks');
@@ -154,6 +155,31 @@ gc.blocks = {
 	showSaveNewDialog : function() {
 		$('#newBlockDialog').modal('show');
 	}
+}
+/***************************** GC Mouse ****************************/
+gc.mouse = {
+	points : new Array(),
+	render_points : function(blocks) {
+		for ( var i = 0; i < blocks.length; i++) {
+			var p1= {x: parseInt(blocks[i].x1) +30, y: blocks[i].y1};
+			var p2= {x: parseInt(blocks[i].x2) +30, y: blocks[i].y2};
+			var p3= {x: parseInt(blocks[i].x1) +30, y: blocks[i].y2};
+			var p4= {x: parseInt(blocks[i].x2) +30, y: blocks[i].y1};
+			this.points.push(p1);
+			this.points.push(p2);
+			this.points.push(p3);
+			this.points.push(p4);
+		}
+	},
+	stick_point : function (p) {
+		for ( var i = 0; i < this.points.length; i++) {
+			rp=this.points[i];
+			if ((Math.abs(rp.x-p.x) < 15) && (Math.abs(rp.y-p.y) < 15)){
+				return rp;
+			}
+		}
+		return p;
+	},
 }
 /***************************** GC Icons ****************************/
 gc.icons = {
@@ -290,6 +316,7 @@ gcproto.block = function(id) {
 		this.jb.color('rgba(135,255,135,0.5)');
 		jc('#all').mousedown(function(point){
 			jc('#block_' + id).del();
+			point = gc.mouse.stick_point(point);
 			new_block.x = point.x;
 			new_block.y = point.y;
 			new_block.drawing = true;
@@ -302,6 +329,7 @@ gcproto.block = function(id) {
 		jc('#all').mousemove(function(point) {
 			if (new_block.drawing == true) {
 				jc('#block_' + id).del();
+				point=gc.mouse.stick_point(point);
 				new_block.width = point.x - new_block.x;
 				new_block.height = point.y - new_block.y;
 				new_block.color = 'rgba(135,255,135,0.5)';
