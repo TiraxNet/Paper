@@ -42,6 +42,9 @@ class Wlink extends GWidget{
 		if ($this->GetOpt('hover')==1) return array('index','hover');
 		else return array('index');  
 	}
+	public function DefaultOptions(){
+		return 'a:2:{s:4:"href";s:1:"#";s:5:"hover";s:1:"1";}';
+	}
 	public function RenderOptions($Arg){
 		$form = $this->Widget->beginWidget('Form', array(
 			'id'=>'OptionsForm',

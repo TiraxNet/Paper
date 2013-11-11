@@ -117,6 +117,7 @@ class GBlock extends CComponent{
 	 */
 	public function SaveNew(){
 		$this->sortXY();
+		$this->opt=$this->WidgetClass()->DefaultOptions();
 		$this->db->save();
 		$this->GTemp->RenderStructure();
 		$this->WidgetClass()->CreateNew();

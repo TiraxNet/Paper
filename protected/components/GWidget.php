@@ -123,6 +123,13 @@ class GWidget{
 		return serialize($arr);
 	}
 	/**
+	 * Returns default options string
+	 * @return string
+	 */
+	public function DefaultOptions(){
+		return '';
+	}
+	/**
 	 * Paper calls this function before rendering Widget Content, CSS & JS
 	 * @return bool
 	 */
