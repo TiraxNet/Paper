@@ -25,16 +25,21 @@ if(preg_match('$u/[0-9A-Za-z-]*[^\/]*$',$_SERVER['REQUEST_URI'],$m)){
 		}
 	}
 	if (!$found){
-		echo '404 Not Found!';
+		echo 'User Not Found!';
 		die();
 	}
 	define('USER',$userName);
 	$user_folder = BASE_PATH.DS.'user'.DS.$userName;
 }
 define('USER_PATH',$user_folder);
+if (!is_file($user_folder.DS.'config.php')) {
+	echo 'User Not Found!';
+	die();
+}
 require($user_folder.DS.'config.php');
 
 Yii::setPathOfAlias('user', $user_folder);
+
 
 return array(
 	'params'=>array(
