@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Install"
+AuthUserFile "/home/mdaftar/.htpasswds/public_html/main/install/passwd"
+require valid-user
