@@ -13,6 +13,7 @@ if ($msg!=''){
 	echo "<div class=\"alert alert-error\">$msg</div>";
 }
 $model=new NewTmpModel;
+$model->css="#PapaDIV{\n\ttext-align:center;\n\tbackground:#ffffff;\n}\nBody{\n\tbackground:#ffffff;\n}";
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'NewBlockForm',
 	'type'=>'horizontal',
