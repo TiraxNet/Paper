@@ -6,17 +6,18 @@
  * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
  * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
  * 
- * @property int $id 		Block id
- * @property int $tmp 		Block template
- * @property string $name 		Block name
- * @property int $x1 		Block start point (x)
- * @property int $y1 		Block start point (y)
- * @property int $x2 		Block end point (x)
- * @property int $y2 		Block end point (y)
- * @property int $y2 		Block Widget
- * @property string $opt		Serialized block widget options
- * @property int $colspan 	Block Colspan in template table
- * @property int $rowspan 	Block Rowspan in template table
+ * @property int 		$id 		Block id
+ * @property int		$tmp 		Block template id
+ * @property GTemplate 	$GTemp Block template object
+ * @property string 	$name 		Block name
+ * @property int 		$x1 		Block start point (x)
+ * @property int 		$y1 		Block start point (y)
+ * @property int 		$x2 		Block end point (x)
+ * @property int 		$y2 		Block end point (y)
+ * @property int 		$y2 		Block Widget
+ * @property string 	$opt		Serialized block widget options
+ * @property int 		$colspan 	Block Colspan in template table
+ * @property int 		$rowspan 	Block Rowspan in template table
  * 
  */
 class GBlock extends CComponent{
@@ -167,6 +168,14 @@ class GBlock extends CComponent{
 	 * @return resource Created image resource handle
 	 */
 	public function GetImage($type=NULL){
+		//@TODO: Active caching system.
+		/*
+		$cache_key=array($this->tmp,$this->GTemp->version,$this->id,$type);
+		$ch=Yii::app()->ImgCache->get($cache_key);
+		if ($ch!=null)
+			return $ch;
+		*/
+		 
 		$GTemp=$this->GTemp;
 		if ($type!=NULL){
 			$hndl=imagecreatefromjpeg(GTemplate::GetPath($GTemp->id).DS.$type.".jpg");
@@ -193,6 +202,8 @@ class GBlock extends CComponent{
 					$this->x1,$this->y1,$this->width,$this->height,100);
 			}
 		}
+		//@TODO: Active caching system.
+		//Yii::app()->ImgCache->set($cache_key,$hndl_dest);
 		return $hndl_dest;
 	}
 	/**

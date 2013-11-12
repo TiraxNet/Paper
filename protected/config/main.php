@@ -5,17 +5,13 @@
 * @copyright Copyright &copy; Mohammad Hosein Saadatfar 2012-
 * @license http://www.opensource.org/licenses/bsd-license.php New BSD License
 */
-if (file_exists(BASE_PATH.DS.'user'.DS.'INSTALL'))
-{
-	header('Location: install');
-	die();
-}
-
 
 if(preg_match('$u/[0-9A-Za-z-]*[^\/]*$',$_SERVER['REQUEST_URI'],$m)){
 	$userName=substr($m[0],2);
 	$user_folder = BASE_PATH.DS.'user'.DS.$userName;
+	define('USER',$userName);
 }else if (file_exists(BASE_PATH.DS.'user'.DS.'config.php')){
+	define('USER','main');
 	$user_folder = BASE_PATH.DS.'user';
 }else{
 	$url=$_SERVER['REQUEST_URI'];
@@ -32,11 +28,14 @@ if(preg_match('$u/[0-9A-Za-z-]*[^\/]*$',$_SERVER['REQUEST_URI'],$m)){
 		echo '404 Not Found!';
 		die();
 	}
+	define('USER',$userName);
 	$user_folder = BASE_PATH.DS.'user'.DS.$userName;
 }
+define('USER_PATH',$user_folder);
 require($user_folder.DS.'config.php');
 
 Yii::setPathOfAlias('user', $user_folder);
+
 return array(
 	'params'=>array(
 		'AdminUsername' => 'admin',
@@ -50,6 +49,7 @@ return array(
 		'application.models.*',
 		'application.GWidgets.*',
 		'application.admin.components.*',
+		'system.caching.CFileCache'
 	),
 	'modules'=>array(
 		'admin'=>array(
@@ -69,8 +69,8 @@ return array(
 		'TempRep'=>array(
 				'class'=>'application.components.GTempRepository'
 		),
-		'cache'=>array(
-		    	'class'=>'system.caching.CFileCache',
+		'ImgCache'=>array(
+				'class'=>'ext.ImgCache',
 		),
 		'bootstrap'=>array(
 			'class'=>'ext.bootstrap.components.Bootstrap',

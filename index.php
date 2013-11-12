@@ -7,7 +7,7 @@
  *
  */
 
-defined('YII_DEBUG') or define('YII_DEBUG',false);
+defined('YII_DEBUG') or define('YII_DEBUG',true);
 
 define( 'BASE_PATH', dirname(__FILE__) );
 define( 'DS', DIRECTORY_SEPARATOR );
