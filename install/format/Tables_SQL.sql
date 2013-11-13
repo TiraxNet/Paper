@@ -45,3 +45,15 @@ CREATE TABLE IF NOT EXISTS `widgets` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- -------------------------------------------------------
+-- Dumping data for table `widgets`
+--
+
+INSERT INTO `widgets` (`id`, `name`, `pathname`) VALUES
+(1, 'None', 'none'),
+(2, 'Link', 'link'),
+(3, 'Form', 'form'),
+(4, 'HTML', 'html'),
+(5, 'InputBox', 'input'),
+(6, 'Submit Button', 'submit'),
+(7, 'Text Area', 'textarea');

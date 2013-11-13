@@ -28,3 +28,15 @@ td img {
 	color: #000;
 	font-family: Tahoma, 'Times New Roman', Arial;
 }
+#PapaDIV textarea{
+	background:url('../images/spacer.gif');
+	resize: none;
+	border: 0px;
+	box-shadow: 0 0 0 0;
+	width: 100%;
+	height:100%;
+	margin:0;
+	padding:0px;
+	color: #000;
+	font-family: Tahoma, 'Times New Roman', Arial;
+}

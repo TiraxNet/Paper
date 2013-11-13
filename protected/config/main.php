@@ -40,17 +40,18 @@ require($user_folder.DS.'config.php');
 
 Yii::setPathOfAlias('user', $user_folder);
 
-
 return array(
 	'params'=>array(
 		'AdminUsername' => 'admin',
-		'AdminPass' => '13721372'
+		'AdminPass' => '13721372',
+		'AdminMail'	=> 	$UConfig['admin']['mail'],
 	),
 	'name'=>$UConfig['website']['Name'],
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'import'=>array(
     	'application.components.*',
 		'application.extensions.*',
+		'application.extensions.mail.YiiMailMessage',
 		'application.models.*',
 		'application.GWidgets.*',
 		'application.admin.components.*',
@@ -103,6 +104,20 @@ return array(
 					'u/<u:\w+>(/page<id:\d+>)?'=>'site/index', //Page id for multi user 
 					'u/<u:\w+>/<A:.+>'=>'<A>',
 			),
+		),
+		'mail' => array(
+				'class' => 'application.extensions.mail.YiiMail',
+				'transportType' => 'smtp',
+				'transportOptions'=>array(
+						'host'=>'smtp.shatel.ir',
+						//'encryption'=>'tls',
+						//'username'=>'info@tiraxnet.ir',
+						//'password'=>'13721372',
+						'port'=>587,
+				),
+				'viewPath' => 'application.views.mail',
+				'logging' => true,
+				'dryRun' => true
 		),
 		
     ),

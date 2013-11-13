@@ -12,21 +12,27 @@ class Wform extends GWidget{
 		return array('NameID','tmp','action','method','RenderFile');
 	}
 	public function Content(){
-		$con=$this->GetSubGTemp()->Render->HTML();
+		$con=$this->GetSubGTemp()->GetContent();
 		$form='<form method="post" style="margin:0px;">';
 		return $form.$con.'</form>';
 	}
 	public function CSS(){
-		return $this->GetSubGTemp()->Render->CSS();
+		return $this->GetSubGTemp()->GetCSS();
 	}
 	public function RenderInit(){
 		if (array_key_exists($this->GetOpt('NameID'),$_POST)){
-			$this->EvalFile('');
+			$this->EvalFile();
 		}
 	}
-	public function EvalFile(){
+	public function evalFilePath(){
 		$path=GBlock::GetPath($this->block->id).DS.$this->GetOpt('RenderFile');
-		if (!file_exists($path)) return false;
+		if (file_exists($path)) return $path;
+		$path=Yii::getPathOfAlias('application.GWidgets.Wform').DS.$this->GetOpt('RenderFile');
+		if (file_exists($path)) return $path;
+		return false;
+	}
+	public function EvalFile(){
+		if (!($path=$this->evalFilePath())) return false;
 		$code=file_get_contents($path);
 		$code=str_replace('<?php','',$code);
 		foreach ($_POST[$this->GetOpt('NameID')] as $key=>$val){
@@ -54,7 +60,7 @@ class Wform extends GWidget{
 		echo $form->textFieldRow($model, 'action');
 		echo $form->textFieldRow($model, 'method');
 		echo '<a href="'.$controller->createUrl('Tmp/update',array('id'=>$model->tmp)).'">Edit Inside Template!</a><br/>';
-		echo 'Copy Your PHP files in "protected/blocks/',$this->block->id.'"';
+		echo 'Copy Your PHP files in "'.USER_PATH.DS.'GBlocks'.DS.$this->block->id.'"';
 		echo '<div class="form-actions">';
 		$this->Widget->widget('Button', array('label'=>'Close','url'=>'#','htmlOptions'=>array('data-dismiss'=>'modal')));
 		echo '</div>';

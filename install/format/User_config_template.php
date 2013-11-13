@@ -15,5 +15,8 @@ $UConfig = array(
 	),
 	'website'=>array(
 		'Name'		=>  '_WEBSITE_NAME_'
+	),
+	'admin'=>array(
+		'mail'		=> 	'_ADMIN_MAIL_'
 	)
 );

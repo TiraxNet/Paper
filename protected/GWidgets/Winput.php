@@ -8,14 +8,19 @@
  *
  */
 class Winput extends GWidget{
+	private $form_name;
+	
+	public function init(){
+		$this->form_name = GBlock::FindById($this->GTemp->parent)->getOptions('NameID');
+	}
 	public function Options(){
-		return array('name','direction','form');
+		return array('name','direction');
 	}
 	public function Content(){
-		$name=$this->GetOpt('form').'['.$this->GetOpt('name').']';
+		$name=$this->form_name.'['.$this->GetOpt('name').']';
 		$content = '<input type="text" name="'.$name.'" ';
 		$content.='style="font-size:'.($this->block->height*80/100).'px;" ';
-		$content.='value="'.$_POST[$this->GetOpt('form')][$this->GetOpt('name')].'" ';
+		$content.='value="'.@$_POST[$this->form_name][$this->GetOpt('name')].'" ';
 		$content.='dir="'.$this->GetOpt('direction').'" ';
 		$content.='/>';
 		return $content;
@@ -29,7 +34,6 @@ class Winput extends GWidget{
 			'action'=>$Arg->action,
 		));
 		echo $form->textFieldRow($model, 'name');
-		echo $form->textFieldRow($model, 'form');
 		echo $form->dropDownListRow($model, 'direction', array('RTL'=>'Right to Left',
 																'LTR'=>'Left to Right'));
 		echo '<div class="form-actions">';

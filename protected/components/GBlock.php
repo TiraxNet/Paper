@@ -207,6 +207,14 @@ class GBlock extends CComponent{
 		return $hndl_dest;
 	}
 	/**
+	 * Get widget option value
+	 * @param string $key
+	 * @return string
+	 */
+	public function getOptions($key){
+		return $this->WidgetClass()->GetOpt($key);
+	}
+	/**
 	 * Get a block id and return corresponding folder location
 	 * @param string $id block id
 	 * @return Ambigous <boolean, string, mixed, multitype:string >

@@ -8,4 +8,5 @@ class OptionsModel extends CFormModel
 	public $SqlDatabase;
 	public $UrlExpression;
 	public $UserName;
+	public $AdminMail;
 }

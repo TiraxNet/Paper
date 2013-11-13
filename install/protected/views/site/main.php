@@ -28,10 +28,11 @@
 		echo $form->textFieldRow ( $model, 'UrlExpression' );
 	}
 	echo $form->textFieldRow ( $model, 'WebsiteName' );
-	echo $form->textFieldRow ( $model, 'SqlHost' );
+	echo $form->textFieldRow ( $model, 'SqlHost' 	 );
 	echo $form->textFieldRow ( $model, 'SqlUsername' );
 	echo $form->textFieldRow ( $model, 'SqlPassword' );
 	echo $form->textFieldRow ( $model, 'SqlDatabase' );
+	echo $form->textFieldRow ( $model, 'AdminMail'   );
 	?>
 	<div class="form-actions">
 		<button name="Submit" type="submit" class="btn btn-primary">Submit</button>

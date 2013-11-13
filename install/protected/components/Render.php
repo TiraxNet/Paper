@@ -77,7 +77,10 @@ class Render extends CComponent{
 		$this->replaceList['_DB_USERNAME_']=$this->model->SqlUsername;
 		$this->replaceList['_DB_PASS_']=$this->model->SqlPassword;
 		$this->replaceList['_DB_NAME_']=$this->model->SqlDatabase;
+		
 		$this->replaceList['_WEBSITE_NAME_']=$this->model->WebsiteName;
+		$this->replaceList['_ADMIN_MAIL_']=$this->model->AdminMail;
+		
 		
 		if (!$this->WriteSettings()){
 			return false;

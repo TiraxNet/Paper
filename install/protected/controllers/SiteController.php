@@ -19,7 +19,7 @@ class SiteController extends CController
 		{
 			Yii::app()->render->Render_Request();
 			$msg=Yii::app()->render->MSG;
-		}
+		}else $msg=null;
 		$this->render("main",array('msg'=>$msg,'type'=>$type));
 	}
 }
