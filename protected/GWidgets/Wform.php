@@ -43,7 +43,7 @@ class Wform extends GWidget{
 	}
 	public function GetSubGTemp(){
 		$subtmp=$this->GetOpt('tmp');
-		$WGT=GTemplate::FindById($subtmp);
+		$WGT=Yii::app()->TempRep->GetById($subtmp);
 		return $WGT;
 	}
 	public function RenderOptions($Arg){

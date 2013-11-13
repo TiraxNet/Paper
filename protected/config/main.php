@@ -71,6 +71,7 @@ return array(
 			)
 		),
 	),
+	'preload'=>array('log'),
 	'components'=>array(
 		'TempRep'=>array(
 				'class'=>'application.components.GTempRepository'
@@ -118,8 +119,16 @@ return array(
 				'viewPath' => 'application.views.mail',
 				'logging' => true,
 				'dryRun' => true
+			
 		),
-		
+		'log'=>array(
+				'class'=>'CLogRouter',
+				'routes'=>array(
+						array(
+							'class'=>'CFileLogRoute',
+						),
+				),
+		),
     ),
 );
 
