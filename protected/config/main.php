@@ -110,15 +110,15 @@ return array(
 				'class' => 'application.extensions.mail.YiiMail',
 				'transportType' => 'smtp',
 				'transportOptions'=>array(
-						'host'=>'smtp.shatel.ir',
+						'host'=>'mail.tiraxnet.org',
 						//'encryption'=>'tls',
-						//'username'=>'info@tiraxnet.ir',
-						//'password'=>'13721372',
-						'port'=>587,
+						'username'=>'info@tiraxnet.ir',
+						'password'=>'13721372',
+						'port'=>25,
 				),
 				'viewPath' => 'application.views.mail',
 				'logging' => true,
-				'dryRun' => true
+				'dryRun' => false
 			
 		),
 		'log'=>array(

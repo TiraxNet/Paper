@@ -1,7 +1,12 @@
 <html>
 <body style="direction:rtl; font-family:Tahoma">
-نام : <?php echo $name; ?>
-ایمیل : <?php echo $email; ?>
-متن : <?php echo $email; ?>
+شما یک ایمیل جدید در وبسایت خود دریافت کرده اید. <br/>
+نام : <?php echo $name; ?> <br/> 
+ایمیل : <?php echo $email; ?> <br/>
+متن : <?php echo $body; ?> <br/>
+<br/>
+<br/>
+<br/>
+تیم تراکس نت برای شما آرزوی بهترین ها را دارد
 </body>
 </html>
