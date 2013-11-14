@@ -1,5 +1,13 @@
 RewriteEngine on
 
+
+RewriteCond %{HTTP_HOST} ^(^.*)\.tiraxnet\.ir
+RewriteRule  ^media(.*)  http://media.tiraxnet.ir/%1/$1    [NC,L]
+
+RewriteCond %{HTTP_HOST} ^(^.*)\.ir
+RewriteRule  ^media(.*)  http://media.tiraxnet.ir/%1/$1    [NC,L]
+
+
 # if a directory or a file exists, use it directly
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
