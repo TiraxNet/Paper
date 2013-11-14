@@ -4,6 +4,7 @@ $message->view = 'contactForm';
 //$message->setBody('Message content here with HTML', 'text/html');
 $message->setBody(array('name'=>$name,
 		'email'=>$email,
+		'subject'=>$subject,
 		'body'=>$body), 'text/html');
 $message->subject = 'New Contact From your Website';
 $message->addTo(Yii::app()->params['AdminMail']);
