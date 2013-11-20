@@ -122,6 +122,7 @@ class GBlock extends CComponent{
 		$this->db->save();
 		$this->GTemp->RenderStructure();
 		$this->WidgetClass()->CreateNew();
+		$this->GTemp->Increase_Version();
 		return $this->db->id;
 	}
 	/**
@@ -143,6 +144,7 @@ class GBlock extends CComponent{
 	 * Save current settings in database
 	 */
 	public function Save(){
+		$this->GTemp->Increase_Version();
 		$this->sortXY();
 		$this->db->save();
 	}
@@ -150,6 +152,7 @@ class GBlock extends CComponent{
 	 * Delete block which has current "id" parameter
 	 */
 	public function delete(){
+		$this->GTemp->Increase_Version();
 		$this->db->delete();
 	}
 	/**
@@ -168,14 +171,6 @@ class GBlock extends CComponent{
 	 * @return resource Created image resource handle
 	 */
 	public function GetImage($type=NULL){
-		//@TODO: Active caching system.
-		/*
-		$cache_key=array($this->tmp,$this->GTemp->version,$this->id,$type);
-		$ch=Yii::app()->ImgCache->get($cache_key);
-		if ($ch!=null)
-			return $ch;
-		*/
-		 
 		$GTemp=$this->GTemp;
 		if ($type!=NULL){
 			$hndl=imagecreatefromjpeg(GTemplate::GetPath($GTemp->id).DS.$type.".jpg");
@@ -202,9 +197,15 @@ class GBlock extends CComponent{
 					$this->x1,$this->y1,$this->width,$this->height,100);
 			}
 		}
-		//@TODO: Active caching system.
-		//Yii::app()->ImgCache->set($cache_key,$hndl_dest);
 		return $hndl_dest;
+	}
+	public function getImageUrl($type=null){
+		$cache_key=$this->tmp.$this->GTemp->version.$this->id.$type;
+		$ch=Yii::app()->ImgCache->getValue($cache_key);
+		if (($ch=Yii::app()->ImgCache->getValue($cache_key)) == true)
+			return $ch;
+		else 
+			return Yii::app()->ImgCache->addValue($cache_key,$this->GetImage($type)); 
 	}
 	/**
 	 * Get widget option value

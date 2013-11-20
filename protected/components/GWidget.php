@@ -167,13 +167,14 @@ class GWidget{
 	 * @param string $type Optional; If you need an special type, pass it here
 	 */
 	public function BlockImgUrl($type=null){
-		$block=$this->block->id;
+		return $this->block->getImageUrl($type);
+		/*$block=$this->block->id;
 		$tmp=$this->GTemp->id;
 		$controller=Yii::app()->controller;
 		$param=array('id'=>$block);
 		if ($type!=NULL) $param['type']=$type;
 		if ($tmp!=NULL) $param['tmp']=$tmp;
-		return $controller->createUrl('img/index',$param);
+		return $controller->createUrl('img/index',$param);*/
 	}
 	/**
 	 * Return block image position of given type
