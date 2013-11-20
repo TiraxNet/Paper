@@ -1,5 +1,15 @@
-RewriteEngine on
+ExpiresActive On
+ExpiresByType image/png "now plus 7 days"
+ExpiresByType image/jpeg "now plus 7 days"
+ExpiresByType image/gif "now plus 7 days"
+ExpiresByType image/ico "now plus 7 days"
+ExpiresByType image/x-icon "now plus 7 days"
+ExpiresByType application/javascript "now plus 7 days"
+ExpiresByType application/x-javascript "now plus 7 days"
+ExpiresByType text/javascript "now plus 7 days"
+ExpiresByType text/css "now plus 7 days"
 
+RewriteEngine on
 
 RewriteCond %{HTTP_HOST} ^(^.*)\.tiraxnet\.ir
 RewriteRule  ^media(.*)  http://media.tiraxnet.ir/%1/$1    [NC,L]
