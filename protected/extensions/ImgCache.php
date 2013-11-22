@@ -15,7 +15,7 @@ class ImgCache extends CComponent
 	public function addValue($key,$value)
 	{
 		$cacheFile=$this->getCacheFile($key);
-		if(@imagejpeg($value,$cacheFile,75)!==false)
+		if(@imagejpeg($value,$cacheFile,100)!==false)
 		{
 			@chmod($cacheFile,0777);
 			return $this->getUrl($key);
